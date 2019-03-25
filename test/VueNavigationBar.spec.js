@@ -4,33 +4,125 @@ import VueNavigationBar from '@/vue-navigation-bar.vue'
 describe('VueNavigationBar.vue', () => {
     it('Sets props correctly', async () => {
         let initialPropsData = {
+            elementId: 'main-navbar',
+            isUsingVueRouter: true,
             mobileBreakpoint: 992,
-            desktopHeight: 200,
-            mobileHeight: 100,
-            background: '#eee',
-            textColor: '#333',
-            text: 'Test text',
-            fontSize: '2rem'
+            brandImagePath: '/',
+            brandImage: null,
+            brandImageAltText: 'vnb',
+            collapseButtonStyle: 'dark',
+            menuOptionsLeft: [
+                {
+                    type: 'link',
+                    text: 'Why Dunder Mifflin',
+                    path: '/why',
+                    subMenuOptions: [
+                        {
+                            type: 'link',
+                            text: 'About',
+                            path: '#',
+                        },
+                        {
+                            type: 'hr',
+                        },
+                        {
+                            type: 'link',
+                            text: 'Locations',
+                            path: '/locations',
+                        },
+                        {
+                            type: 'link',
+                            text: 'Blog',
+                            path: '/blog',
+                        },
+                    ]
+                },
+                {
+                    type: 'link',
+                    text: 'Contact',
+                    path: '/contact',
+                    subMenuOptions: [
+                        {
+                            type: 'link',
+                            text: 'Customer Service',
+                            path: '/customer-service',
+                        },
+                        {
+                            type: 'link',
+                            text: 'Accounting',
+                            path: '/accounting',
+                        },
+                        {
+                            type: 'link',
+                            text: 'Reception',
+                            path: '/reception',
+                        },
+                    ]
+                },
+                {
+                    type: 'link',
+                    text: 'Pricing',
+                    path: '/pricing',
+                },
+            ],
+            menuOptionsRight: [
+                {
+                    type: 'button',
+                    text: 'Signup',
+                    path: '/signup',
+                    class: 'button-red'
+                },
+                {
+                    type: 'button',
+                    text: 'Login',
+                    path: '/login',
+                }
+            ],
+            ariaLabelMainNav: 'Main Navigation'
         }
 
         const wrapper = shallowMount(VueNavigationBar, {
             propsData: {
-                mobileBreakpoint: initialPropsData.mobileBreakpoint,
-                desktopHeight: initialPropsData.desktopHeight,
-                mobileHeight: initialPropsData.mobileHeight,
-                background: initialPropsData.background,
-                textColor: initialPropsData.textColor,
-                text: initialPropsData.text,
-                fontSize: initialPropsData.fontSize
+                options: {
+                    elementId: initialPropsData.elementId,
+                    isUsingVueRouter: initialPropsData.isUsingVueRouter,
+                    mobileBreakpoint: initialPropsData.mobileBreakpoint,
+                    brandImagePath: initialPropsData.brandImagePath,
+                    brandImage: initialPropsData.brandImage,
+                    brandImageAltText: initialPropsData.brandImageAltText,
+                    collapseButtonStyle: initialPropsData.collapseButtonStyle,
+                    menuOptionsLeft: initialPropsData.menuOptionsLeft,
+                    menuOptionsRight: initialPropsData.menuOptionsRight,
+                    ariaLabelMainNav: initialPropsData.ariaLabelMainNav,
+                }
             }
         })
 
-        expect(wrapper.vm.mobileBreakpoint).toBe(initialPropsData.mobileBreakpoint)
-        expect(wrapper.vm.desktopHeight).toBe(initialPropsData.desktopHeight)
-        expect(wrapper.vm.mobileHeight).toBe(initialPropsData.mobileHeight)
-        expect(wrapper.vm.background).toBe(initialPropsData.background)
-        expect(wrapper.vm.textColor).toBe(initialPropsData.textColor)
-        expect(wrapper.vm.text).toBe(initialPropsData.text)
-        expect(wrapper.vm.fontSize).toBe(initialPropsData.fontSize)
+        expect(wrapper.vm.finalOptions.elementId).toBe(initialPropsData.elementId)
+        expect(wrapper.vm.finalOptions.isUsingVueRouter).toBe(initialPropsData.isUsingVueRouter)
+        expect(wrapper.vm.finalOptions.mobileBreakpoint).toBe(initialPropsData.mobileBreakpoint)
+        expect(wrapper.vm.finalOptions.brandImagePath).toBe(initialPropsData.brandImagePath)
+        expect(wrapper.vm.finalOptions.brandImage).toBe(initialPropsData.brandImage)
+        expect(wrapper.vm.finalOptions.brandImageAltText).toBe(initialPropsData.brandImageAltText)
+        expect(wrapper.vm.finalOptions.collapseButtonStyle).toBe(initialPropsData.collapseButtonStyle)
+        expect(wrapper.vm.finalOptions.menuOptionsLeft).toBe(initialPropsData.menuOptionsLeft)
+        expect(wrapper.vm.finalOptions.menuOptionsRight).toBe(initialPropsData.menuOptionsRight)
+        expect(wrapper.vm.finalOptions.ariaLabelMainNav).toBe(initialPropsData.ariaLabelMainNav)
+    })
+
+    it('Confirms the `vue-navigation-bar` was built', async () => {
+        let initialPropsData = {
+            elementId: 'main-navbar',
+        }
+
+        const wrapper = shallowMount(VueNavigationBar, {
+            propsData: {
+                options: {
+                    elementId: initialPropsData.elementId,
+                }
+            }
+        })
+
+        expect(wrapper.find({name: 'vue-navigation-bar'})).toBeTruthy()
     })
 })

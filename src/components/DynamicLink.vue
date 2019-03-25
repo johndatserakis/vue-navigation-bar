@@ -1,0 +1,22 @@
+<script>
+export default {
+    name: 'dynamic-link',
+    render: function (h) {
+        if (this.isUsingVueRouter){
+            return h('router-link', { props: { to: {path: this.path} } }, this.$slots.default)
+        }
+
+        return h('a', this.$slots.default)
+    },
+    props: {
+        isUsingVueRouter: {
+            type: Boolean,
+            required: true
+        },
+        path: {
+            type: String,
+            required: true
+        }
+    }
+}
+</script>

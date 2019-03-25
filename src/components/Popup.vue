@@ -1,0 +1,222 @@
+<template>
+    <div
+        v-if="menuIsVisible"
+        class="vnb__popup"
+    >
+        <div class="vnb__popup__top">
+            <button
+                class="vnb__popup__top__close-button"
+                @click="closeButtonClicked"
+                aria-label="Close Button"
+                title="Close"
+                :aria-expanded="(menuIsVisible) ? 'true' : 'false'"
+            >
+                <img
+                    :src="require('../assets/images/times.png')"
+                    :alt="'Close button'"
+                    class="vnb__popup__top__close-button__image"
+                >
+            </button>
+        </div>
+
+        <div class="vnb__popup__bottom">
+            <ul class="vnb__popup__bottom__menu-options">
+                <li v-for="option in combinedMenuItems" class="vnb__popup__bottom__menu-options__option">
+                    <a
+                        v-if="!option.subMenuOptions"
+                        :href="option.path"
+                        class="vnb__popup__bottom__menu-options__option__link"
+                        @click="itemSelected"
+                        :aria-label="option.text"
+                    >
+                        {{option.text}}
+                    </a>
+
+                    <span
+                        v-else
+                        class="vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
+                    >
+                        {{option.text}}
+                    </span>
+
+                    <div class="vnb__popup__bottom__sub-menu-options">
+                        <div v-for="subOption in option.subMenuOptions" class="vnb__popup__bottom__sub-menu-options__option">
+                            <a
+                                v-if="subOption.type === 'link'"
+                                :href="subOption.path"
+                                class="vnb__popup__bottom__sub-menu-options__option__link"
+                                @click="itemSelected"
+                                :aria-label="subOption.text"
+                            >
+                                {{subOption.text}}
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+       </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'popup',
+    props: {
+        options: {
+            type: Object,
+            required: true
+        },
+        menuIsVisible: {
+            type: Boolean,
+            required: true
+        }
+    },
+    data () {
+        return {
+        }
+    },
+    computed: {
+        combinedMenuItems () {
+            let combinedArray = this.options.menuOptionsLeft.concat(this.options.menuOptionsRight)
+            return combinedArray
+        }
+    },
+    methods: {
+        closeButtonClicked () {
+            this.$emit('close-button-clicked')
+        },
+        itemSelected () {
+            this.closeButtonClicked()
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+    @import '../assets/css/main.scss';
+
+    .vnb {
+        &__popup {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            perspective: 2000px;
+            box-shadow: $box-shadow;
+            margin-bottom: 20px;
+            z-index: 100000;
+
+            &__top {
+                padding: 5px 10px 5px;
+                background: darken($white, 0%);
+                width: 100%;
+                border-top: 1px solid darken($white, 12%);
+                border-left: 1px solid darken($white, 12%);
+                border-right: 1px solid darken($white, 12%);
+
+                border-top-right-radius: 6px;
+                border-top-left-radius: 6px;
+
+                &__close-button {
+                    cursor: pointer;
+                    border: 0;
+                    background: transparent;
+                    margin-left: auto;
+                    display: block;
+
+                    &:hover {
+                        opacity: 0.75;
+                    }
+
+                    &__image {
+                        max-height: 15px;
+                    }
+                }
+            }
+
+            &__bottom {
+                background: $white;
+                padding: 0 0 10px;
+                border-left: 1px solid darken($white, 12%);
+                border-right: 1px solid darken($white, 12%);
+                border-bottom: 1px solid darken($white, 12%);
+                border-bottom-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+
+                &__menu-options {
+                    list-style-type: none;
+                    padding-left: 0;
+                    display: flex;
+                    flex-direction: column;
+
+                    &__option {
+                        &:not(:last-child) {
+                            margin-bottom: 10px;
+                        }
+
+                        &__link {
+                            padding: 12px 24px;
+                            color: lighten($black, 15%);
+                            font-weight: 700;
+                            display: inline-block;
+                            transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
+                            border-left: 2px solid $white;
+                            width: 100%;
+
+                            &:hover {
+                                color: $black;
+                                text-decoration: none;
+                                background: lighten($grey, 2%);
+                                border-left: 2px solid $blue;
+                            }
+
+                            &--no-highlight {
+                                padding: 12px 24px 6px;
+                                font-weight: 400;
+                                font-size: 0.8rem;
+                                color: lighten($black, 26%);
+
+                                &:hover {
+                                    color: lighten($black, 26%);
+                                    background: $white;
+                                    border-left: 2px solid $white;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &__sub-menu-options {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    width: 100%;
+                    font-size: 0.9rem;
+
+                    &__option {
+                        width: 100%;
+
+                        &__link {
+                            padding: 6px 24px;
+                            width: 100%;
+                            display: block;
+                            color: lighten($black, 20%);
+                            font-weight: 700;
+                            transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
+                            border-left: 2px solid $white;
+
+                            &:hover {
+                                color: $black;
+                                text-decoration: none;
+                                background: $grey;
+                                border-left: 2px solid $black;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</style>
