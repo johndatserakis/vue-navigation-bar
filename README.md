@@ -139,6 +139,9 @@ Vue.component('vue-navigation-bar', VueNavigationBar)
                                     path: '/locations',
                                 },
                                 {
+                                    type: 'hr',
+                                },
+                                {
                                     type: 'link',
                                     text: 'Blog',
                                     subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
@@ -238,6 +241,15 @@ Take a look at the `./example` folder in this project - it has the complete work
 |---|---|---|
 | mobile-popup-shown | null | Emitted when the mobile popup is shown |
 | mobile-popup-hidden | null | Emitted when the mobile popup is hidden |
+
+### Methods
+
+Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, something like this: `<vue-navigation-bar :ref="myNavbar" />`. Then, manually call the methods like this in your javascript: `this.$refs.myNavbar.closeMobilePopup()`.
+
+| method | parameters | description |
+|---|---|---|
+| closeMobilePopup | | Close the mobile popup |
+| showMobilePopup | | Show the mobile popup |
 
 ### SASS Structure
 

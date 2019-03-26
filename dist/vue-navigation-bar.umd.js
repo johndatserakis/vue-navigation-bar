@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('tippy.js'), require('vue-screen-size')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'tippy.js', 'vue-screen-size'], factory) :
-    (factory((global.VueNavigationBar = {}),global.tippy,global.VueScreenSize));
-}(this, (function (exports,tippy,VueScreenSize) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('tippy.js'), require('vue-screen-size'), require('vue2-transitions')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'tippy.js', 'vue-screen-size', 'vue2-transitions'], factory) :
+    (factory((global.VueNavigationBar = {}),global.tippy,global.VueScreenSize,global.Vue2Transitions));
+}(this, (function (exports,tippy,VueScreenSize,vue2Transitions) { 'use strict';
 
     tippy = tippy && tippy.hasOwnProperty('default') ? tippy['default'] : tippy;
     VueScreenSize = VueScreenSize && VueScreenSize.hasOwnProperty('default') ? VueScreenSize['default'] : VueScreenSize;
@@ -204,7 +204,7 @@
                       alt: _vm.options.brandImageAltText
                     }
                   })
-                : _c("span", [_vm._v(_vm._s(_vm.options.brandImageAltText))])
+                : _vm._e()
             ]
           )
         ],
@@ -337,9 +337,10 @@
         }
     }
 
+    var img = new Image(); img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAcCAYAAADIrlf0AAAABGdBTUEAALGPC/xhBQAAAwNJREFUWAnNmMuOUkEQhjmczSzQeIsJl5Ub4xqYicbEhU+i4szAjFFHjYkuJG7c6Nx0bgzqxoVPoHESo4lL4BVcwguwc3H8f9JFoO0+F2gMnTB1qqu6qr6ubhjwU2qUSqVn2Wz2cy6XO9Pr9X7I/LzJYrH4EjV+yufzC91u9xfr8/kHhlcQL/A6hdcNOJyHw1c8z9XARu+ioCd4sc6bgFnAhn/32QFMEGB0LAHkwjyBoM63QRDcGy0Sz9dR5x+fRwgKyfSxOC8gCmBdL1DpV9J4aFqMKZCvI8A7m/1/zDM/6wjJ1fRxpn7ibJ2D05LFcRH2i/D7YrHPbBp3dQ/B10IS7HY6nafsRAoP9yF4aWyjxoDYEc/m4HKeeRRALSQuAVh3aqwoLNzG3MBgWXzQbrfXPM8LLPappwmAI8QOVEOC7QDggdgHnRBFGXZEN8hquVzen1VHGJfxkTc2AGsc64QUHdURdOKw1WrVXHZEACBXpQ6DHOuA2I0QNMYAOQJI1QWIAjiAXJHCDNIIQL+x4zS6MOpoMSFaf8gCRtclfVYAjGMFwEZtj94BPUdkAbhkW0gwvET/BPC8BjqyOklHCID4R4h5V48rOgHwZvJQdJOMhOCiKBC4HCPRShIQVwCsLxYEHWOANAGyHAdEATQQtsLYphGnA7LOeifEQSRbysCiG2QFd+SYBRpswyna6YcJJwAMHBuCzlEgKPBOGIgA0I/xTAMbtcU8JpttLnTXbItwtDZRiDURCvmAy16BHH6yK4Am5G1bXAWwYbPb5hN1QoJgpzaYUHRdslB05H29Xh/Ep6Q+CwDmnqgTUnSMjnzMZDLL/X6/AYBbsk6Xk3ZA4kwFwSAxQH4D4JIk1CUANtHZR/p8En3wHTvJAt0XX2G/4Rvgacxf1W1KP2uZT7kAYOypIRgEICcRIHQbG64AGNQJBAMlAXEJ4BQiLohrAOcQUSCzAJgJhIDgxwX+DHSNuhpv8O/0Y1FcSmd3Qi8Kv46cFAoFvLsGl9Pp9Gu8jT7XfVzpfwGfPX59eVOliAAAAABJRU5ErkJggg==';
+
     /* script */
     var __vue_script__$2 = script$2;
-    /* template */
     var __vue_render__$1 = function() {
       var _vm = this;
       var _h = _vm.$createElement;
@@ -362,7 +363,6 @@
             {
               staticClass: "vnb__menu-options__option__link",
               attrs: {
-                href: _vm.option.path,
                 id: "dropdown-menu-parent-" + _vm.option.text.replace(/\s+/g, ""),
                 "aria-haspopup": "true",
                 "aria-expanded": _vm.isExpanded ? "true" : "false",
@@ -371,7 +371,18 @@
               }
             },
             [
-              _vm._v("\n    " + _vm._s(_vm.option.text) + "\n\n    "),
+              _vm._v("\n    " + _vm._s(_vm.option.text) + "\n    "),
+              _c("img", {
+                class: [
+                  "vnb__menu-options__option__arrow",
+                  { "vnb__menu-options__option__arrow--hover": _vm.isExpanded }
+                ],
+                attrs: {
+                  src: img,
+                  alt: "arrow"
+                }
+              }),
+              _vm._v(" "),
               _vm.option.type === "link"
                 ? _c(
                     "div",
@@ -426,7 +437,15 @@
                                   _vm._v(
                                     "\n                " +
                                       _vm._s(subOption.text) +
-                                      "\n            "
+                                      "\n\n                "
+                                  ),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "vnb__sub-menu-options__option__link__sub-text"
+                                    },
+                                    [_vm._v(_vm._s(subOption.subText))]
                                   )
                                 ]
                               )
@@ -803,65 +822,6 @@
       )
 
     //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
 
     var script$7 = {
         name: 'popup',
@@ -892,10 +852,13 @@
             itemSelected: function itemSelected () {
                 this.closeButtonClicked();
             }
+        },
+        components: {
+            SlideYDownTransition: vue2Transitions.SlideYDownTransition
         }
     }
 
-    var img = new Image(); img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAABYpJREFUeAHt3M1rG0cUAHBJSQ7Of2DZ0NYBB1LwobaQ8cmF3ipDLzoUCoEc3HPpucX5Fwo9tFCo+3EylLb4XpcEQrF9aIkvNsHJwRL0UHpwfLLjvqdotqvVzu7Oaj7eW70BsbvzrfdDGklotlaTRCoCN3SzabVaC7Ozs/P9fv9vXR3JN49Au91empubu312dvZvWutGWiZgvHd9ff0Uyv5aXl7+emtrK7VeWlvJS49At9u9sbKy8s3l5eWfV1dXTyGu76bVrCczhxi/AsiMKqvX6z90Op37APNK5cmxeAQQ4/T09HuI6YexVhdw3jk8PPwtllcbectKwxhWXjo5Obmzubn5y97e3nW8AznPjoAGAxvdgke32Ww+gWXhOZwPUgQyfAntxl8ZqtLwKCiJgORdZmCopgOU+fn5x71e7wVmxteGhxkYgw6g/KPd3d1tWVNUPPXHAhiq8W2I60N1EYHAOvGTysw6CkpWdF6XGWAMGkBMo9hHILBof4GLd/5wtZqg6KNkigE9bW9sbHypeozWEFyscdHGxRsKl1SFjKOsKYnglMR4EP/0GoFg34KSiLDBpQ0MHG4EBDMEBaNglmxh4KhjIJgpKBiFYskmBo6YCoIFgoJRyE62MXA0LQgWCgpGIT25wMCRMkGwgqBgFEaTKwwcJRcEKwkKRuF1comBIxQCwYqCAr8Epv9qi+HRJfzSN/I9Q1dR5RcGwQbTjOIDA2NsBDKtKL4wSoFMG4pPjNIg04LiG2MikKqjhMCYGKSqKKEwrIBUDSUkhjWQqqCExrAKwh2FAoZ1EK4oVDCcgHBDoYThDIQLCjUMpyDUUShiOAehikIVwwsINRTKGN5AqKBQx/AKEhqFA4Z3kFAoXDCCgPhG4YQRDMQXCjeMoCCuUThiBAdxhcIVgwSIbRTOGGRAbKFwx8A4jG2LxsyQCfcv4j5G3KVVZB5qy/bR0VE9ZetxVhfGf2LL6sxWGTkQfGKmKNDkR4BpAGJ8H3hWjEhi4IRJguDESqBgsyKJLAZO3vifi0WesY06Jf62WmRY0hj4BMiC4OQso5DHIA9iEYUFBgsQCyhsMPC5kl3UcXLJtL6+fvP8/PwYPk29lSzTXD9bWFi4u7Ozc6UpJ5cd3cmB3MwSE8IvfYDxnQEG9nAHvpt8i5/YEt2RvSS9qKuolfgGrprikdUdJ8iDTIihYNigkAaxhMEKhSyIZQw2KCRBSmBsw29ZeNNO9ncxIgdSBgO3Hi8uLv5chVtLkQIpiwEfa1+V+JmF5EJPBmQSDLVAVAGFBIgNjKqgBAexiVEFlKAgLjC4owQDcYnBGSUIiA8MrijeQXxicETxChICgxuKN5CQGJxQvIBQwOCC4hyEEgYHFKcgFDGoozgDoYxBGcUJCAcMqijWQThhUESxCsIRgxqKNRDOGJRQrIBUAYMKysQgVcKggDIRSBUxQqOUBqkyRkiUUiDTgBEKxRhkmjBCoBiBTCOGb5TCINOM4ROlEIhgKJJSG1GN/iGZCyIY/2OoM5f/kMwEEQxFMH50haIFEYxxhGSOC5RUEMFIhl5/bRtlDEQw9MHXldhEGQERDF3I8/NtoUQggpEf9LwaNlAikJmZmU9gwE/zBh2Ws7pdRcHnZKVaGZTj4+N/+v3+HziB+B0OPig4I8HICRRuset0Ovfxbnc5VVVxFPsIpNFofAalF6qG5igYmsAksw1QXkLbz1X76C2r1+u9aDabT6CgC49bqkLsKBixYBQ5LfD29RJeCO8fHBw8Uv1FIJgB72PPNSiCoSJmeMxAGWDs7+//Hu9yBAQLEig34X3wK9gH/jG+BOMN5bx4BGIos9DqHXhc4CsjiZHZ4+rq6pvtdvteZiUpNI5Aq9V6e21t7Q3jhtJAIiARgAj8B7kNT6PB1/G8AAAAAElFTkSuQmCC';
+    var img$1 = new Image(); img$1.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAABYpJREFUeAHt3M1rG0cUAHBJSQ7Of2DZ0NYBB1LwobaQ8cmF3ipDLzoUCoEc3HPpucX5Fwo9tFCo+3EylLb4XpcEQrF9aIkvNsHJwRL0UHpwfLLjvqdotqvVzu7Oaj7eW70BsbvzrfdDGklotlaTRCoCN3SzabVaC7Ozs/P9fv9vXR3JN49Au91empubu312dvZvWutGWiZgvHd9ff0Uyv5aXl7+emtrK7VeWlvJS49At9u9sbKy8s3l5eWfV1dXTyGu76bVrCczhxi/AsiMKqvX6z90Op37APNK5cmxeAQQ4/T09HuI6YexVhdw3jk8PPwtllcbectKwxhWXjo5Obmzubn5y97e3nW8AznPjoAGAxvdgke32Ww+gWXhOZwPUgQyfAntxl8ZqtLwKCiJgORdZmCopgOU+fn5x71e7wVmxteGhxkYgw6g/KPd3d1tWVNUPPXHAhiq8W2I60N1EYHAOvGTysw6CkpWdF6XGWAMGkBMo9hHILBof4GLd/5wtZqg6KNkigE9bW9sbHypeozWEFyscdHGxRsKl1SFjKOsKYnglMR4EP/0GoFg34KSiLDBpQ0MHG4EBDMEBaNglmxh4KhjIJgpKBiFYskmBo6YCoIFgoJRyE62MXA0LQgWCgpGIT25wMCRMkGwgqBgFEaTKwwcJRcEKwkKRuF1comBIxQCwYqCAr8Epv9qi+HRJfzSN/I9Q1dR5RcGwQbTjOIDA2NsBDKtKL4wSoFMG4pPjNIg04LiG2MikKqjhMCYGKSqKKEwrIBUDSUkhjWQqqCExrAKwh2FAoZ1EK4oVDCcgHBDoYThDIQLCjUMpyDUUShiOAehikIVwwsINRTKGN5AqKBQx/AKEhqFA4Z3kFAoXDCCgPhG4YQRDMQXCjeMoCCuUThiBAdxhcIVgwSIbRTOGGRAbKFwx8A4jG2LxsyQCfcv4j5G3KVVZB5qy/bR0VE9ZetxVhfGf2LL6sxWGTkQfGKmKNDkR4BpAGJ8H3hWjEhi4IRJguDESqBgsyKJLAZO3vifi0WesY06Jf62WmRY0hj4BMiC4OQso5DHIA9iEYUFBgsQCyhsMPC5kl3UcXLJtL6+fvP8/PwYPk29lSzTXD9bWFi4u7Ozc6UpJ5cd3cmB3MwSE8IvfYDxnQEG9nAHvpt8i5/YEt2RvSS9qKuolfgGrprikdUdJ8iDTIihYNigkAaxhMEKhSyIZQw2KCRBSmBsw29ZeNNO9ncxIgdSBgO3Hi8uLv5chVtLkQIpiwEfa1+V+JmF5EJPBmQSDLVAVAGFBIgNjKqgBAexiVEFlKAgLjC4owQDcYnBGSUIiA8MrijeQXxicETxChICgxuKN5CQGJxQvIBQwOCC4hyEEgYHFKcgFDGoozgDoYxBGcUJCAcMqijWQThhUESxCsIRgxqKNRDOGJRQrIBUAYMKysQgVcKggDIRSBUxQqOUBqkyRkiUUiDTgBEKxRhkmjBCoBiBTCOGb5TCINOM4ROlEIhgKJJSG1GN/iGZCyIY/2OoM5f/kMwEEQxFMH50haIFEYxxhGSOC5RUEMFIhl5/bRtlDEQw9MHXldhEGQERDF3I8/NtoUQggpEf9LwaNlAikJmZmU9gwE/zBh2Ws7pdRcHnZKVaGZTj4+N/+v3+HziB+B0OPig4I8HICRRuset0Ovfxbnc5VVVxFPsIpNFofAalF6qG5igYmsAksw1QXkLbz1X76C2r1+u9aDabT6CgC49bqkLsKBixYBQ5LfD29RJeCO8fHBw8Uv1FIJgB72PPNSiCoSJmeMxAGWDs7+//Hu9yBAQLEig34X3wK9gH/jG+BOMN5bx4BGIos9DqHXhc4CsjiZHZ4+rq6pvtdvteZiUpNI5Aq9V6e21t7Q3jhtJAIiARgAj8B7kNT6PB1/G8AAAAAElFTkSuQmCC';
 
     /* script */
     var __vue_script__$7 = script$7;
@@ -903,121 +866,141 @@
       var _vm = this;
       var _h = _vm.$createElement;
       var _c = _vm._self._c || _h;
-      return _vm.menuIsVisible
-        ? _c("div", { staticClass: "vnb__popup" }, [
-            _c("div", { staticClass: "vnb__popup__top" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "vnb__popup__top__close-button",
-                  attrs: {
-                    "aria-label": "Close Button",
-                    title: "Close",
-                    "aria-expanded": _vm.menuIsVisible ? "true" : "false"
-                  },
-                  on: { click: _vm.closeButtonClicked }
-                },
-                [
-                  _c("img", {
-                    staticClass: "vnb__popup__top__close-button__image",
+      return _c("slide-y-down-transition", [
+        _vm.menuIsVisible
+          ? _c("div", { staticClass: "vnb__popup" }, [
+              _c("div", { staticClass: "vnb__popup__top" }, [
+                _vm.options.showBrandImageInMobilePopup && _vm.options.brandImage
+                  ? _c("img", {
+                      staticClass: "vnb-image vnb__popup__top__image",
+                      attrs: {
+                        src: _vm.options.brandImage,
+                        alt: _vm.options.brandImageAltText
+                      }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "vnb__popup__top__close-button",
                     attrs: {
-                      src: img,
-                      alt: "Close button"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "vnb__popup__bottom" }, [
-              _c(
-                "ul",
-                { staticClass: "vnb__popup__bottom__menu-options" },
-                _vm._l(_vm.combinedMenuItems, function(option) {
-                  return _c(
-                    "li",
-                    { staticClass: "vnb__popup__bottom__menu-options__option" },
-                    [
-                      !option.subMenuOptions
-                        ? _c(
-                            "a",
-                            {
-                              staticClass:
-                                "vnb__popup__bottom__menu-options__option__link",
-                              attrs: {
-                                href: option.path,
-                                "aria-label": option.text
+                      "aria-label": "Close Button",
+                      title: "Close",
+                      "aria-expanded": _vm.menuIsVisible ? "true" : "false"
+                    },
+                    on: { click: _vm.closeButtonClicked }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "vnb__popup__top__close-button__image",
+                      attrs: {
+                        src: img$1,
+                        alt: "Close button"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "vnb__popup__bottom" }, [
+                _c(
+                  "ul",
+                  { staticClass: "vnb__popup__bottom__menu-options" },
+                  _vm._l(_vm.combinedMenuItems, function(option) {
+                    return _c(
+                      "li",
+                      { staticClass: "vnb__popup__bottom__menu-options__option" },
+                      [
+                        !option.subMenuOptions
+                          ? _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "vnb__popup__bottom__menu-options__option__link",
+                                attrs: {
+                                  href: option.path,
+                                  "aria-label": option.text
+                                },
+                                on: { click: _vm.itemSelected }
                               },
-                              on: { click: _vm.itemSelected }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(option.text) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        : _c(
-                            "span",
-                            {
-                              staticClass:
-                                "vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
-                            },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(option.text) +
-                                  "\n                "
-                              )
-                            ]
-                          ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "vnb__popup__bottom__sub-menu-options" },
-                        _vm._l(option.subMenuOptions, function(subOption) {
-                          return _c(
-                            "div",
-                            {
-                              staticClass:
-                                "vnb__popup__bottom__sub-menu-options__option"
-                            },
-                            [
-                              subOption.type === "link"
-                                ? _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "vnb__popup__bottom__sub-menu-options__option__link",
-                                      attrs: {
-                                        href: subOption.path,
-                                        "aria-label": subOption.text
+                              [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(option.text) +
+                                    "\n                "
+                                )
+                              ]
+                            )
+                          : _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(option.text) +
+                                    "\n                "
+                                )
+                              ]
+                            ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "vnb__popup__bottom__sub-menu-options" },
+                          _vm._l(option.subMenuOptions, function(subOption) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "vnb__popup__bottom__sub-menu-options__option"
+                              },
+                              [
+                                subOption.type === "link"
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "vnb__popup__bottom__sub-menu-options__option__link",
+                                        attrs: {
+                                          href: subOption.path,
+                                          "aria-label": subOption.text
+                                        },
+                                        on: { click: _vm.itemSelected }
                                       },
-                                      on: { click: _vm.itemSelected }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(subOption.text) +
-                                          "\n                        "
-                                      )
-                                    ]
-                                  )
-                                : _vm._e()
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ]
-                  )
-                }),
-                0
-              )
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(subOption.text) +
+                                            "\n\n                            "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "vnb__popup__bottom__sub-menu-options__option__link__sub-text"
+                                          },
+                                          [_vm._v(_vm._s(subOption.subText))]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ])
             ])
-          ])
-        : _vm._e()
+          : _vm._e()
+      ])
     };
     var __vue_staticRenderFns__$6 = [];
     __vue_render__$6._withStripped = true;
@@ -1073,6 +1056,7 @@
                     brandImage: (this.options.brandImage) ? this.options.brandImage : null,
                     brandImageAltText: (this.options.brandImageAltText) ? this.options.brandImageAltText : 'brand-image',
                     collapseButtonStyle: (this.options.collapseButtonStyle) ? this.options.collapseButtonStyle : 'dark', // light, dark
+                    showBrandImageInMobilePopup: (this.options.showBrandImageInMobilePopup) ? true : false,
                     ariaLabelMainNav: (this.options.ariaLabelMainNav) ? this.options.ariaLabelMainNav : 'Main Navigation',
                     menuOptionsLeft: (this.options.menuOptionsLeft) ? this.options.menuOptionsLeft : [],
                     menuOptionsRight: (this.options.menuOptionsRight) ? this.options.menuOptionsRight : []
@@ -1080,11 +1064,13 @@
             }
         },
         methods: {
-            closeButtonClicked: function closeButtonClicked () {
+            closeMobilePopup: function closeMobilePopup () {
                 this.menuIsVisible = false;
+                this.$emit('mobile-popup-hidden');
             },
-            collapseButtonClicked: function collapseButtonClicked () {
-                this.menuIsVisible = !this.menuIsVisible;
+            showMobilePopup: function showMobilePopup () {
+                this.menuIsVisible = true;
+                this.$emit('mobile-popup-shown');
             }
         },
         components: {
@@ -1124,12 +1110,12 @@
           _vm._v(" "),
           _c("collapse-button", {
             attrs: { options: _vm.finalOptions, menuIsVisible: _vm.menuIsVisible },
-            on: { "collapse-button-clicked": _vm.collapseButtonClicked }
+            on: { "collapse-button-clicked": _vm.showMobilePopup }
           }),
           _vm._v(" "),
           _c("popup", {
             attrs: { options: _vm.finalOptions, menuIsVisible: _vm.menuIsVisible },
-            on: { "close-button-clicked": _vm.closeButtonClicked }
+            on: { "close-button-clicked": _vm.closeMobilePopup }
           })
         ],
         1

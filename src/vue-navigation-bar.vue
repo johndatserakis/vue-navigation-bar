@@ -8,9 +8,9 @@
 
         <menu-options :options="finalOptions" :type="'right'" />
 
-        <collapse-button :options="finalOptions" :menuIsVisible="menuIsVisible" @collapse-button-clicked="collapseButtonClicked" />
+        <collapse-button :options="finalOptions" :menuIsVisible="menuIsVisible" @collapse-button-clicked="showMobilePopup" />
 
-        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeButtonClicked"  />
+        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeMobilePopup"  />
 
     </nav>
 
@@ -57,12 +57,12 @@ export default {
         }
     },
     methods: {
-        closeButtonClicked () {
+        closeMobilePopup () {
             this.menuIsVisible = false
             this.$emit('mobile-popup-hidden')
         },
-        collapseButtonClicked () {
-            this.menuIsVisible = !this.menuIsVisible
+        showMobilePopup () {
+            this.menuIsVisible = true
             this.$emit('mobile-popup-shown')
         }
     },

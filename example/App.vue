@@ -90,6 +90,9 @@
                                     path: '/locations',
                                 },
                                 {
+                                    type: 'hr',
+                                },
+                                {
                                     type: 'link',
                                     text: 'Blog',
                                     subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
@@ -110,6 +113,9 @@
                                     type: 'link',
                                     text: 'Accounting',
                                     path: '/accounting',
+                                },
+                                {
+                                    type: 'hr',
                                 },
                                 {
                                     type: 'link',
