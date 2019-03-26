@@ -141,7 +141,7 @@ export default {
                 onShow: () => {
                     // https://github.com/atomiks/tippy.js-react/issues/7
                     [...document.querySelectorAll('.tippy-popper')].forEach(popper => {
-                        if (popper) {
+                        if (popper && popper._tippy) {
                             popper._tippy.hide(0)
                         }
                     })
