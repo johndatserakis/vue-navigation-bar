@@ -757,18 +757,18 @@
         computed: {
         },
         methods: {
-            collapseButtonStyle: function collapseButtonStyle () {
-                return (this.options.collapseButtonStyle === 'dark') ? require('../assets/images/collapse-menu-dark.png') : require('../assets/images/collapse-menu-light.png')
-            },
             collapseButtonClicked: function collapseButtonClicked () {
                 this.$emit('collapse-button-clicked');
             }
         }
     }
 
+    var img$1 = new Image(); img$1.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAcVJREFUeAHt3UFqwkAUBmCTanoJl80JxIJX6Lon6BXaGxS6qb1J172MJ3EE0zctLRIQd5kBv4EBkwjv8f0JGsiQ2cwgQIAAAQIECBAgQIAAAQIECBA4I9CsVqu3OPYcszvzHbunEUhR5iMHkj8spqmpygWBQyuMC0TTHl7kQIyKBARSURi5FYFUGEj+UTfqEEg3y+XyNnq5j5mvlsEsY9A0zb5t2/fwNwgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBK5ToNlsNncppcd4rtSStoLnwPF4TF3Xfc4jjK/oo48dBdtROgtEFk/5ifceRzUCvQU71WTx24hABFKZQGXtuEIqDGRXWU/X3M5uHv99H9yHlD8H/u5DyneiAwIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUICzXq9fh2G4SWmNYaFQshl4/0hKeY2vzZvH9vCKBjGSemU14cI40Sk8MfOgp3CCYzLC2QsUnhbIIUDGJfPgRzGO20XE/h5F+42ynuXYbEM/gvnDHIWBgECBAgQIECAAAECBAgQIFCNwDcsuZak5BfxfwAAAABJRU5ErkJggg==';
+
+    var img$2 = new Image(); img$2.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAaRJREFUeAHt3VFKw0AQBuAq2pPYG3kTvYHgg9ib9ET2JCYPcSb0xcrSPO0s+AUW0iTwD98kNIEs2e0sBAgQIECAAAECBAgQIECAAAECDYG7ZVneY99LjH3jGJv7CEwRc8yG5Mpjn0wpNwTmbMhy4yC7Owrcd8wStUFAQzYg9TxEQ3pqb8jKhuSfumUMgekh6viI8RrDbW9tU/LC+KwtQToBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgEChQE7YeYr85xje7S1sRETnu72nbMhXrBxqa5F+ETib0jbYuWDCjoYMJjBYOa4QDRlMYLBy8go5D1bTfy5nvcvyHDLGKbA+h4xRiioIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQKBHIG1Vvk+n5IAf5V5Pr9kGzId+ww4fNKp+jnZI5hkXwr1gyqlkzRdg0pgm/FakhLpmh7NmQuyhb7V2DOhuSn2vKWy1IrsN721pYgnQABAgQIECBAgAABAgQIEPgt8APQfDteuC9BpwAAAABJRU5ErkJggg==';
+
     /* script */
     var __vue_script__$6 = script$6;
-    /* template */
     var __vue_render__$5 = function() {
       var _vm = this;
       var _h = _vm.$createElement;
@@ -787,7 +787,13 @@
             [
               _c("img", {
                 staticClass: "vnb__collapse-button__image",
-                attrs: { src: _vm.collapseButtonStyle(), alt: "Menu" }
+                attrs: {
+                  src:
+                    this.options.collapseButtonStyle === "dark"
+                      ? img$1
+                      : img$2,
+                  alt: "Menu"
+                }
               })
             ]
           )
@@ -858,7 +864,7 @@
         }
     }
 
-    var img$1 = new Image(); img$1.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAABYpJREFUeAHt3M1rG0cUAHBJSQ7Of2DZ0NYBB1LwobaQ8cmF3ipDLzoUCoEc3HPpucX5Fwo9tFCo+3EylLb4XpcEQrF9aIkvNsHJwRL0UHpwfLLjvqdotqvVzu7Oaj7eW70BsbvzrfdDGklotlaTRCoCN3SzabVaC7Ozs/P9fv9vXR3JN49Au91empubu312dvZvWutGWiZgvHd9ff0Uyv5aXl7+emtrK7VeWlvJS49At9u9sbKy8s3l5eWfV1dXTyGu76bVrCczhxi/AsiMKqvX6z90Op37APNK5cmxeAQQ4/T09HuI6YexVhdw3jk8PPwtllcbectKwxhWXjo5Obmzubn5y97e3nW8AznPjoAGAxvdgke32Ww+gWXhOZwPUgQyfAntxl8ZqtLwKCiJgORdZmCopgOU+fn5x71e7wVmxteGhxkYgw6g/KPd3d1tWVNUPPXHAhiq8W2I60N1EYHAOvGTysw6CkpWdF6XGWAMGkBMo9hHILBof4GLd/5wtZqg6KNkigE9bW9sbHypeozWEFyscdHGxRsKl1SFjKOsKYnglMR4EP/0GoFg34KSiLDBpQ0MHG4EBDMEBaNglmxh4KhjIJgpKBiFYskmBo6YCoIFgoJRyE62MXA0LQgWCgpGIT25wMCRMkGwgqBgFEaTKwwcJRcEKwkKRuF1comBIxQCwYqCAr8Epv9qi+HRJfzSN/I9Q1dR5RcGwQbTjOIDA2NsBDKtKL4wSoFMG4pPjNIg04LiG2MikKqjhMCYGKSqKKEwrIBUDSUkhjWQqqCExrAKwh2FAoZ1EK4oVDCcgHBDoYThDIQLCjUMpyDUUShiOAehikIVwwsINRTKGN5AqKBQx/AKEhqFA4Z3kFAoXDCCgPhG4YQRDMQXCjeMoCCuUThiBAdxhcIVgwSIbRTOGGRAbKFwx8A4jG2LxsyQCfcv4j5G3KVVZB5qy/bR0VE9ZetxVhfGf2LL6sxWGTkQfGKmKNDkR4BpAGJ8H3hWjEhi4IRJguDESqBgsyKJLAZO3vifi0WesY06Jf62WmRY0hj4BMiC4OQso5DHIA9iEYUFBgsQCyhsMPC5kl3UcXLJtL6+fvP8/PwYPk29lSzTXD9bWFi4u7Ozc6UpJ5cd3cmB3MwSE8IvfYDxnQEG9nAHvpt8i5/YEt2RvSS9qKuolfgGrprikdUdJ8iDTIihYNigkAaxhMEKhSyIZQw2KCRBSmBsw29ZeNNO9ncxIgdSBgO3Hi8uLv5chVtLkQIpiwEfa1+V+JmF5EJPBmQSDLVAVAGFBIgNjKqgBAexiVEFlKAgLjC4owQDcYnBGSUIiA8MrijeQXxicETxChICgxuKN5CQGJxQvIBQwOCC4hyEEgYHFKcgFDGoozgDoYxBGcUJCAcMqijWQThhUESxCsIRgxqKNRDOGJRQrIBUAYMKysQgVcKggDIRSBUxQqOUBqkyRkiUUiDTgBEKxRhkmjBCoBiBTCOGb5TCINOM4ROlEIhgKJJSG1GN/iGZCyIY/2OoM5f/kMwEEQxFMH50haIFEYxxhGSOC5RUEMFIhl5/bRtlDEQw9MHXldhEGQERDF3I8/NtoUQggpEf9LwaNlAikJmZmU9gwE/zBh2Ws7pdRcHnZKVaGZTj4+N/+v3+HziB+B0OPig4I8HICRRuset0Ovfxbnc5VVVxFPsIpNFofAalF6qG5igYmsAksw1QXkLbz1X76C2r1+u9aDabT6CgC49bqkLsKBixYBQ5LfD29RJeCO8fHBw8Uv1FIJgB72PPNSiCoSJmeMxAGWDs7+//Hu9yBAQLEig34X3wK9gH/jG+BOMN5bx4BGIos9DqHXhc4CsjiZHZ4+rq6pvtdvteZiUpNI5Aq9V6e21t7Q3jhtJAIiARgAj8B7kNT6PB1/G8AAAAAElFTkSuQmCC';
+    var img$3 = new Image(); img$3.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAABYpJREFUeAHt3M1rG0cUAHBJSQ7Of2DZ0NYBB1LwobaQ8cmF3ipDLzoUCoEc3HPpucX5Fwo9tFCo+3EylLb4XpcEQrF9aIkvNsHJwRL0UHpwfLLjvqdotqvVzu7Oaj7eW70BsbvzrfdDGklotlaTRCoCN3SzabVaC7Ozs/P9fv9vXR3JN49Au91empubu312dvZvWutGWiZgvHd9ff0Uyv5aXl7+emtrK7VeWlvJS49At9u9sbKy8s3l5eWfV1dXTyGu76bVrCczhxi/AsiMKqvX6z90Op37APNK5cmxeAQQ4/T09HuI6YexVhdw3jk8PPwtllcbectKwxhWXjo5Obmzubn5y97e3nW8AznPjoAGAxvdgke32Ww+gWXhOZwPUgQyfAntxl8ZqtLwKCiJgORdZmCopgOU+fn5x71e7wVmxteGhxkYgw6g/KPd3d1tWVNUPPXHAhiq8W2I60N1EYHAOvGTysw6CkpWdF6XGWAMGkBMo9hHILBof4GLd/5wtZqg6KNkigE9bW9sbHypeozWEFyscdHGxRsKl1SFjKOsKYnglMR4EP/0GoFg34KSiLDBpQ0MHG4EBDMEBaNglmxh4KhjIJgpKBiFYskmBo6YCoIFgoJRyE62MXA0LQgWCgpGIT25wMCRMkGwgqBgFEaTKwwcJRcEKwkKRuF1comBIxQCwYqCAr8Epv9qi+HRJfzSN/I9Q1dR5RcGwQbTjOIDA2NsBDKtKL4wSoFMG4pPjNIg04LiG2MikKqjhMCYGKSqKKEwrIBUDSUkhjWQqqCExrAKwh2FAoZ1EK4oVDCcgHBDoYThDIQLCjUMpyDUUShiOAehikIVwwsINRTKGN5AqKBQx/AKEhqFA4Z3kFAoXDCCgPhG4YQRDMQXCjeMoCCuUThiBAdxhcIVgwSIbRTOGGRAbKFwx8A4jG2LxsyQCfcv4j5G3KVVZB5qy/bR0VE9ZetxVhfGf2LL6sxWGTkQfGKmKNDkR4BpAGJ8H3hWjEhi4IRJguDESqBgsyKJLAZO3vifi0WesY06Jf62WmRY0hj4BMiC4OQso5DHIA9iEYUFBgsQCyhsMPC5kl3UcXLJtL6+fvP8/PwYPk29lSzTXD9bWFi4u7Ozc6UpJ5cd3cmB3MwSE8IvfYDxnQEG9nAHvpt8i5/YEt2RvSS9qKuolfgGrprikdUdJ8iDTIihYNigkAaxhMEKhSyIZQw2KCRBSmBsw29ZeNNO9ncxIgdSBgO3Hi8uLv5chVtLkQIpiwEfa1+V+JmF5EJPBmQSDLVAVAGFBIgNjKqgBAexiVEFlKAgLjC4owQDcYnBGSUIiA8MrijeQXxicETxChICgxuKN5CQGJxQvIBQwOCC4hyEEgYHFKcgFDGoozgDoYxBGcUJCAcMqijWQThhUESxCsIRgxqKNRDOGJRQrIBUAYMKysQgVcKggDIRSBUxQqOUBqkyRkiUUiDTgBEKxRhkmjBCoBiBTCOGb5TCINOM4ROlEIhgKJJSG1GN/iGZCyIY/2OoM5f/kMwEEQxFMH50haIFEYxxhGSOC5RUEMFIhl5/bRtlDEQw9MHXldhEGQERDF3I8/NtoUQggpEf9LwaNlAikJmZmU9gwE/zBh2Ws7pdRcHnZKVaGZTj4+N/+v3+HziB+B0OPig4I8HICRRuset0Ovfxbnc5VVVxFPsIpNFofAalF6qG5igYmsAksw1QXkLbz1X76C2r1+u9aDabT6CgC49bqkLsKBixYBQ5LfD29RJeCO8fHBw8Uv1FIJgB72PPNSiCoSJmeMxAGWDs7+//Hu9yBAQLEig34X3wK9gH/jG+BOMN5bx4BGIos9DqHXhc4CsjiZHZ4+rq6pvtdvteZiUpNI5Aq9V6e21t7Q3jhtJAIiARgAj8B7kNT6PB1/G8AAAAAElFTkSuQmCC';
 
     /* script */
     var __vue_script__$7 = script$7;
@@ -895,7 +901,7 @@
                     _c("img", {
                       staticClass: "vnb__popup__top__close-button__image",
                       attrs: {
-                        src: img$1,
+                        src: img$3,
                         alt: "Close button"
                       }
                     })

@@ -242,12 +242,12 @@ Take a look at the `./example` folder in this project - it has the complete work
 
 ### Methods
 
-Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, something like this: `<vue-navigation-bar :ref="myNavbar" />`. Then, manually call the methods like this in your javascript: `this.$refs.myNavbar.closeMobilePopup()`.
-
 | method | parameters | description |
 |---|---|---|
 | closeMobilePopup | | Close the mobile popup |
 | showMobilePopup | | Show the mobile popup |
+
+Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, something like this: `<vue-navigation-bar :ref="myNavbar" />`. Then, manually call the methods like this in your javascript: `this.$refs.myNavbar.closeMobilePopup()`.
 
 ### SASS Structure
 

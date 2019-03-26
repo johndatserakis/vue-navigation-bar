@@ -1,6 +1,6 @@
 {
   "name": "vue-navigation-bar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple, pretty navbar for your Vue projects.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "license": "MIT",
@@ -74,7 +74,8 @@
       "vue"
     ],
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "\\.(css|less)$": "<rootDir>/test/styleMock.js"
     },
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",

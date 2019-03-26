@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import 'tippy.js/themes/light.css'
 import tippy from 'tippy.js'
 
 export default {
@@ -163,7 +164,7 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '../../node_modules/tippy.js/themes/light.css';
+    // @import '../../node_modules/tippy.js/themes/light.css';
     @import '../assets/css/main.scss';
 
     .vnb {

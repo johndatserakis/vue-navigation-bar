@@ -8,7 +8,7 @@
     >
         <img
             :src="
-                collapseButtonStyle()
+                (this.options.collapseButtonStyle === 'dark') ? require('../assets/images/collapse-menu-dark.png') : require('../assets/images/collapse-menu-light.png')
             "
             :alt="'Menu'"
             class="vnb__collapse-button__image"
@@ -39,9 +39,6 @@ export default {
     computed: {
     },
     methods: {
-        collapseButtonStyle () {
-            return (this.options.collapseButtonStyle === 'dark') ? require('../assets/images/collapse-menu-dark.png') : require('../assets/images/collapse-menu-light.png')
-        },
         collapseButtonClicked () {
             this.$emit('collapse-button-clicked')
         }
