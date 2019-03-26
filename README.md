@@ -1,4 +1,4 @@
-<p align="center"><a href="https://johndatserakis.github.io/vue-navigation-bar/" target="_blank" rel="noopener noreferrer"><img src="./src/assets/images/lockup-color.png" style="max-height: 100px;" alt="vue-navigation-bar"></a></p>
+<p align="center"><a href="https://johndatserakis.github.io/vue-navigation-bar/" target="_blank" rel="noopener noreferrer"><img src="./src/assets/images/lockup-color.png" width="100" style="max-height: 100px;" alt="vue-navigation-bar"></a></p>
 
 # vue-navigation-bar
 
@@ -114,19 +114,20 @@ Vue.component('vue-navigation-bar', VueNavigationBar)
                     mobileBreakpoint: 992,
                     brandImagePath: '/',
                     brandImage: require('../src/assets/images/lockup-color.png'),
-                    brandImageAltText: 'vue-navigation-bar',
+                    brandImageAltText: 'vnb',
                     collapseButtonStyle: 'dark',
+                    showBrandImageInMobilePopup: false,
                     ariaLabelMainNav: 'Main Navigation',
                     menuOptionsLeft: [
                         {
                             type: 'link',
                             text: 'Why Dunder Mifflin',
-                            path: '/why',
                             subMenuOptions: [
                                 {
                                     type: 'link',
                                     text: 'About',
-                                    path: '#',
+                                    subText: 'Stupid corporate wet blankets. Like booze ever killed anyone.',
+                                    path: '/about',
                                 },
                                 {
                                     type: 'hr',
@@ -134,11 +135,13 @@ Vue.component('vue-navigation-bar', VueNavigationBar)
                                 {
                                     type: 'link',
                                     text: 'Locations',
+                                    subText: 'You\'re a presentation tool!',
                                     path: '/locations',
                                 },
                                 {
                                     type: 'link',
                                     text: 'Blog',
+                                    subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
                                     path: '/blog',
                                 },
                             ]
@@ -146,7 +149,6 @@ Vue.component('vue-navigation-bar', VueNavigationBar)
                         {
                             type: 'link',
                             text: 'Contact',
-                            path: '/contact',
                             subMenuOptions: [
                                 {
                                     type: 'link',
@@ -219,15 +221,23 @@ Take a look at the `./example` folder in this project - it has the complete work
 | collapseButtonStyle | String | no | 'dark' | 'dark', 'light' | The type of collapse button to show |
 | ariaLabelMainNav | String | no | 'Main Navigation' | | The `aria-label` value for the main navbar element |
 | menuOptionsLeft | Object | no | {} | | Menu options that will be *pulled* to the left towards the `brand-image` |
-| menuOptionsLeft.type | String | yes | | 'link', 'button', 'spacer' | What type of link will this menu-option be? `link` will be a link, `button` will be a button, `spacer` will be a spacer with a width of `30px` |
+| menuOptionsLeft.type | String | yes | | 'link', 'button', 'spacer', 'dropdown' | What type of link will this menu-option be? `link` will be a link, `button` will be a button, `spacer` will be a spacer with a width of `30px`, `dropdown` will create a dropdown on desktop and a `ul/li` list on mobile. `dropdown` only works on menuOptions, not subMenuOptions. |
 | menuOptionsLeft.text | String | yes | | | Text of menu-option |
-| menuOptionsLeft.path | String | yes | | | Link path of menu-option |
+| menuOptionsLeft.path | String | yes | | | Link path of menu-option. Not applicable to `dropdown` menuOption types. |
 | menuOptionsLeft.class | String | no | | | Only for `menuOptionsLeft.type === 'button'` - provide a class name so you can style your buttons |
 | menuOptionsLeft.subMenuOptions | Object | no | | | Sub-menu-options that will be shown |
 | menuOptionsLeft.subMenuOptions.type | String | yes | | 'link', 'hr' | What type of link will this sub-menu-option be? `link` will be a link, `hr` will be a `hr` spacer |
 | menuOptionsLeft.subMenuOptions.text | String | yes | | | Text of sub-menu-option |
+| menuOptionsLeft.subMenuOptions.subText | String | no | | | Sub text of sub-menu-option |
 | menuOptionsLeft.subMenuOptions.path | String | yes | | | Link path of sub-menu-option |
 | menuOptionsRight | Object | no | {} | | See above - all `menuOptionsLeft` apply |
+
+### Events
+
+| event | value | description |
+|---|---|---|
+| mobile-popup-shown | null | Emitted when the mobile popup is shown |
+| mobile-popup-hidden | null | Emitted when the mobile popup is hidden |
 
 ### SASS Structure
 
@@ -251,6 +261,9 @@ Take a look at the `./example` folder in this project - it has the complete work
         &__option {
             &__link {
                 &:hover {
+                }
+
+                &__sub-text {
                 }
             }
 
@@ -284,6 +297,9 @@ Take a look at the `./example` folder in this project - it has the complete work
 
     &__popup {
         &__top {
+            &__image {
+            }
+
             &__close-button {
                 &:hover {
                 }
@@ -317,6 +333,9 @@ Take a look at the `./example` folder in this project - it has the complete work
                     &__link {
                         &:hover {
                         }
+
+                        &__sub-text {
+                        }
                     }
                 }
             }
@@ -349,17 +368,18 @@ npm run test
 # build demo page
 npm run build:example
 
-# build
+# build library
+npm run build:library
+
+# build everything and run tests
 npm run build
 ```
 
 ### TODO
 
-- I'd like to be able to have icons with each option. I usually use font-awesome, but we'd want them to be totally free for use in an open-source program.
+- I'd like to be able to have icons with each option. I usually use font-awesome, but we'd want them to be totally free for use in an open-source program. Maybe font-awesome 5 could work. Almost thinking slots here if that can somehow work.
 
 - Add an optional search input bar.
-
-- It may be cool to `$emit` some events out when different actions happen, like when the collapse button is clicked. May be something that can added and useful to someone.
 
 - Add more thorough tests.
 

@@ -1,5 +1,6 @@
 // https://vuejs.org/v2/cookbook/packaging-sfc-for-npm.html
 import vue from 'rollup-plugin-vue';
+import image from 'rollup-plugin-image';
 import css from 'rollup-plugin-css-only'
 import buble from 'rollup-plugin-buble';
 import commonjs from 'rollup-plugin-commonjs';
@@ -16,10 +17,12 @@ const config = {
         exports: 'named',
         globals: {
             'vue': 'Vue',
-            'vue-screen-size': 'VueScreenSize'
+            'vue-screen-size': 'VueScreenSize',
+            'tippy.js': 'tippy'
         }
     },
     plugins: [
+        image(),
         commonjs(),
         resolve({
             jsnext: true,
@@ -32,7 +35,7 @@ const config = {
         css({ output: 'dist/vue-navigation-bar.css' }),
         buble(),
     ],
-    external: ['vue', 'vue-screen-size']
+    external: ['vue', 'vue-screen-size', 'tippy.js']
 };
 
 // Only minify browser (iife) version
@@ -42,6 +45,7 @@ if (argv.format === 'iife') {
     // Here we remove our `external` dependency that we have in this project
     // Be careful with the index here - it has to match any dependency that
     // you want to be built into to the iife output
+    config.external.splice(1)
     config.external.splice(1)
 }
 

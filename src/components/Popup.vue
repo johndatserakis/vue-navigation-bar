@@ -1,9 +1,12 @@
 <template>
+    <slide-y-down-transition>
     <div
         v-if="menuIsVisible"
         class="vnb__popup"
     >
         <div class="vnb__popup__top">
+            <img v-if="options.showBrandImageInMobilePopup && options.brandImage" :src="options.brandImage" :alt="options.brandImageAltText" class="vnb-image vnb__popup__top__image">
+
             <button
                 class="vnb__popup__top__close-button"
                 @click="closeButtonClicked"
@@ -49,6 +52,10 @@
                                 :aria-label="subOption.text"
                             >
                                 {{subOption.text}}
+
+                                <span
+                                    class="vnb__popup__bottom__sub-menu-options__option__link__sub-text"
+                                >{{subOption.subText}}</span>
                             </a>
                         </div>
                     </div>
@@ -56,9 +63,12 @@
             </ul>
        </div>
     </div>
+    </slide-y-down-transition>
 </template>
 
 <script>
+import {SlideYDownTransition} from 'vue2-transitions'
+
 export default {
     name: 'popup',
     props: {
@@ -88,6 +98,9 @@ export default {
         itemSelected () {
             this.closeButtonClicked()
         }
+    },
+    components: {
+        SlideYDownTransition
     }
 }
 </script>
@@ -97,6 +110,7 @@ export default {
 
     .vnb {
         &__popup {
+            background: $white;
             position: absolute;
             left: 10px;
             top: 10px;
@@ -109,22 +123,25 @@ export default {
             z-index: 100000;
 
             &__top {
-                padding: 5px 10px 5px;
-                background: darken($white, 0%);
-                width: 100%;
+                padding: 15px 24px 0;
                 border-top: 1px solid darken($white, 12%);
                 border-left: 1px solid darken($white, 12%);
                 border-right: 1px solid darken($white, 12%);
-
                 border-top-right-radius: 6px;
                 border-top-left-radius: 6px;
 
+                &__image {
+                    max-height: 27px;
+                    margin-bottom: 5px;
+                }
+
                 &__close-button {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
                     cursor: pointer;
                     border: 0;
                     background: transparent;
-                    margin-left: auto;
-                    display: block;
 
                     &:hover {
                         opacity: 0.75;
@@ -138,7 +155,7 @@ export default {
 
             &__bottom {
                 background: $white;
-                padding: 0 0 10px;
+                padding: 10px 0 10px;
                 border-left: 1px solid darken($white, 12%);
                 border-right: 1px solid darken($white, 12%);
                 border-bottom: 1px solid darken($white, 12%);
@@ -212,6 +229,12 @@ export default {
                                 text-decoration: none;
                                 background: $grey;
                                 border-left: 2px solid $black;
+                            }
+
+                            &__sub-text {
+                                margin-top: 5px;
+                                display: block;
+                                font-size: 0.75rem;
                             }
                         }
                     }

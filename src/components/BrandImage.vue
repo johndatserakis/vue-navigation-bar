@@ -7,13 +7,12 @@
                 :alt="options.brandImageAltText"
                 class="vnb-image vnb__brand-image-wrapper__link__image"
             >
-            <span v-else>{{options.brandImageAltText}}</span>
         </dynamic-link>
     </div>
 </template>
 
 <script>
-import DynamicLink from '../components/DynamicLink'
+import DynamicLink from '../components/DynamicLink.vue'
 
 export default {
     name: 'brand-image',
@@ -39,11 +38,6 @@ export default {
 
 <style lang="scss">
     @import '../assets/css/main.scss';
-
-    .vnb-image {
-        max-width: 100%;
-        height: auto;
-    }
 
     .vnb {
         &__brand-image-wrapper {

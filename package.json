@@ -24,16 +24,18 @@
   "unpkg": "dist/vue-navigation-bar.min.js",
   "scripts": {
     "watch": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "rm -rf ./dist npm run build:unpkg & npm run build:es & npm run build:umd & npm run build:unpkg",
+    "build": "npm run test && npm run build:example && npm run build:library",
     "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-navigation-bar.umd.js",
     "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-navigation-bar.esm.js",
     "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-navigation-bar.min.js",
+    "build:library": "rm -rf ./dist npm run build:unpkg & npm run build:es & npm run build:umd & npm run build:unpkg",
     "build:example": "rm -rf ./docs && cross-env NODE_ENV=production webpack --progress --hide-modules",
     "test": "jest"
   },
   "dependencies": {
     "tippy.js": "^4.2.0",
-    "vue-screen-size": "^1.0.0"
+    "vue-screen-size": "^1.0.0",
+    "vue2-transitions": "^0.3.0"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.25",
@@ -53,6 +55,7 @@
     "rollup-plugin-buble": "^0.19.2",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-css-only": "^0.4.0",
+    "rollup-plugin-image": "^1.0.2",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-terser": "^4.0.3",
     "rollup-plugin-vue": "^4.3.0",
@@ -80,6 +83,8 @@
     "snapshotSerializers": [
       "<rootDir>/node_modules/jest-serializer-vue"
     ],
-    "transformIgnorePatterns": ["/node_modules/(?!tippy.js/themes/light.css)"]
+    "transformIgnorePatterns": [
+      "/node_modules/(?!tippy.js/themes/light.css)"
+    ]
   }
 }

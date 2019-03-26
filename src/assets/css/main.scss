@@ -14,3 +14,8 @@ $brandImageMaxHeight: 40px;
 $brandImageMarginAdjustment: -5px;
 $box-shadow: 0 10px 30px 0 rgba(0,0,0,.1);
 $border-radius: 4px;
+
+.vnb-image {
+    max-width: 100%;
+    height: auto;
+}

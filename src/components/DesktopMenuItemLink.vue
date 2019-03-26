@@ -11,7 +11,6 @@
 
     <span
         v-else
-        :href="option.path"
         class="vnb__menu-options__option__link"
         :id="'dropdown-menu-parent-' + option.text.replace(/\s+/g, '')"
         aria-haspopup="true"
@@ -20,6 +19,14 @@
         tabindex="0"
     >
         {{option.text}}
+        <img
+            src="../assets/images/chevron-down.png"
+            alt="arrow"
+            :class="[
+                'vnb__menu-options__option__arrow',
+                {'vnb__menu-options__option__arrow--hover': isExpanded}
+            ]"
+        >
 
         <div
             class="vnb__sub-menu-options"
@@ -41,6 +48,10 @@
                     @keydown.tab="subMenuItemTabbed(subOption.text)"
                 >
                     {{subOption.text}}
+
+                    <span
+                        class="vnb__sub-menu-options__option__link__sub-text"
+                    >{{subOption.subText}}</span>
                 </a>
 
                 <hr
@@ -169,6 +180,16 @@ export default {
                         text-decoration: none;
                     }
                 }
+
+                &__arrow {
+                    margin-left: 5px;
+                    max-height: 5px;
+                    transition: transform 0.2s ease-in-out;
+
+                    &--hover {
+                        transform: rotate(180deg);
+                    }
+                }
             }
         }
 
@@ -200,6 +221,12 @@ export default {
                         text-decoration: none;
                         background: lighten($grey, 2%);
                         border-left: 2px solid $blue;
+                    }
+
+                    &__sub-text {
+                        margin-top: 5px;
+                        display: block;
+                        font-size: 0.75rem;
                     }
                 }
 

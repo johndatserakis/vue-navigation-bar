@@ -67,17 +67,18 @@
                     brandImage: require('../src/assets/images/lockup-color.png'),
                     brandImageAltText: 'vnb',
                     collapseButtonStyle: 'dark',
+                    showBrandImageInMobilePopup: false,
                     ariaLabelMainNav: 'Main Navigation',
                     menuOptionsLeft: [
                         {
                             type: 'link',
                             text: 'Why Dunder Mifflin',
-                            path: '/why',
                             subMenuOptions: [
                                 {
                                     type: 'link',
                                     text: 'About',
-                                    path: '#',
+                                    subText: 'Stupid corporate wet blankets. Like booze ever killed anyone.',
+                                    path: '/about',
                                 },
                                 {
                                     type: 'hr',
@@ -85,11 +86,13 @@
                                 {
                                     type: 'link',
                                     text: 'Locations',
+                                    subText: 'You\'re a presentation tool!',
                                     path: '/locations',
                                 },
                                 {
                                     type: 'link',
                                     text: 'Blog',
+                                    subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
                                     path: '/blog',
                                 },
                             ]
@@ -97,7 +100,6 @@
                         {
                             type: 'link',
                             text: 'Contact',
-                            path: '/contact',
                             subMenuOptions: [
                                 {
                                     type: 'link',

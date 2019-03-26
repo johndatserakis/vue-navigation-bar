@@ -18,6 +18,7 @@
 
 <script>
 import VueScreenSize from 'vue-screen-size'
+
 export default {
     name: 'collapse-button',
     mixins: [VueScreenSize.VueScreenSizeMixin],

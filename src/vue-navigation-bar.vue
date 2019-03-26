@@ -10,7 +10,7 @@
 
         <collapse-button :options="finalOptions" :menuIsVisible="menuIsVisible" @collapse-button-clicked="collapseButtonClicked" />
 
-        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeButtonClicked" />
+        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeButtonClicked"  />
 
     </nav>
 
@@ -20,11 +20,10 @@
 
 import VueScreenSize from 'vue-screen-size'
 import uuidV4 from './common/uuidv4'
-
-import BrandImage from './components/BrandImage'
-import MenuOptions from './components/MenuOptions'
-import CollapseButton from './components/CollapseButton'
-import Popup from './components/Popup'
+import BrandImage from './components/BrandImage.vue'
+import MenuOptions from './components/MenuOptions.vue'
+import CollapseButton from './components/CollapseButton.vue'
+import Popup from './components/Popup.vue'
 
 export default {
     name: 'vue-navigation-bar',
@@ -50,6 +49,7 @@ export default {
                 brandImage: (this.options.brandImage) ? this.options.brandImage : null,
                 brandImageAltText: (this.options.brandImageAltText) ? this.options.brandImageAltText : 'brand-image',
                 collapseButtonStyle: (this.options.collapseButtonStyle) ? this.options.collapseButtonStyle : 'dark', // light, dark
+                showBrandImageInMobilePopup: (this.options.showBrandImageInMobilePopup) ? true : false,
                 ariaLabelMainNav: (this.options.ariaLabelMainNav) ? this.options.ariaLabelMainNav : 'Main Navigation',
                 menuOptionsLeft: (this.options.menuOptionsLeft) ? this.options.menuOptionsLeft : [],
                 menuOptionsRight: (this.options.menuOptionsRight) ? this.options.menuOptionsRight : []
@@ -59,9 +59,11 @@ export default {
     methods: {
         closeButtonClicked () {
             this.menuIsVisible = false
+            this.$emit('mobile-popup-hidden')
         },
         collapseButtonClicked () {
             this.menuIsVisible = !this.menuIsVisible
+            this.$emit('mobile-popup-shown')
         }
     },
     components: {

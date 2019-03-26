@@ -23,9 +23,9 @@
 
 <script>
 import VueScreenSize from 'vue-screen-size'
-import DesktopMenuItemLink from '../components/DesktopMenuItemLink'
-import DesktopMenuItemButton from '../components/DesktopMenuItemButton'
-import DesktopMenuItemSpacer from '../components/DesktopMenuItemSpacer'
+import DesktopMenuItemLink from '../components/DesktopMenuItemLink.vue'
+import DesktopMenuItemButton from '../components/DesktopMenuItemButton.vue'
+import DesktopMenuItemSpacer from '../components/DesktopMenuItemSpacer.vue'
 
 export default {
     name: 'menu-options',
