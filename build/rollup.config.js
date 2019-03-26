@@ -18,7 +18,8 @@ const config = {
         globals: {
             'vue': 'Vue',
             'vue-screen-size': 'VueScreenSize',
-            'tippy.js': 'tippy'
+            'tippy.js': 'tippy',
+            'vue2-transitions': 'Vue2Transitions'
         }
     },
     plugins: [
@@ -35,7 +36,7 @@ const config = {
         css({ output: 'dist/vue-navigation-bar.css' }),
         buble(),
     ],
-    external: ['vue', 'vue-screen-size', 'tippy.js']
+    external: ['vue', 'vue-screen-size', 'tippy.js', 'vue2-transitions']
 };
 
 // Only minify browser (iife) version
@@ -45,6 +46,7 @@ if (argv.format === 'iife') {
     // Here we remove our `external` dependency that we have in this project
     // Be careful with the index here - it has to match any dependency that
     // you want to be built into to the iife output
+    config.external.splice(1)
     config.external.splice(1)
     config.external.splice(1)
 }
