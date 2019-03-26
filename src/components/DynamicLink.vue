@@ -6,7 +6,7 @@ export default {
             return h('router-link', { props: { to: {path: this.path} } }, this.$slots.default)
         }
 
-        return h('a', this.$slots.default)
+        return h('a', {props: {href: this.path}}, this.$slots.default)
     },
     props: {
         isUsingVueRouter: {

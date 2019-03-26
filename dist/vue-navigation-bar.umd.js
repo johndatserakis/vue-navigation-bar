@@ -22,7 +22,7 @@
                 return h('router-link', { props: { to: {path: this.path} } }, this.$slots.default)
             }
 
-            return h('a', this.$slots.default)
+            return h('a', {props: {href: this.path}}, this.$slots.default)
         },
         props: {
             isUsingVueRouter: {
@@ -316,7 +316,9 @@
                     onShow: function () {
                         // https://github.com/atomiks/tippy.js-react/issues/7
                         [].concat( document.querySelectorAll('.tippy-popper') ).forEach(function (popper) {
-                            popper._tippy.hide(0);
+                            if (popper) {
+                                popper._tippy.hide(0);
+                            }
                         });
 
                         // fire the menuShown function

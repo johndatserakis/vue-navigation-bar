@@ -220,6 +220,7 @@ Take a look at the `./example` folder in this project - it has the complete work
 | brandImage | Image | no | `brandImageAltText` | | `require()` your image here to use your brand image |
 | brandImageAltText | String | no | 'brand-image' | | The `alt` tag text for your brand image |
 | collapseButtonStyle | String | no | 'dark' | 'dark', 'light' | The type of collapse button to show |
+| showBrandImageInMobilePopup | Boolean | no | false | | If you want to show your brand logo in the mobile popup |
 | ariaLabelMainNav | String | no | 'Main Navigation' | | The `aria-label` value for the main navbar element |
 | menuOptionsLeft | Object | no | {} | | Menu options that will be *pulled* to the left towards the `brand-image` |
 | menuOptionsLeft.type | String | yes | | 'link', 'button', 'spacer', 'dropdown' | What type of link will this menu-option be? `link` will be a link, `button` will be a button, `spacer` will be a spacer with a width of `30px`, `dropdown` will create a dropdown on desktop and a `ul/li` list on mobile. `dropdown` only works on menuOptions, not subMenuOptions. |

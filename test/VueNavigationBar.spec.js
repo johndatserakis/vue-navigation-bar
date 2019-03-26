@@ -11,6 +11,8 @@ describe('VueNavigationBar.vue', () => {
             brandImage: null,
             brandImageAltText: 'vnb',
             collapseButtonStyle: 'dark',
+            showBrandImageInMobilePopup: false,
+            ariaLabelMainNav: 'Main Navigation',
             menuOptionsLeft: [
                 {
                     type: 'link',
@@ -77,8 +79,7 @@ describe('VueNavigationBar.vue', () => {
                     text: 'Login',
                     path: '/login',
                 }
-            ],
-            ariaLabelMainNav: 'Main Navigation'
+            ]
         }
 
         const wrapper = shallowMount(VueNavigationBar, {
@@ -91,9 +92,10 @@ describe('VueNavigationBar.vue', () => {
                     brandImage: initialPropsData.brandImage,
                     brandImageAltText: initialPropsData.brandImageAltText,
                     collapseButtonStyle: initialPropsData.collapseButtonStyle,
+                    showBrandImageInMobilePopup: initialPropsData.showBrandImageInMobilePopup,
+                    ariaLabelMainNav: initialPropsData.ariaLabelMainNav,
                     menuOptionsLeft: initialPropsData.menuOptionsLeft,
                     menuOptionsRight: initialPropsData.menuOptionsRight,
-                    ariaLabelMainNav: initialPropsData.ariaLabelMainNav,
                 }
             }
         })
@@ -105,9 +107,10 @@ describe('VueNavigationBar.vue', () => {
         expect(wrapper.vm.finalOptions.brandImage).toBe(initialPropsData.brandImage)
         expect(wrapper.vm.finalOptions.brandImageAltText).toBe(initialPropsData.brandImageAltText)
         expect(wrapper.vm.finalOptions.collapseButtonStyle).toBe(initialPropsData.collapseButtonStyle)
+        expect(wrapper.vm.finalOptions.showBrandImageInMobilePopup).toBe(initialPropsData.showBrandImageInMobilePopup)
+        expect(wrapper.vm.finalOptions.ariaLabelMainNav).toBe(initialPropsData.ariaLabelMainNav)
         expect(wrapper.vm.finalOptions.menuOptionsLeft).toBe(initialPropsData.menuOptionsLeft)
         expect(wrapper.vm.finalOptions.menuOptionsRight).toBe(initialPropsData.menuOptionsRight)
-        expect(wrapper.vm.finalOptions.ariaLabelMainNav).toBe(initialPropsData.ariaLabelMainNav)
     })
 
     it('Confirms the `vue-navigation-bar` was built', async () => {
