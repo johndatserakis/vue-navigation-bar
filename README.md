@@ -4,8 +4,6 @@
 
 A simple, pretty navbar for your Vue projects.
 
-Note - not published just yet...
-
 <p align="left">
     <a href="https://www.npmjs.com/package/vue-navigation-bar"><img src="https://img.shields.io/npm/v/vue-navigation-bar.svg" alt="NPM Version"></a>
     <a href="https://www.npmjs.com/package/vue-navigation-bar"><img src="https://img.shields.io/npm/dt/vue-navigation-bar.svg" alt="NPM Downloads"></a>
