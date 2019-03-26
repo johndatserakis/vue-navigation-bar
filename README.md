@@ -1,4 +1,4 @@
-<p align="center"><a href="https://johndatserakis.github.io/vue-navigation-bar/" target="_blank" rel="noopener noreferrer"><img src="./src/assets/images/lockup-color.png" width="100" style="max-height: 100px;" alt="vue-navigation-bar"></a></p>
+<p align="center"><a href="https://johndatserakis.github.io/vue-navigation-bar/" target="_blank" rel="noopener noreferrer"><img src="./src/assets/images/lockup-color.png" width="200" style="max-height: 100px;" alt="vue-navigation-bar"></a></p>
 
 # vue-navigation-bar
 
