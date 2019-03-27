@@ -1,7 +1,3 @@
-.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
 .vnb {
   background: #eee;
   padding-top: 15px;
@@ -20,23 +16,23 @@
 .tippy-tooltip {
   padding: 0;
 }
-
-/*# sourceMappingURL=vue-navigation-bar.vue.map */.vnb-image {
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
-.vnb__brand-image-wrapper {
+
+/*# sourceMappingURL=vue-navigation-bar.vue.map */.vnb__brand-image-wrapper {
   padding-left: 10px;
 }
 .vnb__brand-image-wrapper__link__image {
-    width: 104px;
+    max-height: 34px;
 }
-
-/*# sourceMappingURL=BrandImage.vue.map */.vnb-image {
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
-.vnb__menu-options {
+
+/*# sourceMappingURL=BrandImage.vue.map */.vnb__menu-options {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -55,11 +51,7 @@
     margin-right: 20px;
 }
 
-/*# sourceMappingURL=MenuOptions.vue.map */.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
-.vnb__collapse-button {
+/*# sourceMappingURL=MenuOptions.vue.map */.vnb__collapse-button {
   cursor: pointer;
   border: 0;
   background: transparent;
@@ -72,11 +64,7 @@
     max-height: 30px;
 }
 
-/*# sourceMappingURL=CollapseButton.vue.map */.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
-.vnb__popup {
+/*# sourceMappingURL=CollapseButton.vue.map */.vnb__popup {
   background: #fff;
   position: absolute;
   left: 10px;
@@ -189,12 +177,12 @@
             display: block;
             font-size: 0.75rem;
 }
-
-/*# sourceMappingURL=Popup.vue.map */.vnb-image {
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
-.vnb__menu-options__option__link {
+
+/*# sourceMappingURL=Popup.vue.map */.vnb__menu-options__option__link {
   cursor: pointer;
   font-weight: 500;
   color: #666666;
@@ -255,11 +243,7 @@
       margin-bottom: 10px;
 }
 
-/*# sourceMappingURL=DesktopMenuItemLink.vue.map */.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
-.vnb__menu-options__option__button {
+/*# sourceMappingURL=DesktopMenuItemLink.vue.map */.vnb__menu-options__option__button {
   display: inline-block;
   font-weight: 400;
   color: #fff;

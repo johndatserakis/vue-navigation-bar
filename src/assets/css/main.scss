@@ -10,12 +10,5 @@ $focus-outline-blue: #6098EE;
 // Settings
 $focus-border: 1px solid $focus-outline-blue;
 $backgroundColor: $grey;
-$brandImageMaxHeight: 40px;
-$brandImageMaxWidth: 104px;
 $box-shadow: 0 10px 30px 0 rgba(0,0,0,.1);
 $border-radius: 4px;
-
-.vnb-image {
-    max-width: 100%;
-    height: auto;
-}

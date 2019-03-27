@@ -50,9 +50,14 @@ export default {
 
             &__link {
                 &__image {
-                    width: $brandImageMaxWidth;
+                    max-height: 34px;
                 }
             }
         }
+    }
+
+    .vnb-image {
+        max-width: 100%;
+        height: auto;
     }
 </style>

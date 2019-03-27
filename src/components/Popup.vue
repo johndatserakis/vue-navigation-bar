@@ -246,4 +246,9 @@ export default {
             }
         }
     }
+
+    .vnb-image {
+        max-width: 100%;
+        height: auto;
+    }
 </style>

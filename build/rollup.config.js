@@ -1,5 +1,5 @@
 import vue from 'rollup-plugin-vue';
-import image from 'rollup-plugin-image';
+import url from "rollup-plugin-url"
 import css from 'rollup-plugin-css-only'
 import buble from 'rollup-plugin-buble';
 import commonjs from 'rollup-plugin-commonjs';
@@ -33,7 +33,7 @@ const config = {
         }),
         commonjs(),
         buble(),
-        image()
+        url()
     ],
     external: ['vue', 'vue-screen-size', 'tippy.js', 'vue2-transitions']
 };

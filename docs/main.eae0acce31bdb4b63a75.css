@@ -70,21 +70,17 @@ body {
       background: #fc0d00;
 }
 
-.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
 .vnb__brand-image-wrapper {
   padding-left: 10px;
 }
 .vnb__brand-image-wrapper__link__image {
-    width: 104px;
+    max-height: 34px;
 }
-
 .vnb-image {
   max-width: 100%;
   height: auto;
 }
+
 .vnb__menu-options__option__link {
   cursor: pointer;
   font-weight: 500;
@@ -146,10 +142,6 @@ body {
       margin-bottom: 10px;
 }
 
-.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
 .vnb__menu-options__option__button {
   display: inline-block;
   font-weight: 400;
@@ -178,10 +170,6 @@ body {
   width: 30px;
 }
 
-.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
 .vnb__menu-options {
   display: flex;
   flex-direction: row;
@@ -201,10 +189,6 @@ body {
     margin-right: 20px;
 }
 
-.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
 .vnb__collapse-button {
   cursor: pointer;
   border: 0;
@@ -218,10 +202,6 @@ body {
     max-height: 30px;
 }
 
-.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
 .vnb__popup {
   background: #fff;
   position: absolute;
@@ -335,11 +315,11 @@ body {
             display: block;
             font-size: 0.75rem;
 }
-
 .vnb-image {
   max-width: 100%;
   height: auto;
 }
+
 .vnb {
   background: #eee;
   padding-top: 15px;
@@ -357,5 +337,9 @@ body {
 }
 .tippy-tooltip {
   padding: 0;
+}
+.vnb-image {
+  max-width: 100%;
+  height: auto;
 }
 

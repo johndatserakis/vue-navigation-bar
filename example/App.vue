@@ -67,7 +67,7 @@
                     brandImage: require('../src/assets/images/lockup-color.png'),
                     brandImageAltText: 'vnb',
                     collapseButtonStyle: 'dark',
-                    showBrandImageInMobilePopup: false,
+                    showBrandImageInMobilePopup: true,
                     ariaLabelMainNav: 'Main Navigation',
                     menuOptionsLeft: [
                         {

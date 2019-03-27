@@ -99,4 +99,9 @@ export default {
     .tippy-tooltip {
         padding: 0;
     }
+
+    .vnb-image {
+        max-width: 100%;
+        height: auto;
+    }
 </style>

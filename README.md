@@ -6,7 +6,7 @@ A simple, pretty navbar for your Vue projects.
 
 <p align="left">
     <a href="https://www.npmjs.com/package/vue-navigation-bar"><img src="https://img.shields.io/npm/v/vue-navigation-bar.svg" alt="NPM Version"></a>
-    <a href="https://www.npmjs.com/package/vue-navigation-bar"><img src="https://img.shields.io/npm/dt/vue-navigation-bar.svg" alt="NPM Downloads"></a>
+    <a href="https://www.npmjs.com/package/vue-navigation-bar"><img src="https://img.shields.io/npm/dm/vue-navigation-bar.svg" alt="NPM Downloads"></a>
     <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
     <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjohndatserakis%2Fvue-navigation-bar&text=Check%20out%20vue-navigation-bar%20on%20GitHub&via=johndatserakis"><img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/vue-navigation-bar.svg?style=social" alt="Tweet"></a>
 </p>
@@ -114,7 +114,7 @@ Vue.component('vue-navigation-bar', VueNavigationBar)
                     brandImage: require('../src/assets/images/lockup-color.png'),
                     brandImageAltText: 'vnb',
                     collapseButtonStyle: 'dark',
-                    showBrandImageInMobilePopup: false,
+                    showBrandImageInMobilePopup: true,
                     ariaLabelMainNav: 'Main Navigation',
                     menuOptionsLeft: [
                         {
@@ -209,9 +209,7 @@ Vue.component('vue-navigation-bar', VueNavigationBar)
 
 Take a look at the `./example` folder in this project - it has the complete working example that you see in the demo. (FYI - the `vue-router` setup there is really rudimentary so all the different pages aren't real - doesn't affect the demo.)
 
-### Notes
-
-You may need to adjust your `brand-image` a bit - that's normal as brand images come in different shapes and sizes - go ahead and set a `width` or `height` using this selector: `.vnb__brand-image-wrapper__link__image`. Even a little margin may help.
+You may need to adjust your `brand-image` a bit - that's normal as brand images come in different shapes and sizes - go ahead and set a `max-width` or `max-height` in pixels using this selector: `.vnb__brand-image-wrapper__link__image`. Even a little margin may help. For instance, the base I have it at is `max-height: 34px;` - should work for most cases.
 
 ### Props
 

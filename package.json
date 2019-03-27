@@ -1,6 +1,6 @@
 {
   "name": "vue-navigation-bar",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple, pretty navbar for your Vue projects.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "license": "MIT",
@@ -62,9 +62,9 @@
     "rollup-plugin-buble": "^0.19.2",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-css-only": "^1.0.0",
-    "rollup-plugin-image": "^1.0.2",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-terser": "^4.0.3",
+    "rollup-plugin-url": "^2.2.0",
     "rollup-plugin-vue": "^4.3.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.23.1",
