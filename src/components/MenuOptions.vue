@@ -11,10 +11,9 @@
             v-for="option in (type === 'left') ? options.menuOptionsLeft : options.menuOptionsRight"
             class="vnb__menu-options__option"
         >
+            <desktop-menu-item-link v-if="option.type === 'link'" :option="option" :options="options" />
 
-            <desktop-menu-item-link v-if="option.type === 'link'" :option="option" />
-
-            <desktop-menu-item-button v-else-if="option.type === 'button'" :option="option" />
+            <desktop-menu-item-button v-else-if="option.type === 'button'" :option="option" :options="options" />
 
             <desktop-menu-item-spacer v-else="option.type === 'spacer'" :option="option" />
         </div>

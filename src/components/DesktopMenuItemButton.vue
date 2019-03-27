@@ -1,6 +1,7 @@
 <template>
-    <a
-        :href="option.path"
+    <dynamic-link
+        :path="option.path"
+        :isUsingVueRouter="options.isUsingVueRouter"
         :class="[
             'vnb__menu-options__option__button',
             'vnb-button',
@@ -9,14 +10,19 @@
         :aria-label="option.text"
     >
         {{option.text}}
-    </a>
+    </dynamic-link>
 </template>
 
 <script>
+import DynamicLink from '../components/DynamicLink.vue'
 export default {
     name: 'desktop-menu-item-button',
     props: {
         option: {
+            type: Object,
+            required: true
+        },
+        options: {
             type: Object,
             required: true
         }
@@ -28,6 +34,9 @@ export default {
     computed: {
     },
     methods: {
+    },
+    components: {
+        DynamicLink
     }
 }
 </script>

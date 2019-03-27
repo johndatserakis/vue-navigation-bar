@@ -1,13 +1,14 @@
 <template>
-    <a
+    <dynamic-link
+        :path="option.path"
+        :isUsingVueRouter="options.isUsingVueRouter"
         v-if="!option.subMenuOptions || !option.subMenuOptions.length"
-        :href="option.path"
         class="vnb__menu-options__option__link"
         :aria-label="option.text"
         tabindex="0"
     >
         {{option.text}}
-    </a>
+    </dynamic-link>
 
     <span
         v-else
@@ -20,7 +21,7 @@
     >
         {{option.text}}
         <img
-            src="../assets/images/chevron-down.png"
+            :src="require('../assets/images/chevron-down.png')"
             alt="arrow"
             :class="[
                 'vnb__menu-options__option__arrow',
@@ -37,10 +38,12 @@
                 class="vnb__sub-menu-options__option"
                 tabindex="-1"
             >
-                <a
-                    v-for="subOption in option.subMenuOptions"
+                <dynamic-link
+                    :path="subOption.path"
+                    :isUsingVueRouter="options.isUsingVueRouter"
+                    v-for="(subOption, index) in option.subMenuOptions"
+                    :key="index"
                     v-if="subOption.type === 'link'"
-                    :href="subOption.path"
                     class="vnb__sub-menu-options__option__link"
                     @click="subMenuItemSelected(subOption.text)"
                     :aria-label="subOption.text"
@@ -52,7 +55,7 @@
                     <span
                         class="vnb__sub-menu-options__option__link__sub-text"
                     >{{subOption.subText}}</span>
-                </a>
+                </dynamic-link>
 
                 <hr
                     v-else
@@ -65,6 +68,7 @@
 </template>
 
 <script>
+import DynamicLink from '../components/DynamicLink.vue'
 import 'tippy.js/themes/light.css'
 import tippy from 'tippy.js'
 
@@ -72,6 +76,10 @@ export default {
     name: 'desktop-menu-item-link',
     props: {
         option: {
+            type: Object,
+            required: true
+        },
+        options: {
             type: Object,
             required: true
         }
@@ -161,12 +169,14 @@ export default {
         if (this.option.subMenuOptions && this.option.subMenuOptions.length) {
             this.initTippy()
         }
+    },
+    components: {
+        DynamicLink
     }
 }
 </script>
 
 <style lang="scss">
-    // @import '../../node_modules/tippy.js/themes/light.css';
     @import '../assets/css/main.scss';
 
     .vnb {
@@ -178,6 +188,11 @@ export default {
                     color: lighten($black, 20);
                     transition: color 0.2s ease-in;
 
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+
                     &:hover {
                         color: $black;
                         text-decoration: none;
@@ -185,7 +200,7 @@ export default {
                 }
 
                 &__arrow {
-                    margin-left: 5px;
+                    margin-left: 8px;
                     max-height: 5px;
                     transition: transform 0.2s ease-in-out;
 

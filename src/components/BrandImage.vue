@@ -1,6 +1,11 @@
 <template>
     <div class="vnb__brand-image-wrapper">
-        <dynamic-link :path="options.brandImagePath" :isUsingVueRouter="options.isUsingVueRouter" class="vnb__brand-image-wrapper__link" aria-label="Homepage">
+        <dynamic-link
+            :path="options.brandImagePath"
+            :isUsingVueRouter="options.isUsingVueRouter"
+            class="vnb__brand-image-wrapper__link"
+            aria-label="Homepage"
+        >
             <img
                 v-if="options.brandImage"
                 :src="options.brandImage"
@@ -45,8 +50,7 @@ export default {
 
             &__link {
                 &__image {
-                    margin-top: $brandImageMarginAdjustment;
-                    max-height: $brandImageMaxHeight;
+                    width: $brandImageMaxWidth;
                 }
             }
         }

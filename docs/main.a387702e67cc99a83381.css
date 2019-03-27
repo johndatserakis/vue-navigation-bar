@@ -1,27 +1,76 @@
-.vnb-image {
-  max-width: 100%;
-  height: auto;
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,700);
+html {
+  width: 100%;
+  font-size: 18px;
+  color: #333;
+}
+body {
+  margin: 0;
+  height: 100%;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+#app {
+  height: 100%;
+  height: 100vh;
+  width: 100%;
+  line-height: 1.5;
+}
+.code-text {
+  background: #eee;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+@media (min-width: 992px) {
+.code-text {
+    margin-bottom: 0;
+}
+}
+.btn {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+0%, 100% {
+    transform: rotate(0);
+}
+20%, 60% {
+    transform: rotate(-25deg);
+}
+40%, 80% {
+    transform: rotate(10deg);
+}
+}
+@media (max-width: 500px) {
+.github-corner:hover .octo-arm {
+    animation: none;
+}
+.github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+}
+.main-navbar-section {
+  background: #eee;
 }
 .vnb {
-  background: #eee;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
 }
-.vnb * {
-    box-sizing: border-box;
+.vnb .button-red {
+    background: #FF3B30;
 }
-.vnb a {
-    text-decoration: none;
-}
-.tippy-tooltip {
-  padding: 0;
+.vnb .button-red:hover {
+      background: #fc0d00;
 }
 
-/*# sourceMappingURL=vue-navigation-bar.vue.map */.vnb-image {
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
@@ -32,7 +81,104 @@
     width: 104px;
 }
 
-/*# sourceMappingURL=BrandImage.vue.map */.vnb-image {
+.vnb-image {
+  max-width: 100%;
+  height: auto;
+}
+.vnb__menu-options__option__link {
+  cursor: pointer;
+  font-weight: 500;
+  color: #666666;
+  transition: color 0.2s ease-in;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.vnb__menu-options__option__link:hover {
+    color: #333;
+    text-decoration: none;
+}
+.vnb__menu-options__option__arrow {
+  margin-left: 8px;
+  max-height: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+.vnb__menu-options__option__arrow--hover {
+    transform: rotate(180deg);
+}
+.vnb__sub-menu-options {
+  background: #fff;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 10px 0;
+}
+.vnb__sub-menu-options__option {
+    min-width: 250px;
+    max-width: 300px;
+}
+.vnb__sub-menu-options__option__link {
+      padding: 12px 12px;
+      width: 100%;
+      display: block;
+      text-align: left;
+      color: #666666;
+      transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
+      border-left: 2px solid #fff;
+}
+.vnb__sub-menu-options__option__link:hover {
+        color: #333;
+        text-decoration: none;
+        background: #f3f3f3;
+        border-left: 2px solid #007AFF;
+}
+.vnb__sub-menu-options__option__link__sub-text {
+        margin-top: 5px;
+        display: block;
+        font-size: 0.75rem;
+}
+.vnb__sub-menu-options__option__hr {
+      margin-top: 10px;
+      margin-bottom: 10px;
+}
+
+.vnb-image {
+  max-width: 100%;
+  height: auto;
+}
+.vnb__menu-options__option__button {
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  font-size: 0.9rem;
+  line-height: 1.0;
+  border-radius: .25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  transition: background 0.2s ease-in;
+}
+.vnb-button {
+  background: #007AFF;
+}
+.vnb-button:hover {
+    color: #fff;
+    background: #0062cc;
+    text-decoration: none;
+}
+
+.vnb__menu-options__option__spacer {
+  width: 30px;
+}
+
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
@@ -55,7 +201,7 @@
     margin-right: 20px;
 }
 
-/*# sourceMappingURL=MenuOptions.vue.map */.vnb-image {
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
@@ -72,7 +218,7 @@
     max-height: 30px;
 }
 
-/*# sourceMappingURL=CollapseButton.vue.map */.vnb-image {
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
@@ -190,101 +336,26 @@
             font-size: 0.75rem;
 }
 
-/*# sourceMappingURL=Popup.vue.map */.vnb-image {
+.vnb-image {
   max-width: 100%;
   height: auto;
 }
-.vnb__menu-options__option__link {
-  cursor: pointer;
-  font-weight: 500;
-  color: #666666;
-  transition: color 0.2s ease-in;
+.vnb {
+  background: #eee;
+  padding-top: 15px;
+  padding-bottom: 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
-.vnb__menu-options__option__link:hover {
-    color: #333;
+.vnb * {
+    box-sizing: border-box;
+}
+.vnb a {
     text-decoration: none;
 }
-.vnb__menu-options__option__arrow {
-  margin-left: 8px;
-  max-height: 5px;
-  transition: transform 0.2s ease-in-out;
-}
-.vnb__menu-options__option__arrow--hover {
-    transform: rotate(180deg);
-}
-.vnb__sub-menu-options {
-  background: #fff;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  padding: 10px 0;
-}
-.vnb__sub-menu-options__option {
-    min-width: 250px;
-    max-width: 300px;
-}
-.vnb__sub-menu-options__option__link {
-      padding: 12px 12px;
-      width: 100%;
-      display: block;
-      text-align: left;
-      color: #666666;
-      transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
-      border-left: 2px solid #fff;
-}
-.vnb__sub-menu-options__option__link:hover {
-        color: #333;
-        text-decoration: none;
-        background: #f3f3f3;
-        border-left: 2px solid #007AFF;
-}
-.vnb__sub-menu-options__option__link__sub-text {
-        margin-top: 5px;
-        display: block;
-        font-size: 0.75rem;
-}
-.vnb__sub-menu-options__option__hr {
-      margin-top: 10px;
-      margin-bottom: 10px;
+.tippy-tooltip {
+  padding: 0;
 }
 
-/*# sourceMappingURL=DesktopMenuItemLink.vue.map */.vnb-image {
-  max-width: 100%;
-  height: auto;
-}
-.vnb__menu-options__option__button {
-  display: inline-block;
-  font-weight: 400;
-  color: #fff;
-  text-align: center;
-  vertical-align: middle;
-  user-select: none;
-  font-size: 0.9rem;
-  line-height: 1.0;
-  border-radius: .25rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 0.5rem 1rem;
-  transition: background 0.2s ease-in;
-}
-.vnb-button {
-  background: #007AFF;
-}
-.vnb-button:hover {
-    color: #fff;
-    background: #0062cc;
-    text-decoration: none;
-}
-
-/*# sourceMappingURL=DesktopMenuItemButton.vue.map */.vnb__menu-options__option__spacer {
-  width: 30px;
-}
-
-/*# sourceMappingURL=DesktopMenuItemSpacer.vue.map */.tippy-tooltip.light-theme{color:#26323d;box-shadow:0 0 20px 4px rgba(154,161,177,.15),0 4px 80px -8px rgba(36,40,47,.25),0 4px 4px -2px rgba(91,94,105,.15);background-color:#fff}.tippy-tooltip.light-theme[x-placement^=top] .tippy-arrow{border-top:8px solid #fff;border-right:8px solid transparent;border-left:8px solid transparent}.tippy-tooltip.light-theme[x-placement^=bottom] .tippy-arrow{border-bottom:8px solid #fff;border-right:8px solid transparent;border-left:8px solid transparent}.tippy-tooltip.light-theme[x-placement^=left] .tippy-arrow{border-left:8px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}.tippy-tooltip.light-theme[x-placement^=right] .tippy-arrow{border-right:8px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}.tippy-tooltip.light-theme .tippy-backdrop{background-color:#fff}.tippy-tooltip.light-theme .tippy-roundarrow{fill:#fff}.tippy-tooltip.light-theme[data-animatefill]{background-color:transparent}

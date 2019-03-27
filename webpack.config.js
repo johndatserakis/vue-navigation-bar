@@ -1,115 +1,107 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const env = process.env.NODE_ENV || 'development';
 
-module.exports = {
-  entry: './example/main.js',
-  output: {
-    path: path.resolve(__dirname, './docs'),
-    publicPath: (process.env.NODE_ENV === 'development') ? '/' : '/vue-navigation-bar/',
-    filename: 'build.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader?indentedSyntax'
-        ],
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-            // the "scss" and "sass" values for the lang attribute to the right configs here.
-            // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader'
-            ],
-            'sass': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader?indentedSyntax'
-            ]
-          }
-          // other vue-loader options go here
-        }
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
-  },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+const config = {
+    entry: [
+        path.resolve(__dirname, 'example', 'main.js')
+    ],
+    output: {
+        path: path.resolve(__dirname, './docs'),
+        publicPath: (process.env.NODE_ENV === 'development') ? '/' : './',
+        filename: (env === 'development') ? '[name].[hash].js' : '[name].[contenthash].js'
     },
-    extensions: ['*', '.js', '.vue', '.json']
-  },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true
-  },
-  performance: {
-    hints: false
-  },
-  devtool: '#eval-source-map',
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'vue-navigation-bar',
-      template: './example/index.html'
-    })
-  ]
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                shared: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    enforce: true,
+                    chunks: "all"
+                }
+            }
+        },
+        minimizer: (env === 'development') ? [
+            new OptimizeCSSAssetsPlugin(),
+            new TerserPlugin()
+        ] : undefined,
+    },
+    mode: env,
+    devtool: (env === 'development') ? 'cheap-module-eval-source-map' : undefined,
+    devServer: {
+        historyApiFallback: true
+    },
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    // For hot reload in dev https://github.com/webpack-contrib/mini-css-extract-plugin/issues/34
+                    (env === 'development') ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ],
+            },
+            {
+                test: /\.(png|jpg|gif|otf|svg)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {}
+                }]
+            }
+        ]
+    },
+    plugins: [
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['docs']
+        }),
+        new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'vue-navigation-bar',
+            template: path.resolve(__dirname, 'example', 'index.html'),
+            inject: true,
+            minify: (env === 'development') ? undefined : {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+            }
+        }),
+        new MiniCssExtractPlugin({
+            filename: (env === 'development') ? '[name].css' : '[name].[hash].css',
+            chunkFilename: (env === 'development') ? '[id].css' : '[id].[hash].css',
+        }),
+        new CopyWebpackPlugin([
+            { from: path.resolve(__dirname, 'src', 'assets', 'images', 'favicon.png'), to: './favicon.png' }
+        ])
+    ],
+    resolve: {
+        extensions: ['.js', '.json'],
+        alias: {
+            '@': path.resolve(__dirname, 'example')
+        }
+    },
 }
 
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ])
-}
+module.exports = config

@@ -1,5 +1,5 @@
-import tippy from 'tippy.js';
 import VueScreenSize from 'vue-screen-size';
+import tippy from 'tippy.js';
 import { SlideYDownTransition } from 'vue2-transitions';
 
 // https://stackoverflow.com/a/2117523/8014660
@@ -17,7 +17,7 @@ var script = {
             return h('router-link', { props: { to: {path: this.path} } }, this.$slots.default)
         }
 
-        return h('a', {props: {href: this.path}}, this.$slots.default)
+        return h('a', { attrs: { href: this.path } }, this.$slots.default)
     },
     props: {
         isUsingVueRouter: {
@@ -29,7 +29,7 @@ var script = {
             required: true
         }
     }
-}
+};
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
 /* server only */
@@ -144,7 +144,7 @@ var __vue_script__ = script;
     __vue_module_identifier__,
     undefined,
     undefined
-  )
+  );
 
 //
 
@@ -167,7 +167,7 @@ var script$1 = {
     components: {
         DynamicLink: DynamicLink
     }
-}
+};
 
 /* script */
 var __vue_script__$1 = script$1;
@@ -232,7 +232,7 @@ __vue_render__._withStripped = true;
     __vue_module_identifier__$1,
     undefined,
     undefined
-  )
+  );
 
 //
 
@@ -240,6 +240,10 @@ var script$2 = {
     name: 'desktop-menu-item-link',
     props: {
         option: {
+            type: Object,
+            required: true
+        },
+        options: {
             type: Object,
             required: true
         }
@@ -331,10 +335,13 @@ var script$2 = {
         if (this.option.subMenuOptions && this.option.subMenuOptions.length) {
             this.initTippy();
         }
+    },
+    components: {
+        DynamicLink: DynamicLink
     }
-}
+};
 
-var img = require('./chevron-down.png');
+var img = new Image(); img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAcCAYAAADIrlf0AAAABGdBTUEAALGPC/xhBQAAAwNJREFUWAnNmMuOUkEQhjmczSzQeIsJl5Ub4xqYicbEhU+i4szAjFFHjYkuJG7c6Nx0bgzqxoVPoHESo4lL4BVcwguwc3H8f9JFoO0+F2gMnTB1qqu6qr6ubhjwU2qUSqVn2Wz2cy6XO9Pr9X7I/LzJYrH4EjV+yufzC91u9xfr8/kHhlcQL/A6hdcNOJyHw1c8z9XARu+ioCd4sc6bgFnAhn/32QFMEGB0LAHkwjyBoM63QRDcGy0Sz9dR5x+fRwgKyfSxOC8gCmBdL1DpV9J4aFqMKZCvI8A7m/1/zDM/6wjJ1fRxpn7ibJ2D05LFcRH2i/D7YrHPbBp3dQ/B10IS7HY6nafsRAoP9yF4aWyjxoDYEc/m4HKeeRRALSQuAVh3aqwoLNzG3MBgWXzQbrfXPM8LLPappwmAI8QOVEOC7QDggdgHnRBFGXZEN8hquVzen1VHGJfxkTc2AGsc64QUHdURdOKw1WrVXHZEACBXpQ6DHOuA2I0QNMYAOQJI1QWIAjiAXJHCDNIIQL+x4zS6MOpoMSFaf8gCRtclfVYAjGMFwEZtj94BPUdkAbhkW0gwvET/BPC8BjqyOklHCID4R4h5V48rOgHwZvJQdJOMhOCiKBC4HCPRShIQVwCsLxYEHWOANAGyHAdEATQQtsLYphGnA7LOeifEQSRbysCiG2QFd+SYBRpswyna6YcJJwAMHBuCzlEgKPBOGIgA0I/xTAMbtcU8JpttLnTXbItwtDZRiDURCvmAy16BHH6yK4Am5G1bXAWwYbPb5hN1QoJgpzaYUHRdslB05H29Xh/Ep6Q+CwDmnqgTUnSMjnzMZDLL/X6/AYBbsk6Xk3ZA4kwFwSAxQH4D4JIk1CUANtHZR/p8En3wHTvJAt0XX2G/4Rvgacxf1W1KP2uZT7kAYOypIRgEICcRIHQbG64AGNQJBAMlAXEJ4BQiLohrAOcQUSCzAJgJhIDgxwX+DHSNuhpv8O/0Y1FcSmd3Qi8Kv46cFAoFvLsGl9Pp9Gu8jT7XfVzpfwGfPX59eVOliAAAAABJRU5ErkJggg==';
 
 /* script */
 var __vue_script__$2 = script$2;
@@ -344,11 +351,12 @@ var __vue_render__$1 = function() {
   var _c = _vm._self._c || _h;
   return !_vm.option.subMenuOptions || !_vm.option.subMenuOptions.length
     ? _c(
-        "a",
+        "dynamic-link",
         {
           staticClass: "vnb__menu-options__option__link",
           attrs: {
-            href: _vm.option.path,
+            path: _vm.option.path,
+            isUsingVueRouter: _vm.options.isUsingVueRouter,
             "aria-label": _vm.option.text,
             tabindex: "0"
           }
@@ -397,15 +405,20 @@ var __vue_render__$1 = function() {
                       staticClass: "vnb__sub-menu-options__option",
                       attrs: { tabindex: "-1" }
                     },
-                    _vm._l(_vm.option.subMenuOptions, function(subOption) {
+                    _vm._l(_vm.option.subMenuOptions, function(
+                      subOption,
+                      index
+                    ) {
                       return subOption.type === "link"
                         ? _c(
-                            "a",
+                            "dynamic-link",
                             {
+                              key: index,
                               staticClass:
                                 "vnb__sub-menu-options__option__link",
                               attrs: {
-                                href: subOption.path,
+                                path: subOption.path,
+                                isUsingVueRouter: _vm.options.isUsingVueRouter,
                                 "aria-label": subOption.text,
                                 tabindex: "0"
                               },
@@ -451,7 +464,7 @@ var __vue_render__$1 = function() {
                             attrs: { tabindex: "-1" }
                           })
                     }),
-                    0
+                    1
                   )
                 ]
               )
@@ -485,27 +498,17 @@ __vue_render__$1._withStripped = true;
     __vue_module_identifier__$2,
     undefined,
     undefined
-  )
+  );
 
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 var script$3 = {
     name: 'desktop-menu-item-button',
     props: {
         option: {
+            type: Object,
+            required: true
+        },
+        options: {
             type: Object,
             required: true
         }
@@ -517,8 +520,11 @@ var script$3 = {
     computed: {
     },
     methods: {
+    },
+    components: {
+        DynamicLink: DynamicLink
     }
-}
+};
 
 /* script */
 var __vue_script__$3 = script$3;
@@ -528,14 +534,18 @@ var __vue_render__$2 = function() {
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
   return _c(
-    "a",
+    "dynamic-link",
     {
       class: [
         "vnb__menu-options__option__button",
         "vnb-button",
         _vm.option.class
       ],
-      attrs: { href: _vm.option.path, "aria-label": _vm.option.text }
+      attrs: {
+        path: _vm.option.path,
+        isUsingVueRouter: _vm.options.isUsingVueRouter,
+        "aria-label": _vm.option.text
+      }
     },
     [_vm._v("\n    " + _vm._s(_vm.option.text) + "\n")]
   )
@@ -566,7 +576,7 @@ __vue_render__$2._withStripped = true;
     __vue_module_identifier__$3,
     undefined,
     undefined
-  )
+  );
 
 //
 //
@@ -591,7 +601,7 @@ var script$4 = {
     },
     methods: {
     }
-}
+};
 
 /* script */
 var __vue_script__$4 = script$4;
@@ -628,7 +638,7 @@ __vue_render__$3._withStripped = true;
     __vue_module_identifier__$4,
     undefined,
     undefined
-  )
+  );
 
 //
 
@@ -658,7 +668,7 @@ var script$5 = {
         DesktopMenuItemButton: DesktopMenuItemButton,
         DesktopMenuItemSpacer: DesktopMenuItemSpacer
     }
-}
+};
 
 /* script */
 var __vue_script__$5 = script$5;
@@ -687,10 +697,12 @@ var __vue_render__$4 = function() {
               { staticClass: "vnb__menu-options__option" },
               [
                 option.type === "link"
-                  ? _c("desktop-menu-item-link", { attrs: { option: option } })
+                  ? _c("desktop-menu-item-link", {
+                      attrs: { option: option, options: _vm.options }
+                    })
                   : option.type === "button"
                   ? _c("desktop-menu-item-button", {
-                      attrs: { option: option }
+                      attrs: { option: option, options: _vm.options }
                     })
                   : _c("desktop-menu-item-spacer", {
                       attrs: { option: option }
@@ -730,7 +742,7 @@ __vue_render__$4._withStripped = true;
     __vue_module_identifier__$5,
     undefined,
     undefined
-  )
+  );
 
 //
 
@@ -758,11 +770,11 @@ var script$6 = {
             this.$emit('collapse-button-clicked');
         }
     }
-}
+};
 
-var img$1 = require('./collapse-menu-dark.png');
+var img$1 = new Image(); img$1.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAcVJREFUeAHt3UFqwkAUBmCTanoJl80JxIJX6Lon6BXaGxS6qb1J172MJ3EE0zctLRIQd5kBv4EBkwjv8f0JGsiQ2cwgQIAAAQIECBAgQIAAAQIECBA4I9CsVqu3OPYcszvzHbunEUhR5iMHkj8spqmpygWBQyuMC0TTHl7kQIyKBARSURi5FYFUGEj+UTfqEEg3y+XyNnq5j5mvlsEsY9A0zb5t2/fwNwgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBK5ToNlsNncppcd4rtSStoLnwPF4TF3Xfc4jjK/oo48dBdtROgtEFk/5ifceRzUCvQU71WTx24hABFKZQGXtuEIqDGRXWU/X3M5uHv99H9yHlD8H/u5DyneiAwIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUICzXq9fh2G4SWmNYaFQshl4/0hKeY2vzZvH9vCKBjGSemU14cI40Sk8MfOgp3CCYzLC2QsUnhbIIUDGJfPgRzGO20XE/h5F+42ynuXYbEM/gvnDHIWBgECBAgQIECAAAECBAgQIFCNwDcsuZak5BfxfwAAAABJRU5ErkJggg==';
 
-var img$2 = require('./collapse-menu-light.png');
+var img$2 = new Image(); img$2.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAaRJREFUeAHt3VFKw0AQBuAq2pPYG3kTvYHgg9ib9ET2JCYPcSb0xcrSPO0s+AUW0iTwD98kNIEs2e0sBAgQIECAAAECBAgQIECAAAECDYG7ZVneY99LjH3jGJv7CEwRc8yG5Mpjn0wpNwTmbMhy4yC7Owrcd8wStUFAQzYg9TxEQ3pqb8jKhuSfumUMgekh6viI8RrDbW9tU/LC+KwtQToBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgEChQE7YeYr85xje7S1sRETnu72nbMhXrBxqa5F+ETib0jbYuWDCjoYMJjBYOa4QDRlMYLBy8go5D1bTfy5nvcvyHDLGKbA+h4xRiioIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQKBHIG1Vvk+n5IAf5V5Pr9kGzId+ww4fNKp+jnZI5hkXwr1gyqlkzRdg0pgm/FakhLpmh7NmQuyhb7V2DOhuSn2vKWy1IrsN721pYgnQABAgQIECBAgAABAgQIEPgt8APQfDteuC9BpwAAAABJRU5ErkJggg==';
 
 /* script */
 var __vue_script__$6 = script$6;
@@ -822,7 +834,7 @@ __vue_render__$5._withStripped = true;
     __vue_module_identifier__$6,
     undefined,
     undefined
-  )
+  );
 
 //
 
@@ -857,11 +869,12 @@ var script$7 = {
         }
     },
     components: {
+        DynamicLink: DynamicLink,
         SlideYDownTransition: SlideYDownTransition
     }
-}
+};
 
-var img$3 = require('./times.png');
+var img$3 = new Image(); img$3.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAABYpJREFUeAHt3M1rG0cUAHBJSQ7Of2DZ0NYBB1LwobaQ8cmF3ipDLzoUCoEc3HPpucX5Fwo9tFCo+3EylLb4XpcEQrF9aIkvNsHJwRL0UHpwfLLjvqdotqvVzu7Oaj7eW70BsbvzrfdDGklotlaTRCoCN3SzabVaC7Ozs/P9fv9vXR3JN49Au91empubu312dvZvWutGWiZgvHd9ff0Uyv5aXl7+emtrK7VeWlvJS49At9u9sbKy8s3l5eWfV1dXTyGu76bVrCczhxi/AsiMKqvX6z90Op37APNK5cmxeAQQ4/T09HuI6YexVhdw3jk8PPwtllcbectKwxhWXjo5Obmzubn5y97e3nW8AznPjoAGAxvdgke32Ww+gWXhOZwPUgQyfAntxl8ZqtLwKCiJgORdZmCopgOU+fn5x71e7wVmxteGhxkYgw6g/KPd3d1tWVNUPPXHAhiq8W2I60N1EYHAOvGTysw6CkpWdF6XGWAMGkBMo9hHILBof4GLd/5wtZqg6KNkigE9bW9sbHypeozWEFyscdHGxRsKl1SFjKOsKYnglMR4EP/0GoFg34KSiLDBpQ0MHG4EBDMEBaNglmxh4KhjIJgpKBiFYskmBo6YCoIFgoJRyE62MXA0LQgWCgpGIT25wMCRMkGwgqBgFEaTKwwcJRcEKwkKRuF1comBIxQCwYqCAr8Epv9qi+HRJfzSN/I9Q1dR5RcGwQbTjOIDA2NsBDKtKL4wSoFMG4pPjNIg04LiG2MikKqjhMCYGKSqKKEwrIBUDSUkhjWQqqCExrAKwh2FAoZ1EK4oVDCcgHBDoYThDIQLCjUMpyDUUShiOAehikIVwwsINRTKGN5AqKBQx/AKEhqFA4Z3kFAoXDCCgPhG4YQRDMQXCjeMoCCuUThiBAdxhcIVgwSIbRTOGGRAbKFwx8A4jG2LxsyQCfcv4j5G3KVVZB5qy/bR0VE9ZetxVhfGf2LL6sxWGTkQfGKmKNDkR4BpAGJ8H3hWjEhi4IRJguDESqBgsyKJLAZO3vifi0WesY06Jf62WmRY0hj4BMiC4OQso5DHIA9iEYUFBgsQCyhsMPC5kl3UcXLJtL6+fvP8/PwYPk29lSzTXD9bWFi4u7Ozc6UpJ5cd3cmB3MwSE8IvfYDxnQEG9nAHvpt8i5/YEt2RvSS9qKuolfgGrprikdUdJ8iDTIihYNigkAaxhMEKhSyIZQw2KCRBSmBsw29ZeNNO9ncxIgdSBgO3Hi8uLv5chVtLkQIpiwEfa1+V+JmF5EJPBmQSDLVAVAGFBIgNjKqgBAexiVEFlKAgLjC4owQDcYnBGSUIiA8MrijeQXxicETxChICgxuKN5CQGJxQvIBQwOCC4hyEEgYHFKcgFDGoozgDoYxBGcUJCAcMqijWQThhUESxCsIRgxqKNRDOGJRQrIBUAYMKysQgVcKggDIRSBUxQqOUBqkyRkiUUiDTgBEKxRhkmjBCoBiBTCOGb5TCINOM4ROlEIhgKJJSG1GN/iGZCyIY/2OoM5f/kMwEEQxFMH50haIFEYxxhGSOC5RUEMFIhl5/bRtlDEQw9MHXldhEGQERDF3I8/NtoUQggpEf9LwaNlAikJmZmU9gwE/zBh2Ws7pdRcHnZKVaGZTj4+N/+v3+HziB+B0OPig4I8HICRRuset0Ovfxbnc5VVVxFPsIpNFofAalF6qG5igYmsAksw1QXkLbz1X76C2r1+u9aDabT6CgC49bqkLsKBixYBQ5LfD29RJeCO8fHBw8Uv1FIJgB72PPNSiCoSJmeMxAGWDs7+//Hu9yBAQLEig34X3wK9gH/jG+BOMN5bx4BGIos9DqHXhc4CsjiZHZ4+rq6pvtdvteZiUpNI5Aq9V6e21t7Q3jhtJAIiARgAj8B7kNT6PB1/G8AAAAAElFTkSuQmCC';
 
 /* script */
 var __vue_script__$7 = script$7;
@@ -917,21 +930,22 @@ var __vue_render__$6 = function() {
                   [
                     !option.subMenuOptions
                       ? _c(
-                          "a",
+                          "dynamic-link",
                           {
                             staticClass:
                               "vnb__popup__bottom__menu-options__option__link",
                             attrs: {
-                              href: option.path,
+                              path: option.path,
+                              isUsingVueRouter: _vm.options.isUsingVueRouter,
                               "aria-label": option.text
                             },
                             on: { click: _vm.itemSelected }
                           },
                           [
                             _vm._v(
-                              "\n                    " +
+                              "\n                        " +
                                 _vm._s(option.text) +
-                                "\n                "
+                                "\n                    "
                             )
                           ]
                         )
@@ -943,9 +957,9 @@ var __vue_render__$6 = function() {
                           },
                           [
                             _vm._v(
-                              "\n                    " +
+                              "\n                        " +
                                 _vm._s(option.text) +
-                                "\n                "
+                                "\n                    "
                             )
                           ]
                         ),
@@ -963,21 +977,23 @@ var __vue_render__$6 = function() {
                           [
                             subOption.type === "link"
                               ? _c(
-                                  "a",
+                                  "dynamic-link",
                                   {
                                     staticClass:
                                       "vnb__popup__bottom__sub-menu-options__option__link",
                                     attrs: {
-                                      href: subOption.path,
+                                      path: subOption.path,
+                                      isUsingVueRouter:
+                                        _vm.options.isUsingVueRouter,
                                       "aria-label": subOption.text
                                     },
                                     on: { click: _vm.itemSelected }
                                   },
                                   [
                                     _vm._v(
-                                      "\n                            " +
+                                      "\n                                " +
                                         _vm._s(subOption.text) +
-                                        "\n\n                            "
+                                        "\n\n                                "
                                     ),
                                     _c(
                                       "span",
@@ -990,12 +1006,14 @@ var __vue_render__$6 = function() {
                                   ]
                                 )
                               : _vm._e()
-                          ]
+                          ],
+                          1
                         )
                       }),
                       0
                     )
-                  ]
+                  ],
+                  1
                 )
               }),
               0
@@ -1031,7 +1049,7 @@ __vue_render__$6._withStripped = true;
     __vue_module_identifier__$7,
     undefined,
     undefined
-  )
+  );
 
 //
 
@@ -1082,7 +1100,7 @@ var script$8 = {
         CollapseButton: CollapseButton,
         Popup: Popup
     }
-}
+};
 
 /* script */
 var __vue_script__$8 = script$8;
@@ -1150,7 +1168,7 @@ __vue_render__$7._withStripped = true;
     __vue_module_identifier__$8,
     undefined,
     undefined
-  )
+  );
 
 // Import vue component
 

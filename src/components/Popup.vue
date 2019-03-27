@@ -1,72 +1,75 @@
 <template>
     <slide-y-down-transition>
-    <div
-        v-if="menuIsVisible"
-        class="vnb__popup"
-    >
-        <div class="vnb__popup__top">
-            <img v-if="options.showBrandImageInMobilePopup && options.brandImage" :src="options.brandImage" :alt="options.brandImageAltText" class="vnb-image vnb__popup__top__image">
+        <div
+            v-if="menuIsVisible"
+            class="vnb__popup"
+        >
+            <div class="vnb__popup__top">
+                <img v-if="options.showBrandImageInMobilePopup && options.brandImage" :src="options.brandImage" :alt="options.brandImageAltText" class="vnb-image vnb__popup__top__image">
 
-            <button
-                class="vnb__popup__top__close-button"
-                @click="closeButtonClicked"
-                aria-label="Close Button"
-                title="Close"
-                :aria-expanded="(menuIsVisible) ? 'true' : 'false'"
-            >
-                <img
-                    :src="require('../assets/images/times.png')"
-                    :alt="'Close button'"
-                    class="vnb__popup__top__close-button__image"
+                <button
+                    class="vnb__popup__top__close-button"
+                    @click="closeButtonClicked"
+                    aria-label="Close Button"
+                    title="Close"
+                    :aria-expanded="(menuIsVisible) ? 'true' : 'false'"
                 >
-            </button>
-        </div>
-
-        <div class="vnb__popup__bottom">
-            <ul class="vnb__popup__bottom__menu-options">
-                <li v-for="option in combinedMenuItems" class="vnb__popup__bottom__menu-options__option">
-                    <a
-                        v-if="!option.subMenuOptions"
-                        :href="option.path"
-                        class="vnb__popup__bottom__menu-options__option__link"
-                        @click="itemSelected"
-                        :aria-label="option.text"
+                    <img
+                        :src="require('../assets/images/times.png')"
+                        :alt="'Close button'"
+                        class="vnb__popup__top__close-button__image"
                     >
-                        {{option.text}}
-                    </a>
+                </button>
+            </div>
 
-                    <span
-                        v-else
-                        class="vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
-                    >
-                        {{option.text}}
-                    </span>
+            <div class="vnb__popup__bottom">
+                <ul class="vnb__popup__bottom__menu-options">
+                    <li v-for="option in combinedMenuItems" class="vnb__popup__bottom__menu-options__option">
+                        <dynamic-link
+                            v-if="!option.subMenuOptions"
+                            :path="option.path"
+                            :isUsingVueRouter="options.isUsingVueRouter"
+                            class="vnb__popup__bottom__menu-options__option__link"
+                            @click="itemSelected"
+                            :aria-label="option.text"
+                        >
+                            {{option.text}}
+                        </dynamic-link>
 
-                    <div class="vnb__popup__bottom__sub-menu-options">
-                        <div v-for="subOption in option.subMenuOptions" class="vnb__popup__bottom__sub-menu-options__option">
-                            <a
-                                v-if="subOption.type === 'link'"
-                                :href="subOption.path"
-                                class="vnb__popup__bottom__sub-menu-options__option__link"
-                                @click="itemSelected"
-                                :aria-label="subOption.text"
-                            >
-                                {{subOption.text}}
+                        <span
+                            v-else
+                            class="vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
+                        >
+                            {{option.text}}
+                        </span>
 
-                                <span
-                                    class="vnb__popup__bottom__sub-menu-options__option__link__sub-text"
-                                >{{subOption.subText}}</span>
-                            </a>
+                        <div class="vnb__popup__bottom__sub-menu-options">
+                            <div v-for="subOption in option.subMenuOptions" class="vnb__popup__bottom__sub-menu-options__option">
+                                <dynamic-link
+                                    :path="subOption.path"
+                                    :isUsingVueRouter="options.isUsingVueRouter"
+                                    v-if="subOption.type === 'link'"
+                                    class="vnb__popup__bottom__sub-menu-options__option__link"
+                                    @click="itemSelected"
+                                    :aria-label="subOption.text"
+                                >
+                                    {{subOption.text}}
+
+                                    <span
+                                        class="vnb__popup__bottom__sub-menu-options__option__link__sub-text"
+                                    >{{subOption.subText}}</span>
+                                </dynamic-link>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-       </div>
-    </div>
+                    </li>
+                </ul>
+           </div>
+        </div>
     </slide-y-down-transition>
 </template>
 
 <script>
+import DynamicLink from '../components/DynamicLink.vue'
 import {SlideYDownTransition} from 'vue2-transitions'
 
 export default {
@@ -100,6 +103,7 @@ export default {
         }
     },
     components: {
+        DynamicLink,
         SlideYDownTransition
     }
 }
@@ -176,7 +180,7 @@ export default {
                         &__link {
                             padding: 12px 24px;
                             color: lighten($black, 15%);
-                            font-weight: 700;
+                            font-weight: 500;
                             display: inline-block;
                             transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
                             border-left: 2px solid $white;
@@ -220,7 +224,7 @@ export default {
                             width: 100%;
                             display: block;
                             color: lighten($black, 20%);
-                            font-weight: 700;
+                            font-weight: 500;
                             transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
                             border-left: 2px solid $white;
 

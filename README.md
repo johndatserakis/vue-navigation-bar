@@ -209,6 +209,10 @@ Vue.component('vue-navigation-bar', VueNavigationBar)
 
 Take a look at the `./example` folder in this project - it has the complete working example that you see in the demo. (FYI - the `vue-router` setup there is really rudimentary so all the different pages aren't real - doesn't affect the demo.)
 
+### Notes
+
+You may need to adjust your `brand-image` a bit - that's normal as brand images come in different shapes and sizes - go ahead and set a `width` or `height` using this selector: `.vnb__brand-image-wrapper__link__image`. Even a little margin may help.
+
 ### Props
 
 | prop | type | required | default | possible values | description |
@@ -360,7 +364,7 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
 }
 ```
 
-### Accessability
+### Accessibility
 
 Throughout the development of this component I've been making sure to allow for proper a11y options to be set when possible. This means things like `aria-haspopup` and `aria-expanded` are set on the popup-menus, `aria-label`'s are set on the elements, and any user can come through and use the navbar nicely using the `tab` button. Of course there can probably be improvements on this front, so I'll keep an eye on it myself and look for any pull-requests that improve it.
 
@@ -388,7 +392,7 @@ npm run build
 
 ### TODO
 
-- I'd like to be able to have icons with each option. I usually use font-awesome, but we'd want them to be totally free for use in an open-source program. Maybe font-awesome 5 could work. Almost thinking slots here if that can somehow work.
+- Maybe take a look at adding optional icons. Although, it may be tough because the current layout favors the ease of declaring the menu structure with an object - and not slots where you'd have to have it set up a bit differently (but have more freedom). Perhaps there's another way where `vue-navigation-bar` can just include a icon-library and you can just add your icon choice to the initialization object - I'm sorta more down with this.
 
 - Add an optional search input bar.
 

@@ -1,6 +1,5 @@
-// https://vuejs.org/v2/cookbook/packaging-sfc-for-npm.html
 import vue from 'rollup-plugin-vue';
-import images from 'rollup-plugin-image-files';
+import image from 'rollup-plugin-image';
 import css from 'rollup-plugin-css-only'
 import buble from 'rollup-plugin-buble';
 import commonjs from 'rollup-plugin-commonjs';
@@ -23,18 +22,18 @@ const config = {
         }
     },
     plugins: [
-        commonjs(),
-        resolve({
-            jsnext: true,
-            main: true,
-        }),
         vue({
             css: false,
             compileTemplate: true,
         }),
         css({ output: 'dist/vue-navigation-bar.css' }),
+        resolve({
+            jsnext: true,
+            main: true
+        }),
+        commonjs(),
         buble(),
-        images()
+        image()
     ],
     external: ['vue', 'vue-screen-size', 'tippy.js', 'vue2-transitions']
 };

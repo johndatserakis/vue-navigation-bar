@@ -150,7 +150,8 @@
 </script>
 
 <style lang="scss">
-    @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+    @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700');
 
     html {
         width: 100%;
@@ -163,7 +164,7 @@
         height: 100%;
         height: 100vh;
         width: 100%;
-        font-family: 'Noto Sans', sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }
 
     #app {
@@ -215,6 +216,8 @@
     }
 
     .vnb {
+        font-family: 'Montserrat', sans-serif;
+
         .button-red {
             background: #FF3B30;
 

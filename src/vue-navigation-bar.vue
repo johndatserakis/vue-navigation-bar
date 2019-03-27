@@ -10,7 +10,7 @@
 
         <collapse-button :options="finalOptions" :menuIsVisible="menuIsVisible" @collapse-button-clicked="showMobilePopup" />
 
-        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeMobilePopup"  />
+        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeMobilePopup" />
 
     </nav>
 
@@ -90,6 +90,10 @@ export default {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+
+        a {
+            text-decoration: none;
+        }
     }
 
     .tippy-tooltip {
