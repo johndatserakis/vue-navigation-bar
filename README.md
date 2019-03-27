@@ -32,11 +32,11 @@ yarn add vue-navigation-bar
 Or you can include it through the browser at the bottom of your page along with the css:
 
 ```html
-<!-- Please note if you're using the browser method you're going to want to adjust the version number as needed. The number given there is just the initial version. -->
+<!-- Please note if you're using the browser method you're going to want to adjust the version number as needed. The number given here is just an initial version. -->
 
-<script src="https://unpkg.com/vue-navigation-bar@1.0.0/dist/vue-navigation-bar.min.js"></script>
+<script src="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-navigation-bar@1.0.0/dist/vue-navigation-bar.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.css">
 ```
 
 ### About
@@ -52,6 +52,8 @@ I know there are lots of other styles that navbar's can be, for instance the `br
 The trade-off is that the initialization and usage of this component is very easy and won't force you to do anything except declare the structure initially and declare a few `css` styles as necessary.
 
 `vue-navigation-bar` is compatible with both `vue-router` projects and non-`vue-router` projects - just make sure to pass in `true` for the `isUsingVueRouter` option.
+
+The component should work well with frontend component frameworks. I'm using Bootstrap 4 in the demo page and have it sitting in a container - that helps keep it from stretching too far across the page - although that may be the style you're going for, so have at it.
 
 ### Usage Example
 
