@@ -63,7 +63,7 @@
                     elementId: 'main-navbar',
                     isUsingVueRouter: true,
                     mobileBreakpoint: 992,
-                    brandImagePath: '/',
+                    brandImagePath: './',
                     brandImage: require('../src/assets/images/lockup-color.png'),
                     brandImageAltText: 'vnb',
                     collapseButtonStyle: 'dark',
@@ -78,7 +78,7 @@
                                     type: 'link',
                                     text: 'About',
                                     subText: 'Stupid corporate wet blankets. Like booze ever killed anyone.',
-                                    path: '/about',
+                                    path: './about',
                                 },
                                 {
                                     type: 'hr',
@@ -87,7 +87,7 @@
                                     type: 'link',
                                     text: 'Locations',
                                     subText: 'You\'re a presentation tool!',
-                                    path: '/locations',
+                                    path: './locations',
                                 },
                                 {
                                     type: 'hr',
@@ -96,7 +96,7 @@
                                     type: 'link',
                                     text: 'Blog',
                                     subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
-                                    path: '/blog',
+                                    path: './blog',
                                 },
                             ]
                         },
@@ -107,12 +107,12 @@
                                 {
                                     type: 'link',
                                     text: 'Customer Service',
-                                    path: '/customer-service',
+                                    path: './customer-service',
                                 },
                                 {
                                     type: 'link',
                                     text: 'Accounting',
-                                    path: '/accounting',
+                                    path: './accounting',
                                 },
                                 {
                                     type: 'hr',
@@ -120,27 +120,27 @@
                                 {
                                     type: 'link',
                                     text: 'Reception',
-                                    path: '/reception',
+                                    path: './reception',
                                 },
                             ]
                         },
                         {
                             type: 'link',
                             text: 'Pricing',
-                            path: '/pricing',
+                            path: './pricing',
                         },
                     ],
                     menuOptionsRight: [
                         {
                             type: 'button',
                             text: 'Signup',
-                            path: '/signup',
+                            path: './signup',
                             class: 'button-red'
                         },
                         {
                             type: 'button',
                             text: 'Login',
-                            path: '/login',
+                            path: './login',
                         }
                     ]
                 }

@@ -241,6 +241,7 @@
 .vnb__sub-menu-options__option__hr {
       margin-top: 10px;
       margin-bottom: 10px;
+      border-color: rgba(0, 0, 0, 0.1);
 }
 
 /*# sourceMappingURL=DesktopMenuItemLink.vue.map */.vnb__menu-options__option__button {
