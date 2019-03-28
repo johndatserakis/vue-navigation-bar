@@ -73,7 +73,6 @@
                         {
                             type: 'link',
                             text: 'Why Dunder Mifflin',
-                            icon: '<i class="fa fa-question"></i>',
                             subMenuOptions: [
                                 {
                                     type: 'link',
