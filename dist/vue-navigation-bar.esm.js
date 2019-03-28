@@ -361,7 +361,15 @@ var __vue_render__$1 = function() {
             tabindex: "0"
           }
         },
-        [_vm._v("\n    " + _vm._s(_vm.option.text) + "\n")]
+        [
+          _vm.option.icon
+            ? _c("span", {
+                staticClass: "vnb__menu-options__option__link__icon-left",
+                domProps: { innerHTML: _vm._s(_vm.option.icon) }
+              })
+            : _vm._e(),
+          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n")
+        ]
       )
     : _c(
         "span",
@@ -376,7 +384,13 @@ var __vue_render__$1 = function() {
           }
         },
         [
-          _vm._v("\n    " + _vm._s(_vm.option.text) + "\n    "),
+          _vm.option.icon
+            ? _c("span", {
+                staticClass: "vnb__menu-options__option__link__icon-left",
+                domProps: { innerHTML: _vm._s(_vm.option.icon) }
+              })
+            : _vm._e(),
+          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n    "),
           _c("img", {
             class: [
               "vnb__menu-options__option__arrow",
@@ -423,9 +437,6 @@ var __vue_render__$1 = function() {
                                 tabindex: "0"
                               },
                               on: {
-                                click: function($event) {
-                                  return _vm.subMenuItemSelected(subOption.text)
-                                },
                                 keydown: function($event) {
                                   if (
                                     !$event.type.indexOf("key") &&
@@ -441,21 +452,63 @@ var __vue_render__$1 = function() {
                                   }
                                   return _vm.subMenuItemTabbed(subOption.text)
                                 }
+                              },
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.subMenuItemSelected(subOption.text)
+                                }
                               }
                             },
                             [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(subOption.text) +
-                                  "\n\n                "
-                              ),
+                              subOption.icon
+                                ? _c("span", {
+                                    staticClass:
+                                      "vnb__sub-menu-options__option__link__icon-left",
+                                    domProps: {
+                                      innerHTML: _vm._s(subOption.icon)
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
                               _c(
                                 "span",
                                 {
                                   staticClass:
-                                    "vnb__sub-menu-options__option__link__sub-text"
+                                    "vnb__sub-menu-options__option__link__text-wrapper"
                                 },
-                                [_vm._v(_vm._s(subOption.subText))]
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "vnb__sub-menu-options__option__link__text-wrapper__text"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(subOption.text) +
+                                          "\n                    "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  subOption.subText
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "vnb__sub-menu-options__option__link__text-wrapper__sub-text"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                        " +
+                                              _vm._s(subOption.subText) +
+                                              "\n                    "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
                               )
                             ]
                           )
@@ -547,7 +600,23 @@ var __vue_render__$2 = function() {
         "aria-label": _vm.option.text
       }
     },
-    [_vm._v("\n    " + _vm._s(_vm.option.text) + "\n")]
+    [
+      _vm.option.iconLeft
+        ? _c("span", {
+            staticClass:
+              "vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--left",
+            domProps: { innerHTML: _vm._s(_vm.option.iconLeft) }
+          })
+        : _vm._e(),
+      _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n\n    "),
+      _vm.option.iconRight
+        ? _c("span", {
+            staticClass:
+              "vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--right",
+            domProps: { innerHTML: _vm._s(_vm.option.iconRight) }
+          })
+        : _vm._e()
+    ]
   )
 };
 var __vue_staticRenderFns__$2 = [];
@@ -865,6 +934,7 @@ var script$7 = {
             this.$emit('close-button-clicked');
         },
         itemSelected: function itemSelected () {
+            console.log('123');
             this.closeButtonClicked();
         }
     },
@@ -939,7 +1009,11 @@ var __vue_render__$6 = function() {
                               isUsingVueRouter: _vm.options.isUsingVueRouter,
                               "aria-label": option.text
                             },
-                            on: { click: _vm.itemSelected }
+                            nativeOn: {
+                              click: function($event) {
+                                return _vm.itemSelected($event)
+                              }
+                            }
                           },
                           [
                             _vm._v(
@@ -987,7 +1061,11 @@ var __vue_render__$6 = function() {
                                         _vm.options.isUsingVueRouter,
                                       "aria-label": subOption.text
                                     },
-                                    on: { click: _vm.itemSelected }
+                                    nativeOn: {
+                                      click: function($event) {
+                                        return _vm.itemSelected($event)
+                                      }
+                                    }
                                   },
                                   [
                                     _vm._v(

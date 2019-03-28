@@ -95,6 +95,12 @@ body {
     color: #333;
     text-decoration: none;
 }
+.vnb__menu-options__option__link__icon-left {
+    margin-right: 5px;
+}
+.vnb__menu-options__option__link__icon-left svg {
+      max-height: 25px;
+}
 .vnb__menu-options__option__arrow {
   margin-left: 8px;
   max-height: 5px;
@@ -120,8 +126,10 @@ body {
 .vnb__sub-menu-options__option__link {
       padding: 12px 12px;
       width: 100%;
-      display: block;
-      text-align: left;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
       color: #666666;
       transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
       border-left: 2px solid #fff;
@@ -132,10 +140,24 @@ body {
         background: #f3f3f3;
         border-left: 2px solid #007AFF;
 }
-.vnb__sub-menu-options__option__link__sub-text {
-        margin-top: 5px;
-        display: block;
-        font-size: 0.75rem;
+.vnb__sub-menu-options__option__link__icon-left {
+        margin-right: 15px;
+}
+.vnb__sub-menu-options__option__link__icon-left svg {
+          max-height: 40px;
+}
+.vnb__sub-menu-options__option__link__text-wrapper {
+        width: 100%;
+}
+.vnb__sub-menu-options__option__link__text-wrapper__text {
+          display: block;
+          text-align: left;
+}
+.vnb__sub-menu-options__option__link__text-wrapper__sub-text {
+          margin-top: 5px;
+          display: block;
+          font-size: 0.75rem;
+          text-align: left;
 }
 .vnb__sub-menu-options__option__hr {
       margin-top: 10px;
@@ -144,7 +166,10 @@ body {
 }
 
 .vnb__menu-options__option__button {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   font-weight: 400;
   color: #fff;
   text-align: center;
@@ -157,6 +182,15 @@ body {
   letter-spacing: 1px;
   padding: 0.5rem 1rem;
   transition: background 0.2s ease-in;
+}
+.vnb__menu-options__option__button__icon svg {
+    max-height: 20px;
+}
+.vnb__menu-options__option__button__icon--left {
+    margin-right: 5px;
+}
+.vnb__menu-options__option__button__icon--right {
+    margin-left: 5px;
 }
 .vnb-button {
   background: #007AFF;

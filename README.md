@@ -86,7 +86,6 @@ Note - the first example uses basic `css`, the second example is the same thing 
 
 You can make a bunch of button-color classes and set them up just like above.
 
-
 ```html
 <!-- css import for when you want to import the component css into your css file/files  -->
 @import '/path/to/node_modules/vue-navigation-bar.css';
@@ -231,12 +230,18 @@ You may need to adjust your `brand-image` a bit - that's normal as brand images 
 | menuOptionsLeft.text | String | yes | | | Text of menu-option |
 | menuOptionsLeft.path | String | yes | | | Link path of menu-option. Not applicable to `dropdown` menuOption types. |
 | menuOptionsLeft.class | String | no | | | Only for `menuOptionsLeft.type === 'button'` - provide a class name so you can style your buttons |
+| menuOptionsLeft.icon | HTML String | no | | | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
+| menuOptionsLeft.iconLeft | HTML String | no | | | Only for `menuOptionsLeft.type === 'button'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
+| menuOptionsLeft.iconRight | HTML String | no | | | Only for `menuOptionsLeft.type === 'button'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
 | menuOptionsLeft.subMenuOptions | Object | no | | | Sub-menu-options that will be shown |
 | menuOptionsLeft.subMenuOptions.type | String | yes | | 'link', 'hr' | What type of link will this sub-menu-option be? `link` will be a link, `hr` will be a `hr` spacer |
 | menuOptionsLeft.subMenuOptions.text | String | yes | | | Text of sub-menu-option |
 | menuOptionsLeft.subMenuOptions.subText | String | no | | | Sub text of sub-menu-option |
 | menuOptionsLeft.subMenuOptions.path | String | yes | | | Link path of sub-menu-option |
+| menuOptionsLeft.subMenuOptions.icon | HTML String | no | | | Right now the icon support is simply an HTML string that you pass in as a prop. See more info on the `Icon` section of the README. |
 | menuOptionsRight | Object | no | {} | | See above - all `menuOptionsLeft` apply |
+
+Note - `menu-options` and `sub-menu-options` must have a unique `text` values because they are used further for unique identification.
 
 ### Events
 
@@ -254,9 +259,9 @@ You may need to adjust your `brand-image` a bit - that's normal as brand images 
 
 Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, something like this: `<vue-navigation-bar :ref="myNavbar" />`. Then, manually call the methods like this in your javascript: `this.$refs.myNavbar.closeMobilePopup()`.
 
-### SASS Structure
+### SCSS Structure
 
-```sass
+```scss
 .vnb {
 
     &__brand-image-wrapper {
@@ -278,11 +283,29 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
                 &:hover {
                 }
 
-                &__sub-text {
+                &__icon-left {
+
+                    svg {
+                    }
+                }
+            }
+
+            &__arrow {
+                &--hover {
                 }
             }
 
             &__button {
+                &__icon {
+                    svg {
+                    }
+
+                    &--left {
+                    }
+
+                    &--right {
+                    }
+                }
             }
 
             &__spacer {
@@ -294,6 +317,19 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
         &__option {
             &__link {
                 &:hover {
+                }
+
+                &__icon-left {
+                    svg {
+                    }
+                }
+
+                &__text-wrapper {
+                    &__text {
+                    }
+
+                    &__sub-text {
+                    }
                 }
             }
 
@@ -364,6 +400,12 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
 }
 ```
 
+### Icons
+
+So right now to use icons in some of the options, you need to pass in full `HTML` strings which get rendered as `HTML` in the desktop version of the navbar.
+
+In the demo I use this really great set of `svg` icons called [bytesize-icons](https://github.com/danklammer/bytesize-icons). You can just copy the `<svg></svg>` code and pass it in your initilization object. You can do the same thing with the FontAwesome style of `<i class="fa fa-star"></i>`. In the future I'll be looking at a way to pass in full components as icons. Right now, passing in `svg` icons works well and does the job. Check out the `.example` folder to see how I have it in the demo.
+
 ### Accessibility
 
 Throughout the development of this component I've been making sure to allow for proper a11y options to be set when possible. This means things like `aria-haspopup` and `aria-expanded` are set on the popup-menus, `aria-label`'s are set on the elements, and any user can come through and use the navbar nicely using the `tab` button. Of course there can probably be improvements on this front, so I'll keep an eye on it myself and look for any pull-requests that improve it.
@@ -392,9 +434,9 @@ npm run build
 
 ### TODO
 
-- Maybe take a look at adding optional icons. Although, it may be tough because the current layout favors the ease of declaring the menu structure with an object - and not slots where you'd have to have it set up a bit differently (but have more freedom). Perhaps there's another way where `vue-navigation-bar` can just include a icon-library and you can just add your icon choice to the initialization object - I'm sorta more down with this.
-
 - Add an optional search input bar.
+
+- See if there's a way to let users pass a component for an icon and not be limited to HTML strings of the icon they want.
 
 - Add more thorough tests.
 

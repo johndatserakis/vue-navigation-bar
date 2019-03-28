@@ -30,7 +30,7 @@
                             :path="option.path"
                             :isUsingVueRouter="options.isUsingVueRouter"
                             class="vnb__popup__bottom__menu-options__option__link"
-                            @click="itemSelected"
+                            @click.native="itemSelected"
                             :aria-label="option.text"
                         >
                             {{option.text}}
@@ -50,7 +50,7 @@
                                     :isUsingVueRouter="options.isUsingVueRouter"
                                     v-if="subOption.type === 'link'"
                                     class="vnb__popup__bottom__sub-menu-options__option__link"
-                                    @click="itemSelected"
+                                    @click.native="itemSelected"
                                     :aria-label="subOption.text"
                                 >
                                     {{subOption.text}}
@@ -99,6 +99,7 @@ export default {
             this.$emit('close-button-clicked')
         },
         itemSelected () {
+            console.log('123')
             this.closeButtonClicked()
         }
     },

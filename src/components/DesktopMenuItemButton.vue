@@ -9,7 +9,19 @@
         ]"
         :aria-label="option.text"
     >
+        <span
+            v-if="option.iconLeft"
+            class="vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--left"
+            v-html="option.iconLeft"
+        ></span>
+
         {{option.text}}
+
+        <span
+            v-if="option.iconRight"
+            class="vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--right"
+            v-html="option.iconRight"
+        ></span>
     </dynamic-link>
 </template>
 
@@ -48,7 +60,11 @@ export default {
         &__menu-options {
             &__option {
                 &__button {
-                    display: inline-block;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+
                     font-weight: 400;
                     color: $white;
                     text-align: center;
@@ -61,6 +77,20 @@ export default {
                     letter-spacing: 1px;
                     padding: 0.5rem 1rem;
                     transition: background 0.2s ease-in;
+
+                    &__icon {
+                        svg {
+                            max-height: 20px;
+                        }
+
+                        &--left {
+                            margin-right: 5px;
+                        }
+
+                        &--right {
+                            margin-left: 5px;
+                        }
+                    }
                 }
             }
         }

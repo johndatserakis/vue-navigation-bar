@@ -7,6 +7,12 @@
         :aria-label="option.text"
         tabindex="0"
     >
+        <span
+            v-if="option.icon"
+            class="vnb__menu-options__option__link__icon-left"
+            v-html="option.icon"
+        ></span>
+
         {{option.text}}
     </dynamic-link>
 
@@ -19,6 +25,12 @@
         :aria-label="option.text"
         tabindex="0"
     >
+        <span
+            v-if="option.icon"
+            class="vnb__menu-options__option__link__icon-left"
+            v-html="option.icon"
+        ></span>
+
         {{option.text}}
         <img
             :src="require('../assets/images/chevron-down.png')"
@@ -45,16 +57,27 @@
                     :key="index"
                     v-if="subOption.type === 'link'"
                     class="vnb__sub-menu-options__option__link"
-                    @click="subMenuItemSelected(subOption.text)"
+                    @click.native="subMenuItemSelected(subOption.text)"
                     :aria-label="subOption.text"
                     tabindex="0"
                     @keydown.tab="subMenuItemTabbed(subOption.text)"
                 >
-                    {{subOption.text}}
-
                     <span
-                        class="vnb__sub-menu-options__option__link__sub-text"
-                    >{{subOption.subText}}</span>
+                        v-if="subOption.icon"
+                        class="vnb__sub-menu-options__option__link__icon-left"
+                        v-html="subOption.icon"
+                    ></span>
+
+                    <span class="vnb__sub-menu-options__option__link__text-wrapper">
+                        <span class="vnb__sub-menu-options__option__link__text-wrapper__text">
+                            {{subOption.text}}
+                        </span>
+
+                        <span v-if="subOption.subText" class="vnb__sub-menu-options__option__link__text-wrapper__sub-text">
+                            {{subOption.subText}}
+                        </span>
+                    </span>
+
                 </dynamic-link>
 
                 <hr
@@ -187,7 +210,6 @@ export default {
                     font-weight: 500;
                     color: lighten($black, 20);
                     transition: color 0.2s ease-in;
-
                     display: flex;
                     flex-direction: row;
                     align-items: center;
@@ -196,6 +218,14 @@ export default {
                     &:hover {
                         color: $black;
                         text-decoration: none;
+                    }
+
+                    &__icon-left {
+                        margin-right: 5px;
+
+                        svg {
+                            max-height: 25px;
+                        }
                     }
                 }
 
@@ -228,8 +258,10 @@ export default {
                 &__link {
                     padding: 12px 12px;
                     width: 100%;
-                    display: block;
-                    text-align: left;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
                     color: lighten($black, 20);
                     transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
                     border-left: 2px solid $white;
@@ -241,10 +273,28 @@ export default {
                         border-left: 2px solid $blue;
                     }
 
-                    &__sub-text {
-                        margin-top: 5px;
-                        display: block;
-                        font-size: 0.75rem;
+                    &__icon-left {
+                        margin-right: 15px;
+
+                        svg {
+                            max-height: 40px;
+                        }
+                    }
+
+                    &__text-wrapper {
+                        width: 100%;
+
+                        &__text {
+                            display: block;
+                            text-align: left;
+                        }
+
+                        &__sub-text {
+                            margin-top: 5px;
+                            display: block;
+                            font-size: 0.75rem;
+                            text-align: left;
+                        }
                     }
                 }
 
