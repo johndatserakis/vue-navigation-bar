@@ -1,5 +1,5 @@
 <template>
-    <dynamic-link
+    <a
         :path="option.path"
         :isUsingVueRouter="options.isUsingVueRouter"
         v-if="!option.subMenuOptions || !option.subMenuOptions.length"
@@ -8,13 +8,19 @@
         tabindex="0"
     >
         <span
-            v-if="option.icon"
-            class="vnb__menu-options__option__link__icon-left"
-            v-html="option.icon"
+            v-if="option.iconLeft"
+            class="vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--left"
+            v-html="option.iconLeft"
         ></span>
 
         {{option.text}}
-    </dynamic-link>
+
+        <span
+            v-if="option.iconRight"
+            class="vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--right"
+            v-html="option.iconRight"
+        ></span>
+    </a>
 
     <span
         v-else
@@ -26,12 +32,19 @@
         tabindex="0"
     >
         <span
-            v-if="option.icon"
-            class="vnb__menu-options__option__link__icon-left"
-            v-html="option.icon"
+            v-if="option.iconLeft"
+            class="vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--left"
+            v-html="option.iconLeft"
         ></span>
 
         {{option.text}}
+
+        <span
+            v-if="option.iconRight"
+            class="vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--right"
+            v-html="option.iconRight"
+        ></span>
+
         <img
             :src="require('../assets/images/chevron-down.png')"
             alt="arrow"
@@ -63,9 +76,9 @@
                     @keydown.tab="subMenuItemTabbed(subOption.text)"
                 >
                     <span
-                        v-if="subOption.icon"
-                        class="vnb__sub-menu-options__option__link__icon-left"
-                        v-html="subOption.icon"
+                        v-if="subOption.iconLeft"
+                        class="vnb__sub-menu-options__option__link__icon vnb__sub-menu-options__option__link__icon--left"
+                        v-html="subOption.iconLeft"
                     ></span>
 
                     <span class="vnb__sub-menu-options__option__link__text-wrapper">
@@ -77,6 +90,12 @@
                             {{subOption.subText}}
                         </span>
                     </span>
+
+                    <span
+                        v-if="subOption.iconRight"
+                        class="vnb__sub-menu-options__option__link__icon vnb__sub-menu-options__option__link__icon--right"
+                        v-html="subOption.iconRight"
+                    ></span>
 
                 </dynamic-link>
 
@@ -220,11 +239,17 @@ export default {
                         text-decoration: none;
                     }
 
-                    &__icon-left {
-                        margin-right: 5px;
-
+                    &__icon {
                         svg {
-                            max-height: 25px;
+                            max-height: 20px;
+                        }
+
+                        &--left {
+                            margin-right: 5px;
+                        }
+
+                        &--right {
+                            margin-left: 5px;
                         }
                     }
                 }
@@ -273,11 +298,13 @@ export default {
                         border-left: 2px solid $blue;
                     }
 
-                    &__icon-left {
-                        margin-right: 15px;
-
+                    &__icon {
                         svg {
                             max-height: 40px;
+                        }
+
+                        &--left {
+                            margin-right: 15px;
                         }
                     }
 

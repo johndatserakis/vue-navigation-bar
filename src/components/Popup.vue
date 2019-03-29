@@ -33,7 +33,19 @@
                             @click.native="itemSelected"
                             :aria-label="option.text"
                         >
+                            <span
+                                v-if="option.iconLeft"
+                                class="vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--left"
+                                v-html="option.iconLeft"
+                            ></span>
+
                             {{option.text}}
+
+                            <span
+                                v-if="option.iconRight"
+                                class="vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--right"
+                                v-html="option.iconRight"
+                            ></span>
                         </dynamic-link>
 
                         <span
@@ -182,7 +194,10 @@ export default {
                             padding: 12px 24px;
                             color: lighten($black, 15%);
                             font-weight: 500;
-                            display: inline-block;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
                             transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
                             border-left: 2px solid $white;
                             width: 100%;
@@ -204,6 +219,22 @@ export default {
                                     color: lighten($black, 26%);
                                     background: $white;
                                     border-left: 2px solid $white;
+                                }
+                            }
+
+                            &__icon {
+                                svg {
+                                    max-height: 16px;
+                                    max-width: 16px;
+                                    margin-top: -4px;
+                                }
+
+                                &--left {
+                                    margin-right: 5px;
+                                }
+
+                                &--right {
+                                    margin-left: 5px;
                                 }
                             }
                         }

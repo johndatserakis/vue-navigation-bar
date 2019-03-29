@@ -351,7 +351,7 @@ var __vue_render__$1 = function() {
   var _c = _vm._self._c || _h;
   return !_vm.option.subMenuOptions || !_vm.option.subMenuOptions.length
     ? _c(
-        "dynamic-link",
+        "a",
         {
           staticClass: "vnb__menu-options__option__link",
           attrs: {
@@ -362,13 +362,21 @@ var __vue_render__$1 = function() {
           }
         },
         [
-          _vm.option.icon
+          _vm.option.iconLeft
             ? _c("span", {
-                staticClass: "vnb__menu-options__option__link__icon-left",
-                domProps: { innerHTML: _vm._s(_vm.option.icon) }
+                staticClass:
+                  "vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--left",
+                domProps: { innerHTML: _vm._s(_vm.option.iconLeft) }
               })
             : _vm._e(),
-          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n")
+          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n\n    "),
+          _vm.option.iconRight
+            ? _c("span", {
+                staticClass:
+                  "vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--right",
+                domProps: { innerHTML: _vm._s(_vm.option.iconRight) }
+              })
+            : _vm._e()
         ]
       )
     : _c(
@@ -384,13 +392,22 @@ var __vue_render__$1 = function() {
           }
         },
         [
-          _vm.option.icon
+          _vm.option.iconLeft
             ? _c("span", {
-                staticClass: "vnb__menu-options__option__link__icon-left",
-                domProps: { innerHTML: _vm._s(_vm.option.icon) }
+                staticClass:
+                  "vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--left",
+                domProps: { innerHTML: _vm._s(_vm.option.iconLeft) }
               })
             : _vm._e(),
-          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n    "),
+          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n\n    "),
+          _vm.option.iconRight
+            ? _c("span", {
+                staticClass:
+                  "vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--right",
+                domProps: { innerHTML: _vm._s(_vm.option.iconRight) }
+              })
+            : _vm._e(),
+          _vm._v(" "),
           _c("img", {
             class: [
               "vnb__menu-options__option__arrow",
@@ -460,12 +477,12 @@ var __vue_render__$1 = function() {
                               }
                             },
                             [
-                              subOption.icon
+                              subOption.iconLeft
                                 ? _c("span", {
                                     staticClass:
-                                      "vnb__sub-menu-options__option__link__icon-left",
+                                      "vnb__sub-menu-options__option__link__icon vnb__sub-menu-options__option__link__icon--left",
                                     domProps: {
-                                      innerHTML: _vm._s(subOption.icon)
+                                      innerHTML: _vm._s(subOption.iconLeft)
                                     }
                                   })
                                 : _vm._e(),
@@ -509,7 +526,17 @@ var __vue_render__$1 = function() {
                                       )
                                     : _vm._e()
                                 ]
-                              )
+                              ),
+                              _vm._v(" "),
+                              subOption.iconRight
+                                ? _c("span", {
+                                    staticClass:
+                                      "vnb__sub-menu-options__option__link__icon vnb__sub-menu-options__option__link__icon--right",
+                                    domProps: {
+                                      innerHTML: _vm._s(subOption.iconRight)
+                                    }
+                                  })
+                                : _vm._e()
                             ]
                           )
                         : _c("hr", {
@@ -1016,11 +1043,29 @@ var __vue_render__$6 = function() {
                             }
                           },
                           [
+                            option.iconLeft
+                              ? _c("span", {
+                                  staticClass:
+                                    "vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--left",
+                                  domProps: {
+                                    innerHTML: _vm._s(option.iconLeft)
+                                  }
+                                })
+                              : _vm._e(),
                             _vm._v(
-                              "\n                        " +
+                              "\n\n                        " +
                                 _vm._s(option.text) +
-                                "\n                    "
-                            )
+                                "\n\n                        "
+                            ),
+                            option.iconRight
+                              ? _c("span", {
+                                  staticClass:
+                                    "vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--right",
+                                  domProps: {
+                                    innerHTML: _vm._s(option.iconRight)
+                                  }
+                                })
+                              : _vm._e()
                           ]
                         )
                       : _c(

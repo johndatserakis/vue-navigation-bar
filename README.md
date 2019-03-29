@@ -21,6 +21,8 @@ A simple, pretty navbar for your Vue projects.
 
 ### Install
 
+##### Download
+
 ```
 # npm
 npm i vue-navigation-bar
@@ -39,6 +41,19 @@ Or you can include it through the browser at the bottom of your page along with 
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.css">
 ```
 
+##### Use
+
+```html
+<!-- css import for when you want to import the component css into your css file/files  -->
+@import '/path/to/node_modules/vue-navigation-bar.css';
+
+<!-- javascript import for when you're importing the css directly in your javascript  -->
+import 'vue-navigation-bar/dist/vue-navigation-bar.css'
+
+import VueNavigationBar from 'vue-navigation-bar'
+Vue.component('vue-navigation-bar', VueNavigationBar)
+```
+
 ### About
 
 Often when starting a new project I like to get together the main foundation pieces first. A main part of that process is working on the main navbar.
@@ -47,17 +62,139 @@ This component is meant to help with that process - it gives you a standard look
 
 `vue-navigation-bar` is meant to be used for the 80% of cases that exist when you need a standard navbar for your app/website. The layout has the `brand-image` anchored on the left side, and two slots for `menu-options` that push and pull based on designation.
 
-I know there are lots of other styles that navbar's can be, for instance the `brand-image` could be in the middle - but this component won't be allowing you to do that - so if that's your thing then I would probably look to roll out something on your own, or fork this to apply to your needs if possible. That being said, the actual `css` here is very easy to override - I'm using `BEM` with `SASS` (`.scss`) and have the style skeleton posted below - so you should be able to style it quite nicely without issue. I've put a lot of time in placing sensible defaults that should work well against any style.
+I know there are lots of other styles that navbar's can be, for instance the `brand-image` could be in the middle - but this component won't be allowing you to do that at the moment - so if that's your thing then I would probably look to roll out something on your own, or fork this to apply to your needs if possible. That being said, the actual `css` here is very easy to override - I'm using `BEM` with `SASS` (`.scss`) and have the style skeleton posted below - so you should be able to style it quite nicely without issue. I've put a lot of time in placing sensible defaults that should work well against any style.
 
 The trade-off is that the initialization and usage of this component is very easy and won't force you to do anything except declare the structure initially and declare a few `css` styles as necessary.
 
-`vue-navigation-bar` is compatible with both `vue-router` projects and non-`vue-router` projects - just make sure to pass in `true` for the `isUsingVueRouter` option.
+`vue-navigation-bar` is compatible with both `vue-router` projects and non-`vue-router` projects - just make sure to pass in `true` for the `isUsingVueRouter` option if you're using `vue-router`.
 
-The component should work well with frontend component frameworks. I'm using Bootstrap 4 in the demo page and have it sitting in a container - that helps keep it from stretching too far across the page - although that may be the style you're going for, so have at it.
+The component will work well with frontend component frameworks. I'm using Bootstrap 4 in the demo page and have it sitting in a container - that helps keep it from stretching too far across the page - although that may be the style you're going for, so have at it.
 
 ### Usage Example
 
-Below is a basic usage example. You'll see that a lot of the work is actually just declaring your `options` object.
+```html
+<template>
+    <vue-navigation-bar :options="options" />
+</template>
+
+<script>
+    export default {
+        ...
+        data () {
+            return {
+                navbarData: {
+                    elementId: 'main-navbar',
+                    isUsingVueRouter: true,
+                    mobileBreakpoint: 992,
+                    brandImagePath: './',
+                    brandImage: require('../src/assets/images/lockup-color.png'),
+                    brandImageAltText: 'vnb',
+                    collapseButtonStyle: 'dark',
+                    showBrandImageInMobilePopup: true,
+                    ariaLabelMainNav: 'Main Navigation',
+                    menuOptionsLeft: [
+                        {
+                            type: 'link',
+                            text: 'Why Dunder Mifflin',
+                            iconLeft: '<i class="fa fa-star"></i>',
+                            subMenuOptions: [
+                                {
+                                    type: 'link',
+                                    text: 'About',
+                                    subText: 'Stupid corporate wet blankets. Like booze ever killed anyone.',
+                                    path: './about',
+                                    iconLeft: '<svg id="i-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M16 14 L16 23 M16 8 L16 10" /> <circle cx="16" cy="16" r="14" /> </svg>',
+                                },
+                                {
+                                    type: 'hr',
+                                },
+                                {
+                                    type: 'link',
+                                    text: 'Locations',
+                                    subText: 'You\'re a presentation tool!',
+                                    path: './locations',
+                                },
+                                {
+                                    type: 'hr',
+                                },
+                                {
+                                    type: 'link',
+                                    text: 'Blog',
+                                    subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
+                                    path: './blog',
+                                },
+                            ]
+                        },
+                        {
+                            type: 'link',
+                            text: 'Contact',
+                            subMenuOptions: [
+                                {
+                                    type: 'link',
+                                    text: 'Customer Service',
+                                    path: './customer-service'
+                                },
+                                {
+                                    type: 'link',
+                                    text: 'Accounting',
+                                    path: './accounting',
+                                },
+                                {
+                                    type: 'hr',
+                                },
+                                {
+                                    type: 'link',
+                                    text: 'Reception',
+                                    path: './reception',
+                                    iconLeft: '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>',
+                                },
+                            ]
+                        },
+                        {
+                            type: 'link',
+                            text: 'Pricing',
+                            path: './pricing',
+                            iconRight: '<i class="fa fa-long-arrow-right fa-fw"></i>',
+                        },
+                    ],
+                    menuOptionsRight: [
+                        {
+                            type: 'button',
+                            text: 'Signup',
+                            path: './signup',
+                            class: 'button-red',
+                            iconLeft: '<svg id="i-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="currentcolor" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M16 2 L20 12 30 12 22 19 25 30 16 23 7 30 10 19 2 12 12 12 Z" /> </svg>'
+                        },
+                        {
+                            type: 'button',
+                            text: 'Login',
+                            path: './login',
+                            iconRight: '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>'
+                        }
+                    ]
+                }
+            }
+        }
+        ...
+    }
+</script>
+
+<style lang="scss">
+    .vnb {
+        .button-red {
+            background: #FF3B30;
+
+            &:hover {
+                background: darken(#FF3B30, 10%);
+            }
+        }
+    }
+</style>
+```
+
+### Notes
+
+Above is a basic usage example. You'll see that a lot of the work is actually just declaring your `options` object.
 
 In the style section you'll see that I provide a button class to color a button in the navbar. This is done like this to give you the most control over the button color and other pseudo properties. In this case, I want one of my buttons to be red, so I provide a class in my `options` object and then style the class appropriately like this:
 
@@ -86,128 +223,6 @@ Note - the first example uses basic `css`, the second example is the same thing 
 
 You can make a bunch of button-color classes and set them up just like above.
 
-```html
-<!-- css import for when you want to import the component css into your css file/files  -->
-@import '/path/to/node_modules/vue-navigation-bar.css';
-
-<!-- javascript import for when you're importing the css directly in your javascript  -->
-import 'vue-navigation-bar/dist/vue-navigation-bar.css'
-
-import VueNavigationBar from 'vue-navigation-bar'
-Vue.component('vue-navigation-bar', VueNavigationBar)
-```
-
-```html
-<template>
-    <vue-navigation-bar :options="options" />
-</template>
-
-<script>
-    export default {
-        ...
-        data () {
-            return {
-                navbarData: {
-                    elementId: 'main-navbar',
-                    isUsingVueRouter: true,
-                    mobileBreakpoint: 992,
-                    brandImagePath: '/',
-                    brandImage: require('../src/assets/images/lockup-color.png'),
-                    brandImageAltText: 'vnb',
-                    collapseButtonStyle: 'dark',
-                    showBrandImageInMobilePopup: true,
-                    ariaLabelMainNav: 'Main Navigation',
-                    menuOptionsLeft: [
-                        {
-                            type: 'link',
-                            text: 'Why Dunder Mifflin',
-                            subMenuOptions: [
-                                {
-                                    type: 'link',
-                                    text: 'About',
-                                    subText: 'Stupid corporate wet blankets. Like booze ever killed anyone.',
-                                    path: '/about',
-                                },
-                                {
-                                    type: 'hr',
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Locations',
-                                    subText: 'You\'re a presentation tool!',
-                                    path: '/locations',
-                                },
-                                {
-                                    type: 'hr',
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Blog',
-                                    subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
-                                    path: '/blog',
-                                },
-                            ]
-                        },
-                        {
-                            type: 'link',
-                            text: 'Contact',
-                            subMenuOptions: [
-                                {
-                                    type: 'link',
-                                    text: 'Customer Service',
-                                    path: '/customer-service',
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Accounting',
-                                    path: '/accounting',
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Reception',
-                                    path: '/reception',
-                                },
-                            ]
-                        },
-                        {
-                            type: 'link',
-                            text: 'Pricing',
-                            path: '/pricing',
-                        },
-                    ],
-                    menuOptionsRight: [
-                        {
-                            type: 'button',
-                            text: 'Signup',
-                            path: '/signup',
-                            class: 'button-red'
-                        },
-                        {
-                            type: 'button',
-                            text: 'Login',
-                            path: '/login',
-                        }
-                    ]
-                }
-            }
-        }
-        ...
-    }
-</script>
-
-<style lang="scss">
-    .vnb {
-        .button-red {
-            background: #FF3B30;
-
-            &:hover {
-                background: darken(#FF3B30, 10%);
-            }
-        }
-    }
-</style>
-```
-
 Take a look at the `./example` folder in this project - it has the complete working example that you see in the demo. (FYI - the `vue-router` setup there is really rudimentary so all the different pages aren't real - doesn't affect the demo.)
 
 You may need to adjust your `brand-image` a bit - that's normal as brand images come in different shapes and sizes - go ahead and set a `max-width` or `max-height` in pixels using this selector: `.vnb__brand-image-wrapper__link__image`. Even a little margin may help. For instance, the base I have it at is `max-height: 34px;` - should work for most cases.
@@ -220,7 +235,7 @@ You may need to adjust your `brand-image` a bit - that's normal as brand images 
 | isUsingVueRouter | Boolean | no | false | | If you want to use vue-router, set this to true and all links will automatically be `<router-link></router-link>` |
 | mobileBreakpoint | Number | no | 992 | | Width at which the navbar turns into the mobile version |
 | brandImagePath | String | no | '/' | | The path for your `brand-image`'s link |
-| brandImage | Image | no | `brandImageAltText` | | `require()` your image here to use your brand image |
+| brandImage | Image | no | | | `require()` your image here to use your brand image |
 | brandImageAltText | String | no | 'brand-image' | | The `alt` tag text for your brand image |
 | collapseButtonStyle | String | no | 'dark' | 'dark', 'light' | The type of collapse button to show |
 | showBrandImageInMobilePopup | Boolean | no | false | | If you want to show your brand logo in the mobile popup |
@@ -230,16 +245,16 @@ You may need to adjust your `brand-image` a bit - that's normal as brand images 
 | menuOptionsLeft.text | String | yes | | | Text of menu-option |
 | menuOptionsLeft.path | String | yes | | | Link path of menu-option. Not applicable to `dropdown` menuOption types. |
 | menuOptionsLeft.class | String | no | | | Only for `menuOptionsLeft.type === 'button'` - provide a class name so you can style your buttons |
-| menuOptionsLeft.icon | HTML String | no | | | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
-| menuOptionsLeft.iconLeft | HTML String | no | | | Only for `menuOptionsLeft.type === 'button'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
-| menuOptionsLeft.iconRight | HTML String | no | | | Only for `menuOptionsLeft.type === 'button'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
+| menuOptionsLeft.iconLeft | HTML String | no | | | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
+| menuOptionsLeft.iconRight | HTML String | no | | | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
 | menuOptionsLeft.subMenuOptions | Object | no | | | Sub-menu-options that will be shown |
 | menuOptionsLeft.subMenuOptions.type | String | yes | | 'link', 'hr' | What type of link will this sub-menu-option be? `link` will be a link, `hr` will be a `hr` spacer |
 | menuOptionsLeft.subMenuOptions.text | String | yes | | | Text of sub-menu-option |
 | menuOptionsLeft.subMenuOptions.subText | String | no | | | Sub text of sub-menu-option |
 | menuOptionsLeft.subMenuOptions.path | String | yes | | | Link path of sub-menu-option |
-| menuOptionsLeft.subMenuOptions.icon | HTML String | no | | | Right now the icon support is simply an HTML string that you pass in as a prop. See more info on the `Icon` section of the README. |
-| menuOptionsRight | Object | no | {} | | See above - all `menuOptionsLeft` apply |
+| menuOptionsLeft.subMenuOptions.iconLeft | HTML String | no | | | HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
+| menuOptionsLeft.subMenuOptions.iconRight | HTML String | no | | | HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
+| menuOptionsRight | Object | no | {} | | Menu options that will be pushed to the right of the navbar. See above - all `menuOptionsLeft` apply |
 
 Note - `menu-options` and `sub-menu-options` must have a unique `text` values because they are used further for unique identification.
 
@@ -263,7 +278,6 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
 
 ```scss
 .vnb {
-
     &__brand-image-wrapper {
         &__link {
             &__image {
@@ -283,9 +297,14 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
                 &:hover {
                 }
 
-                &__icon-left {
-
+                &__icon {
                     svg {
+                    }
+
+                    &--left {
+                    }
+
+                    &--right {
                     }
                 }
             }
@@ -319,8 +338,14 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
                 &:hover {
                 }
 
-                &__icon-left {
+                &__icon {
                     svg {
+                    }
+
+                    &--left {
+                    }
+
+                    &--right {
                     }
                 }
 
@@ -374,6 +399,17 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
                             &:hover {
                             }
                         }
+
+                        &__icon {
+                            svg {
+                            }
+
+                            &--left {
+                            }
+
+                            &--right {
+                            }
+                        }
                     }
                 }
             }
@@ -404,7 +440,7 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
 
 So right now to use icons in some of the options, you need to pass in full `HTML` strings which get rendered as `HTML` in the desktop version of the navbar.
 
-In the demo I use this really great set of `svg` icons called [bytesize-icons](https://github.com/danklammer/bytesize-icons). You can just copy the `<svg></svg>` code and pass it in your initilization object. You can do the same thing with the FontAwesome style of `<i class="fa fa-star"></i>`. In the future I'll be looking at a way to pass in full components as icons. Right now, passing in `svg` icons works well and does the job. Check out the `.example` folder to see how I have it in the demo.
+In the demo I use this really great set of `svg` icons called [bytesize-icons](https://github.com/danklammer/bytesize-icons). You can just copy the `<svg></svg>` code and pass it in your initialization object. You can do the same thing with the FontAwesome style of `<i class="fa fa-star"></i>`. In the future I'll be looking at a way to pass in full components as icons. Right now, passing in `svg` icons works well and does the job. Check out the `.example` folder to see how I have it in the demo.
 
 ### Accessibility
 

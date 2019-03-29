@@ -95,11 +95,14 @@ body {
     color: #333;
     text-decoration: none;
 }
-.vnb__menu-options__option__link__icon-left {
+.vnb__menu-options__option__link__icon svg {
+    max-height: 20px;
+}
+.vnb__menu-options__option__link__icon--left {
     margin-right: 5px;
 }
-.vnb__menu-options__option__link__icon-left svg {
-      max-height: 25px;
+.vnb__menu-options__option__link__icon--right {
+    margin-left: 5px;
 }
 .vnb__menu-options__option__arrow {
   margin-left: 8px;
@@ -140,11 +143,11 @@ body {
         background: #f3f3f3;
         border-left: 2px solid #007AFF;
 }
-.vnb__sub-menu-options__option__link__icon-left {
-        margin-right: 15px;
+.vnb__sub-menu-options__option__link__icon svg {
+        max-height: 40px;
 }
-.vnb__sub-menu-options__option__link__icon-left svg {
-          max-height: 40px;
+.vnb__sub-menu-options__option__link__icon--left {
+        margin-right: 15px;
 }
 .vnb__sub-menu-options__option__link__text-wrapper {
         width: 100%;
@@ -184,7 +187,9 @@ body {
   transition: background 0.2s ease-in;
 }
 .vnb__menu-options__option__button__icon svg {
-    max-height: 20px;
+    max-height: 16px;
+    max-width: 16px;
+    margin-top: -3px;
 }
 .vnb__menu-options__option__button__icon--left {
     margin-right: 5px;
@@ -298,7 +303,10 @@ body {
         padding: 12px 24px;
         color: #595959;
         font-weight: 500;
-        display: inline-block;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
         transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
         border-left: 2px solid #fff;
         width: 100%;
@@ -319,6 +327,17 @@ body {
             color: #757575;
             background: #fff;
             border-left: 2px solid #fff;
+}
+.vnb__popup__bottom__menu-options__option__link__icon svg {
+          max-height: 16px;
+          max-width: 16px;
+          margin-top: -4px;
+}
+.vnb__popup__bottom__menu-options__option__link__icon--left {
+          margin-right: 5px;
+}
+.vnb__popup__bottom__menu-options__option__link__icon--right {
+          margin-left: 5px;
 }
 .vnb__popup__bottom__sub-menu-options {
       display: flex;

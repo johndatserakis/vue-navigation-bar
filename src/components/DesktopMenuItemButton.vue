@@ -80,7 +80,9 @@ export default {
 
                     &__icon {
                         svg {
-                            max-height: 20px;
+                            max-height: 16px;
+                            max-width: 16px;
+                            margin-top: -3px;
                         }
 
                         &--left {
