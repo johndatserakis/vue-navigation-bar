@@ -153,7 +153,6 @@
 .vnb__popup__bottom__menu-options__option__link__icon svg {
           max-height: 16px;
           max-width: 16px;
-          margin-top: -4px;
 }
 .vnb__popup__bottom__menu-options__option__link__icon--left {
           margin-right: 5px;
@@ -264,6 +263,9 @@
 .vnb__sub-menu-options__option__link__icon--left {
         margin-right: 15px;
 }
+.vnb__sub-menu-options__option__link__icon--right {
+        margin-left: 15px;
+}
 .vnb__sub-menu-options__option__link__text-wrapper {
         width: 100%;
 }
@@ -304,7 +306,6 @@
 .vnb__menu-options__option__button__icon svg {
     max-height: 16px;
     max-width: 16px;
-    margin-top: -3px;
 }
 .vnb__menu-options__option__button__icon--left {
     margin-right: 5px;

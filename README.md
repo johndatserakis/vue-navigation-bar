@@ -74,7 +74,7 @@ The component will work well with frontend component frameworks. I'm using Boots
 
 ```html
 <template>
-    <vue-navigation-bar :options="options" />
+    <vue-navigation-bar :options="navbarOptions" />
 </template>
 
 <script>
@@ -82,7 +82,7 @@ The component will work well with frontend component frameworks. I'm using Boots
         ...
         data () {
             return {
-                navbarData: {
+                navbarOptions: {
                     elementId: 'main-navbar',
                     isUsingVueRouter: true,
                     mobileBreakpoint: 992,

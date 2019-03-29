@@ -1,5 +1,5 @@
 <template>
-    <a
+    <dynamic-link
         :path="option.path"
         :isUsingVueRouter="options.isUsingVueRouter"
         v-if="!option.subMenuOptions || !option.subMenuOptions.length"
@@ -20,7 +20,7 @@
             class="vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--right"
             v-html="option.iconRight"
         ></span>
-    </a>
+    </dynamic-link>
 
     <span
         v-else
@@ -305,6 +305,10 @@ export default {
 
                         &--left {
                             margin-right: 15px;
+                        }
+
+                        &--right {
+                            margin-left: 15px;
                         }
                     }
 

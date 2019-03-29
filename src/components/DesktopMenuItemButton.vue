@@ -82,7 +82,6 @@ export default {
                         svg {
                             max-height: 16px;
                             max-width: 16px;
-                            margin-top: -3px;
                         }
 
                         &--left {

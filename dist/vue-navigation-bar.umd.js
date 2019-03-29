@@ -356,7 +356,7 @@
       var _c = _vm._self._c || _h;
       return !_vm.option.subMenuOptions || !_vm.option.subMenuOptions.length
         ? _c(
-            "a",
+            "dynamic-link",
             {
               staticClass: "vnb__menu-options__option__link",
               attrs: {

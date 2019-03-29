@@ -3,7 +3,7 @@
 
         <section class="main-navbar-section">
             <div class="container">
-                <vue-navigation-bar :options="navbarData" />
+                <vue-navigation-bar :options="navbarOptions" />
             </div>
         </section>
 
@@ -59,7 +59,7 @@
         name: 'app',
         data () {
             return {
-                navbarData: {
+                navbarOptions: {
                     elementId: 'main-navbar',
                     isUsingVueRouter: true,
                     mobileBreakpoint: 992,
@@ -228,6 +228,34 @@
 
             &:hover {
                 background: darken(#FF3B30, 10%);
+            }
+        }
+
+        &__menu-options {
+            &__option {
+                &__button {
+                    &__icon {
+                        svg {
+                            margin-top: -3px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__popup {
+            &__bottom {
+                &__menu-options {
+                    &__option {
+                        &__link {
+                            &__icon {
+                                svg {
+                                    margin-top: -4px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

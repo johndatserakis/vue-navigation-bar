@@ -69,6 +69,12 @@ body {
 .vnb .button-red:hover {
       background: #fc0d00;
 }
+.vnb__menu-options__option__button__icon svg {
+    margin-top: -3px;
+}
+.vnb__popup__bottom__menu-options__option__link__icon svg {
+    margin-top: -4px;
+}
 
 .vnb__brand-image-wrapper {
   padding-left: 10px;
@@ -149,6 +155,9 @@ body {
 .vnb__sub-menu-options__option__link__icon--left {
         margin-right: 15px;
 }
+.vnb__sub-menu-options__option__link__icon--right {
+        margin-left: 15px;
+}
 .vnb__sub-menu-options__option__link__text-wrapper {
         width: 100%;
 }
@@ -189,7 +198,6 @@ body {
 .vnb__menu-options__option__button__icon svg {
     max-height: 16px;
     max-width: 16px;
-    margin-top: -3px;
 }
 .vnb__menu-options__option__button__icon--left {
     margin-right: 5px;
@@ -331,7 +339,6 @@ body {
 .vnb__popup__bottom__menu-options__option__link__icon svg {
           max-height: 16px;
           max-width: 16px;
-          margin-top: -4px;
 }
 .vnb__popup__bottom__menu-options__option__link__icon--left {
           margin-right: 5px;
