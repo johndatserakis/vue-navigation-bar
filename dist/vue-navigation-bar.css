@@ -112,6 +112,9 @@
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
 }
+.vnb__popup__bottom__custom-section {
+      padding: 12px 24px;
+}
 .vnb__popup__bottom__menu-options {
       list-style-type: none;
       padding-left: 0;

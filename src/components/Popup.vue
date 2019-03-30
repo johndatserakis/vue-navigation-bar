@@ -23,6 +23,11 @@
             </div>
 
             <div class="vnb__popup__bottom">
+
+                <div v-if="!!this.$slots['custom-section']" class="vnb__popup__bottom__custom-section">
+                    <slot name="custom-section"></slot>
+                </div>
+
                 <ul class="vnb__popup__bottom__menu-options">
                     <li v-for="option in combinedMenuItems" class="vnb__popup__bottom__menu-options__option">
                         <dynamic-link
@@ -178,6 +183,10 @@ export default {
                 border-bottom: 1px solid darken($white, 12%);
                 border-bottom-right-radius: 6px;
                 border-bottom-left-radius: 6px;
+
+                &__custom-section {
+                    padding: 12px 24px;
+                }
 
                 &__menu-options {
                     list-style-type: none;

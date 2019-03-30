@@ -27,7 +27,7 @@ A simple, pretty navbar for your Vue projects.
 # npm
 npm i vue-navigation-bar
 
-#yarn
+# yarn
 yarn add vue-navigation-bar
 ```
 
@@ -274,6 +274,12 @@ Note - `menu-options` and `sub-menu-options` must have a unique `text` values be
 
 Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, something like this: `<vue-navigation-bar :ref="myNavbar" />`. Then, manually call the methods like this in your javascript: `this.$refs.myNavbar.closeMobilePopup()`.
 
+### Slots
+
+| name | description |
+|---|---|
+| custom-section | Use this to provide custom content in the navbar. In the example, this is being used for a search bar. |
+
 ### SCSS Structure
 
 ```scss
@@ -386,6 +392,9 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />`, somet
         }
 
         &__bottom {
+            &__custom-section {
+            }
+
             &__menu-options {
                 &__option {
                     &:not(:last-child) {
@@ -470,7 +479,7 @@ npm run build
 
 ### TODO
 
-- Add an optional search input bar.
+- ~~Add an optional search input bar.~~ What I've done is add an optional `slot` named `custom-section`. Use this `slot` to add whatever custom content you want to show in the nav bar. In the demo, I have an example search bar shown. Look at the `./example` folder to check it out.
 
 - See if there's a way to let users pass a component for an icon and not be limited to HTML strings of the icon they want.
 

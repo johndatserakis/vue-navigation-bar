@@ -1022,6 +1022,15 @@
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "vnb__popup__bottom" }, [
+                !!this.$slots["custom-section"]
+                  ? _c(
+                      "div",
+                      { staticClass: "vnb__popup__bottom__custom-section" },
+                      [_vm._t("custom-section")],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c(
                   "ul",
                   { staticClass: "vnb__popup__bottom__menu-options" },
@@ -1253,6 +1262,10 @@
             attrs: { options: _vm.finalOptions, type: "left" }
           }),
           _vm._v(" "),
+          _vm.$vssWidth > _vm.options.mobileBreakpoint
+            ? _vm._t("custom-section")
+            : _vm._e(),
+          _vm._v(" "),
           _c("menu-options", {
             attrs: { options: _vm.finalOptions, type: "right" }
           }),
@@ -1264,10 +1277,23 @@
           _vm._v(" "),
           _c("popup", {
             attrs: { options: _vm.finalOptions, menuIsVisible: _vm.menuIsVisible },
-            on: { "close-button-clicked": _vm.closeMobilePopup }
+            on: { "close-button-clicked": _vm.closeMobilePopup },
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "custom-section",
+                  fn: function() {
+                    return [_vm._t("custom-section")]
+                  },
+                  proxy: true
+                }
+              ],
+              null,
+              true
+            )
           })
         ],
-        1
+        2
       )
     };
     var __vue_staticRenderFns__$7 = [];

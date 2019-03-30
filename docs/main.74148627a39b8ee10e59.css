@@ -75,6 +75,24 @@ body {
 .vnb__popup__bottom__menu-options__option__link__icon svg {
     margin-top: -4px;
 }
+.vnb .custom-section-content {
+    width: 100%;
+}
+@media (min-width: 568px) {
+.vnb .custom-section-content {
+        width: 50%;
+}
+}
+@media (min-width: 992px) {
+.vnb .custom-section-content {
+        width: 15%;
+}
+}
+@media (min-width: 1200px) {
+.vnb .custom-section-content {
+        width: 20%;
+}
+}
 
 .vnb__brand-image-wrapper {
   padding-left: 10px;
@@ -297,6 +315,9 @@ body {
     border-bottom: 1px solid #e0e0e0;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
+}
+.vnb__popup__bottom__custom-section {
+      padding: 12px 24px;
 }
 .vnb__popup__bottom__menu-options {
       list-style-type: none;

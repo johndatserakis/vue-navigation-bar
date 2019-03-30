@@ -6,11 +6,17 @@
 
         <menu-options :options="finalOptions" :type="'left'" />
 
+        <slot v-if="$vssWidth > options.mobileBreakpoint" name="custom-section"></slot>
+
         <menu-options :options="finalOptions" :type="'right'" />
 
         <collapse-button :options="finalOptions" :menuIsVisible="menuIsVisible" @collapse-button-clicked="showMobilePopup" />
 
-        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeMobilePopup" />
+        <popup :options="finalOptions" :menuIsVisible="menuIsVisible" @close-button-clicked="closeMobilePopup">
+            <template v-slot:custom-section>
+                <slot name="custom-section"></slot>
+            </template>
+        </popup>
 
     </nav>
 
