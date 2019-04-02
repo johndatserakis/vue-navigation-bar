@@ -73,7 +73,7 @@
                     @click.native="subMenuItemSelected(subOption.text)"
                     :aria-label="subOption.text"
                     tabindex="0"
-                    @keydown.tab="subMenuItemTabbed(subOption.text)"
+                    @keydown.tab.native="subMenuItemTabbed(subOption.text)"
                 >
                     <span
                         v-if="subOption.iconLeft"
@@ -191,6 +191,7 @@ export default {
                 onShow: () => {
                     // https://github.com/atomiks/tippy.js-react/issues/7
                     [...document.querySelectorAll('.tippy-popper')].forEach(popper => {
+                        // Have to triple-check
                         if (popper && popper._tippy) {
                             popper._tippy.hide(0)
                         }
