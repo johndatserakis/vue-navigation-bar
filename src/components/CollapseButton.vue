@@ -7,9 +7,14 @@
         :aria-expanded="(menuIsVisible) ? 'true' : 'false'"
     >
         <img
-            :src="
-                (this.options.collapseButtonStyle === 'dark') ? require('../assets/images/collapse-menu-dark.png') : require('../assets/images/collapse-menu-light.png')
-            "
+            v-if="options.collapseButtonImageOpen"
+            :src="options.collapseButtonImageOpen"
+            :alt="'Menu'"
+            class="vnb__collapse-button__image"
+        >
+        <img
+            v-else
+            :src="require('../assets/images/collapse-menu-dark.png')"
             :alt="'Menu'"
             class="vnb__collapse-button__image"
         >

@@ -47,6 +47,18 @@ export default {
     },
     computed: {
         finalOptions () {
+            // What we're doing here is giving each top-level menu-option a unique id
+            if (this.options.menuOptionsLeft) {
+                for (let x = 0; x < this.options.menuOptionsLeft.length; x++) {
+                    this.$set(this.options.menuOptionsLeft[x], 'id', uuidV4())
+                }
+            }
+            if (this.options.menuOptionsRight) {
+                for (let x = 0; x < this.options.menuOptionsRight.length; x++) {
+                    this.$set(this.options.menuOptionsRight[x], 'id', uuidV4())
+                }
+            }
+
             return {
                 elementId: (this.options.elementId) ? this.options.elementId : uuidV4(),
                 isUsingVueRouter: (this.options.isUsingVueRouter) ? true : false,
@@ -54,7 +66,8 @@ export default {
                 brandImagePath: (this.options.brandImagePath) ? this.options.brandImagePath : '/',
                 brandImage: (this.options.brandImage) ? this.options.brandImage : null,
                 brandImageAltText: (this.options.brandImageAltText) ? this.options.brandImageAltText : 'brand-image',
-                collapseButtonStyle: (this.options.collapseButtonStyle) ? this.options.collapseButtonStyle : 'dark', // light, dark
+                collapseButtonImageOpen: (this.options.collapseButtonImageOpen) ? this.options.collapseButtonImageOpen : null,
+                collapseButtonImageClose: (this.options.collapseButtonImageClose) ? this.options.collapseButtonImageClose : null,
                 showBrandImageInMobilePopup: (this.options.showBrandImageInMobilePopup) ? true : false,
                 ariaLabelMainNav: (this.options.ariaLabelMainNav) ? this.options.ariaLabelMainNav : 'Main Navigation',
                 menuOptionsLeft: (this.options.menuOptionsLeft) ? this.options.menuOptionsLeft : [],

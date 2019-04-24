@@ -25,7 +25,7 @@
     <span
         v-else
         class="vnb__menu-options__option__link"
-        :id="'dropdown-menu-parent-' + option.text.replace(/\s+/g, '')"
+        :id="'dropdown-menu-parent-' + option.id"
         aria-haspopup="true"
         :aria-expanded="(isExpanded) ? 'true' : 'false'"
         :aria-label="option.text"
@@ -57,7 +57,7 @@
         <div
             class="vnb__sub-menu-options"
             v-if="option.type === 'link'"
-            :id="'sub-menu-options-' + option.text.replace(/\s+/g, '')"
+            :id="'sub-menu-options-' + option.id"
         >
             <div
                 class="vnb__sub-menu-options__option"
@@ -171,9 +171,9 @@ export default {
         },
 
         initTippy() {
-            let el = document.getElementById('dropdown-menu-parent-' + this.option.text.replace(/\s+/g, ''))
+            let el = document.getElementById('dropdown-menu-parent-' + this.option.id)
 
-            const template = document.getElementById('sub-menu-options-' + this.option.text.replace(/\s+/g, ''))
+            const template = document.getElementById('sub-menu-options-' + this.option.id)
             template.style.display = 'block'
 
             tippy(el, {

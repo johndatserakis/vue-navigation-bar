@@ -88,8 +88,9 @@ The component will work well with frontend component frameworks. I'm using Boots
                     mobileBreakpoint: 992,
                     brandImagePath: './',
                     brandImage: require('../src/assets/images/lockup-color.png'),
-                    brandImageAltText: 'vnb',
-                    collapseButtonStyle: 'dark',
+                    brandImageAltText: 'brand-image',
+                    collapseButtonImageOpen: require('../src/assets/images/collapse-menu-dark.png'),
+                    collapseButtonImageClose: require('../src/assets/images/times.png'),
                     showBrandImageInMobilePopup: true,
                     ariaLabelMainNav: 'Main Navigation',
                     menuOptionsLeft: [
@@ -237,7 +238,8 @@ You may need to adjust your `brand-image` a bit - that's normal as brand images 
 | brandImagePath | String | no | '/' | | The path for your `brand-image`'s link |
 | brandImage | Image | no | | | `require()` your image here to use your brand image |
 | brandImageAltText | String | no | 'brand-image' | | The `alt` tag text for your brand image |
-| collapseButtonStyle | String | no | 'dark' | 'dark', 'light' | The type of collapse button to show |
+| collapseButtonImageOpen | Image | no | A hamburger icon | | `require()` your image here |
+| collapseButtonImageClose | Image | no | A times icon | | `require()` your image here |
 | showBrandImageInMobilePopup | Boolean | no | false | | If you want to show your brand logo in the mobile popup |
 | ariaLabelMainNav | String | no | 'Main Navigation' | | The `aria-label` value for the main navbar element |
 | menuOptionsLeft | Object | no | {} | | Menu options that will be *pulled* to the left towards the `brand-image` |
@@ -255,8 +257,6 @@ You may need to adjust your `brand-image` a bit - that's normal as brand images 
 | menuOptionsLeft.subMenuOptions.iconLeft | HTML String | no | | | HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
 | menuOptionsLeft.subMenuOptions.iconRight | HTML String | no | | | HTML string of the icon you want to use. See more info on the `Icon` section of the README. |
 | menuOptionsRight | Object | no | {} | | Menu options that will be pushed to the right of the navbar. See above - all `menuOptionsLeft` apply |
-
-Note - `menu-options` and `sub-menu-options` must have a unique `text` values because they are used further for unique identification.
 
 ### Events
 
@@ -454,6 +454,16 @@ In the demo I use this really great set of `svg` icons called [bytesize-icons](h
 ### Accessibility
 
 Throughout the development of this component I've been making sure to allow for proper a11y options to be set when possible. This means things like `aria-haspopup` and `aria-expanded` are set on the popup-menus, `aria-label`'s are set on the elements, and any user can come through and use the navbar nicely using the `tab` button. Of course there can probably be improvements on this front, so I'll keep an eye on it myself and look for any pull-requests that improve it.
+
+### Browser Support
+
+To have this work with a browser like IE11, stick this at the bottom of your `index.html`
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js"></script>
+```
+
+Or, you can install `babel-polyfill` and import that in the main script of your app. You can read more about `babel-polyfill` [here](https://babeljs.io/docs/en/babel-polyfill). In the example folder I use the external script method.
 
 ### Development
 

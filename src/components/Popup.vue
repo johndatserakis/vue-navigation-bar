@@ -15,6 +15,13 @@
                     :aria-expanded="(menuIsVisible) ? 'true' : 'false'"
                 >
                     <img
+                        v-if="options.collapseButtonImageClose"
+                        :src="options.collapseButtonImageClose"
+                        :alt="'Close button'"
+                        class="vnb__popup__top__close-button__image"
+                    >
+                    <img
+                        v-else
                         :src="require('../assets/images/times.png')"
                         :alt="'Close button'"
                         class="vnb__popup__top__close-button__image"

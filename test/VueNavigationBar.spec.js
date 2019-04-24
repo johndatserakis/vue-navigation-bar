@@ -10,7 +10,8 @@ describe('VueNavigationBar.vue', () => {
             brandImagePath: '/',
             brandImage: null,
             brandImageAltText: 'vnb',
-            collapseButtonStyle: 'dark',
+            collapseButtonImageOpen: null,
+            collapseButtonImageClose: null,
             showBrandImageInMobilePopup: false,
             ariaLabelMainNav: 'Main Navigation',
             menuOptionsLeft: [
@@ -91,7 +92,8 @@ describe('VueNavigationBar.vue', () => {
                     brandImagePath: initialPropsData.brandImagePath,
                     brandImage: initialPropsData.brandImage,
                     brandImageAltText: initialPropsData.brandImageAltText,
-                    collapseButtonStyle: initialPropsData.collapseButtonStyle,
+                    collapseButtonImageOpen: initialPropsData.collapseButtonImageOpen,
+                    collapseButtonImageClose: initialPropsData.collapseButtonImageClose,
                     showBrandImageInMobilePopup: initialPropsData.showBrandImageInMobilePopup,
                     ariaLabelMainNav: initialPropsData.ariaLabelMainNav,
                     menuOptionsLeft: initialPropsData.menuOptionsLeft,
@@ -106,7 +108,8 @@ describe('VueNavigationBar.vue', () => {
         expect(wrapper.vm.finalOptions.brandImagePath).toBe(initialPropsData.brandImagePath)
         expect(wrapper.vm.finalOptions.brandImage).toBe(initialPropsData.brandImage)
         expect(wrapper.vm.finalOptions.brandImageAltText).toBe(initialPropsData.brandImageAltText)
-        expect(wrapper.vm.finalOptions.collapseButtonStyle).toBe(initialPropsData.collapseButtonStyle)
+        expect(wrapper.vm.finalOptions.collapseButtonImageOpen).toBe(initialPropsData.collapseButtonImageOpen)
+        expect(wrapper.vm.finalOptions.collapseButtonImageClose).toBe(initialPropsData.collapseButtonImageClose)
         expect(wrapper.vm.finalOptions.showBrandImageInMobilePopup).toBe(initialPropsData.showBrandImageInMobilePopup)
         expect(wrapper.vm.finalOptions.ariaLabelMainNav).toBe(initialPropsData.ariaLabelMainNav)
         expect(wrapper.vm.finalOptions.menuOptionsLeft).toBe(initialPropsData.menuOptionsLeft)
