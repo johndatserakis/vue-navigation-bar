@@ -295,9 +295,9 @@ var script$2 = {
         initTippy: function initTippy() {
             var this$1 = this;
 
-            var el = document.getElementById('dropdown-menu-parent-' + this.option.text.replace(/\s+/g, ''));
+            var el = document.getElementById('dropdown-menu-parent-' + this.option.id);
 
-            var template = document.getElementById('sub-menu-options-' + this.option.text.replace(/\s+/g, ''));
+            var template = document.getElementById('sub-menu-options-' + this.option.id);
             template.style.display = 'block';
 
             tippy(el, {
@@ -315,6 +315,7 @@ var script$2 = {
                 onShow: function () {
                     // https://github.com/atomiks/tippy.js-react/issues/7
                     [].concat( document.querySelectorAll('.tippy-popper') ).forEach(function (popper) {
+                        // Have to triple-check
                         if (popper && popper._tippy) {
                             popper._tippy.hide(0);
                         }
@@ -384,7 +385,7 @@ var __vue_render__$1 = function() {
         {
           staticClass: "vnb__menu-options__option__link",
           attrs: {
-            id: "dropdown-menu-parent-" + _vm.option.text.replace(/\s+/g, ""),
+            id: "dropdown-menu-parent-" + _vm.option.id,
             "aria-haspopup": "true",
             "aria-expanded": _vm.isExpanded ? "true" : "false",
             "aria-label": _vm.option.text,
@@ -424,10 +425,7 @@ var __vue_render__$1 = function() {
                 "div",
                 {
                   staticClass: "vnb__sub-menu-options",
-                  attrs: {
-                    id:
-                      "sub-menu-options-" + _vm.option.text.replace(/\s+/g, "")
-                  }
+                  attrs: { id: "sub-menu-options-" + _vm.option.id }
                 },
                 [
                   _c(
@@ -453,7 +451,10 @@ var __vue_render__$1 = function() {
                                 "aria-label": subOption.text,
                                 tabindex: "0"
                               },
-                              on: {
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.subMenuItemSelected(subOption.text)
+                                },
                                 keydown: function($event) {
                                   if (
                                     !$event.type.indexOf("key") &&
@@ -468,11 +469,6 @@ var __vue_render__$1 = function() {
                                     return null
                                   }
                                   return _vm.subMenuItemTabbed(subOption.text)
-                                }
-                              },
-                              nativeOn: {
-                                click: function($event) {
-                                  return _vm.subMenuItemSelected(subOption.text)
                                 }
                               }
                             },
@@ -870,8 +866,6 @@ var script$6 = {
 
 var __$_require_assets_images_collapse_menu_dark_png__ = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAcVJREFUeAHt3UFqwkAUBmCTanoJl80JxIJX6Lon6BXaGxS6qb1J172MJ3EE0zctLRIQd5kBv4EBkwjv8f0JGsiQ2cwgQIAAAQIECBAgQIAAAQIECBA4I9CsVqu3OPYcszvzHbunEUhR5iMHkj8spqmpygWBQyuMC0TTHl7kQIyKBARSURi5FYFUGEj+UTfqEEg3y+XyNnq5j5mvlsEsY9A0zb5t2/fwNwgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBK5ToNlsNncppcd4rtSStoLnwPF4TF3Xfc4jjK/oo48dBdtROgtEFk/5ifceRzUCvQU71WTx24hABFKZQGXtuEIqDGRXWU/X3M5uHv99H9yHlD8H/u5DyneiAwIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUICzXq9fh2G4SWmNYaFQshl4/0hKeY2vzZvH9vCKBjGSemU14cI40Sk8MfOgp3CCYzLC2QsUnhbIIUDGJfPgRzGO20XE/h5F+42ynuXYbEM/gvnDHIWBgECBAgQIECAAAECBAgQIFCNwDcsuZak5BfxfwAAAABJRU5ErkJggg==";
 
-var __$_require_assets_images_collapse_menu_light_png__ = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAaRJREFUeAHt3VFKw0AQBuAq2pPYG3kTvYHgg9ib9ET2JCYPcSb0xcrSPO0s+AUW0iTwD98kNIEs2e0sBAgQIECAAAECBAgQIECAAAECDYG7ZVneY99LjH3jGJv7CEwRc8yG5Mpjn0wpNwTmbMhy4yC7Owrcd8wStUFAQzYg9TxEQ3pqb8jKhuSfumUMgekh6viI8RrDbW9tU/LC+KwtQToBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgEChQE7YeYr85xje7S1sRETnu72nbMhXrBxqa5F+ETib0jbYuWDCjoYMJjBYOa4QDRlMYLBy8go5D1bTfy5nvcvyHDLGKbA+h4xRiioIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQKBHIG1Vvk+n5IAf5V5Pr9kGzId+ww4fNKp+jnZI5hkXwr1gyqlkzRdg0pgm/FakhLpmh7NmQuyhb7V2DOhuSn2vKWy1IrsN721pYgnQABAgQIECBAgAABAgQIEPgt8APQfDteuC9BpwAAAABJRU5ErkJggg==";
-
 /* script */
 var __vue_script__$6 = script$6;
 var __vue_render__$5 = function() {
@@ -890,16 +884,18 @@ var __vue_render__$5 = function() {
           on: { click: _vm.collapseButtonClicked }
         },
         [
-          _c("img", {
-            staticClass: "vnb__collapse-button__image",
-            attrs: {
-              src:
-                this.options.collapseButtonStyle === "dark"
-                  ? __$_require_assets_images_collapse_menu_dark_png__
-                  : __$_require_assets_images_collapse_menu_light_png__,
-              alt: "Menu"
-            }
-          })
+          _vm.options.collapseButtonImageOpen
+            ? _c("img", {
+                staticClass: "vnb__collapse-button__image",
+                attrs: { src: _vm.options.collapseButtonImageOpen, alt: "Menu" }
+              })
+            : _c("img", {
+                staticClass: "vnb__collapse-button__image",
+                attrs: {
+                  src: __$_require_assets_images_collapse_menu_dark_png__,
+                  alt: "Menu"
+                }
+              })
         ]
       )
     : _vm._e()
@@ -1005,13 +1001,21 @@ var __vue_render__$6 = function() {
                 on: { click: _vm.closeButtonClicked }
               },
               [
-                _c("img", {
-                  staticClass: "vnb__popup__top__close-button__image",
-                  attrs: {
-                    src: __$_require_assets_images_times_png__,
-                    alt: "Close button"
-                  }
-                })
+                _vm.options.collapseButtonImageClose
+                  ? _c("img", {
+                      staticClass: "vnb__popup__top__close-button__image",
+                      attrs: {
+                        src: _vm.options.collapseButtonImageClose,
+                        alt: "Close button"
+                      }
+                    })
+                  : _c("img", {
+                      staticClass: "vnb__popup__top__close-button__image",
+                      attrs: {
+                        src: __$_require_assets_images_times_png__,
+                        alt: "Close button"
+                      }
+                    })
               ]
             )
           ]),
@@ -1201,6 +1205,18 @@ var script$8 = {
     },
     computed: {
         finalOptions: function finalOptions () {
+            // What we're doing here is giving each top-level menu-option a unique id
+            if (this.options.menuOptionsLeft) {
+                for (var x = 0; x < this.options.menuOptionsLeft.length; x++) {
+                    this.$set(this.options.menuOptionsLeft[x], 'id', uuidV4());
+                }
+            }
+            if (this.options.menuOptionsRight) {
+                for (var x$1 = 0; x$1 < this.options.menuOptionsRight.length; x$1++) {
+                    this.$set(this.options.menuOptionsRight[x$1], 'id', uuidV4());
+                }
+            }
+
             return {
                 elementId: (this.options.elementId) ? this.options.elementId : uuidV4(),
                 isUsingVueRouter: (this.options.isUsingVueRouter) ? true : false,
@@ -1208,7 +1224,8 @@ var script$8 = {
                 brandImagePath: (this.options.brandImagePath) ? this.options.brandImagePath : '/',
                 brandImage: (this.options.brandImage) ? this.options.brandImage : null,
                 brandImageAltText: (this.options.brandImageAltText) ? this.options.brandImageAltText : 'brand-image',
-                collapseButtonStyle: (this.options.collapseButtonStyle) ? this.options.collapseButtonStyle : 'dark', // light, dark
+                collapseButtonImageOpen: (this.options.collapseButtonImageOpen) ? this.options.collapseButtonImageOpen : null,
+                collapseButtonImageClose: (this.options.collapseButtonImageClose) ? this.options.collapseButtonImageClose : null,
                 showBrandImageInMobilePopup: (this.options.showBrandImageInMobilePopup) ? true : false,
                 ariaLabelMainNav: (this.options.ariaLabelMainNav) ? this.options.ariaLabelMainNav : 'Main Navigation',
                 menuOptionsLeft: (this.options.menuOptionsLeft) ? this.options.menuOptionsLeft : [],
