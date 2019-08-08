@@ -1,12 +1,20 @@
 # CHANGELOG.md
 
+## 1.3.1 (2019-08-06)
+
+- Adjusting project formatting.
+- Renamed events `mobile-popup-shown` and `mobile-popup-hidden` to `vnb-mobile-popup-shown` and `vnb-mobile-popup-hidden`.
+- Added ability to make links `emit` events instead of triggering their path. Good for cases when you want to run a function using a `menuOption` instead of following a link.
+- Hiding the popup and collapse button if there are no `menuOptions` to show.
+- Added `tooltipAnimationType` to the options so that you can change the dropdown animation type.
+
 ## 1.3.0 (2019-04-23)
 
-- Added the ability to provide your own collapse open and close image - `collapseButtonImageOpen` and `collapseButtonImageClose`. Added dynamic `id` functionality to the menu options to allow for multiple instances of the component.
+- Added the ability to provide your own collapse open and close image - `collapseButtonImageOpen` and `collapseButtonImageClose` . Added dynamic `id` functionality to the menu options to allow for multiple instances of the component.
 
 ## 1.2.0 (2019-03-29)
 
-- Added optional `slot` option named `custom-slot`.
+- Added optional `slot` option named `custom-slot` .
 
 ## 1.0.0 (2019-03-18)
 

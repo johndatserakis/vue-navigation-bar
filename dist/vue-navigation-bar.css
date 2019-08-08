@@ -1,5 +1,5 @@
 .vnb {
-  background: #eee;
+  background: #fff;
   padding-top: 15px;
   padding-bottom: 15px;
   display: flex;
@@ -25,7 +25,7 @@
   padding-left: 10px;
 }
 .vnb__brand-image-wrapper__link__image {
-    max-height: 34px;
+    max-height: 30px;
 }
 .vnb-image {
   max-width: 100%;
@@ -140,7 +140,7 @@
           color: #333;
           text-decoration: none;
           background: #f3f3f3;
-          border-left: 2px solid #007AFF;
+          border-left: 2px solid #007aff;
 }
 .vnb__popup__bottom__menu-options__option__link--no-highlight {
           padding: 12px 24px 6px;
@@ -177,7 +177,7 @@
           padding: 6px 24px;
           width: 100%;
           display: block;
-          color: #666666;
+          color: #595959;
           font-weight: 500;
           transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
           border-left: 2px solid #fff;
@@ -192,6 +192,7 @@
             margin-top: 5px;
             display: block;
             font-size: 0.75rem;
+            color: #8c8c8c;
 }
 .vnb-image {
   max-width: 100%;
@@ -201,12 +202,13 @@
 /*# sourceMappingURL=Popup.vue.map */.vnb__menu-options__option__link {
   cursor: pointer;
   font-weight: 500;
-  color: #666666;
+  color: #595959;
   transition: color 0.2s ease-in;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  font-size: 0.9rem;
 }
 .vnb__menu-options__option__link:hover {
     color: #333;
@@ -250,7 +252,7 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      color: #666666;
+      color: #595959;
       transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
       border-left: 2px solid #fff;
 }
@@ -258,7 +260,8 @@
         color: #333;
         text-decoration: none;
         background: #f3f3f3;
-        border-left: 2px solid #007AFF;
+        border-left: 2px solid #007aff;
+        cursor: pointer;
 }
 .vnb__sub-menu-options__option__link__icon svg {
         max-height: 40px;
@@ -279,8 +282,9 @@
 .vnb__sub-menu-options__option__link__text-wrapper__sub-text {
           margin-top: 5px;
           display: block;
-          font-size: 0.75rem;
+          font-size: 0.8rem;
           text-align: left;
+          color: #8c8c8c;
 }
 .vnb__sub-menu-options__option__hr {
       margin-top: 10px;
@@ -299,8 +303,8 @@
   vertical-align: middle;
   user-select: none;
   font-size: 0.9rem;
-  line-height: 1.0;
-  border-radius: .25rem;
+  line-height: 1;
+  border-radius: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 0.5rem 1rem;
@@ -317,7 +321,7 @@
     margin-left: 5px;
 }
 .vnb-button {
-  background: #007AFF;
+  background: #007aff;
 }
 .vnb-button:hover {
     color: #fff;

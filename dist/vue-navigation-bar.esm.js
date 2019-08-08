@@ -4,31 +4,44 @@ import { SlideYDownTransition } from 'vue2-transitions';
 
 // https://stackoverflow.com/a/2117523/8014660
 function uuidV4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    })
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
 }
 
 var script = {
-    name: 'dynamic-link',
-    render: function (h) {
-        if (this.isUsingVueRouter){
-            return h('router-link', { props: { to: {path: this.path} } }, this.$slots.default)
-        }
-
-        return h('a', { attrs: { href: this.path } }, this.$slots.default)
-    },
-    props: {
-        isUsingVueRouter: {
-            type: Boolean,
-            required: true
-        },
-        path: {
-            type: String,
-            required: true
-        }
+  name: "dynamic-link",
+  render: function(h) {
+    if (this.isLinkAction) {
+      return h("div", {}, this.$slots.default);
     }
+
+    if (this.isUsingVueRouter) {
+      return h(
+        "router-link",
+        { props: { to: { path: this.path } } },
+        this.$slots.default
+      );
+    }
+
+    return h("a", { attrs: { href: this.path } }, this.$slots.default);
+  },
+  props: {
+    isUsingVueRouter: {
+      type: Boolean,
+      required: true
+    },
+    path: {
+      type: String,
+      required: true
+    },
+    isLinkAction: {
+      type: Boolean,
+      required: true
+    }
+  }
 };
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
@@ -149,24 +162,21 @@ var __vue_script__ = script;
 //
 
 var script$1 = {
-    name: 'brand-image',
-    props: {
-        options: {
-            type: Object,
-            required: true
-        }
-    },
-    data: function data () {
-        return {
-        }
-    },
-    computed: {
-    },
-    methods: {
-    },
-    components: {
-        DynamicLink: DynamicLink
+  name: "brand-image",
+  props: {
+    options: {
+      type: Object,
+      required: true
     }
+  },
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {},
+  components: {
+    DynamicLink: DynamicLink
+  }
 };
 
 /* script */
@@ -187,7 +197,13 @@ var __vue_render__ = function() {
           attrs: {
             path: _vm.options.brandImagePath,
             isUsingVueRouter: _vm.options.isUsingVueRouter,
-            "aria-label": "Homepage"
+            "aria-label": "Homepage",
+            isLinkAction: false
+          },
+          nativeOn: {
+            click: function($event) {
+              return _vm.$emit("vnb-item-clicked", "brand-image")
+            }
           }
         },
         [
@@ -237,109 +253,116 @@ __vue_render__._withStripped = true;
 //
 
 var script$2 = {
-    name: 'desktop-menu-item-link',
-    props: {
-        option: {
-            type: Object,
-            required: true
-        },
-        options: {
-            type: Object,
-            required: true
-        }
+  name: "desktop-menu-item-link",
+  props: {
+    option: {
+      type: Object,
+      required: true
     },
-    data: function data () {
-        return {
-            currentExpandedStatus: 'closed'
-        }
-    },
-    computed: {
-        isExpanded: function isExpanded () {
-            if (this.currentExpandedStatus === 'open') {
-                return true
-            }
-
-            return false
-        }
-    },
-    methods: {
-        // Each time a sub-menu-option is clicked, close all the tooltips
-        subMenuItemSelected: function subMenuItemSelected (text) {
-            this.closeAllTooltips();
-        },
-
-        // When we keydown tab on the last sub-menu-option, we want to close
-        // all the tooltips
-        subMenuItemTabbed: function subMenuItemTabbed (text) {
-            // Let's check to see if this item is the last
-            // item in the subMenuOptions array
-            if (this.option.subMenuOptions[this.option.subMenuOptions.length - 1].text === text) {
-                this.closeAllTooltips();
-            }
-        },
-
-        menuShown: function menuShown () {
-            this.currentExpandedStatus = 'open';
-        },
-        menuHidden: function menuHidden () {
-            this.currentExpandedStatus = 'closed';
-        },
-
-        closeAllTooltips: function closeAllTooltips () {
-            var elements = document.querySelectorAll('.tippy-popper');
-            if (elements.length > 0) {
-                elements[0]._tippy.hide();
-            }
-        },
-
-        initTippy: function initTippy() {
-            var this$1 = this;
-
-            var el = document.getElementById('dropdown-menu-parent-' + this.option.id);
-
-            var template = document.getElementById('sub-menu-options-' + this.option.id);
-            template.style.display = 'block';
-
-            tippy(el, {
-                theme: 'light',
-                content: template,
-                interactive: true,
-                animation: "perspective",
-                animateFill: false,
-                role: 'Menu',
-                // trigger: 'click', // for testing
-                trigger: 'click mouseenter focus',
-                appendTo: 'parent',
-                arrow: true,
-                inertia: false,
-                onShow: function () {
-                    // https://github.com/atomiks/tippy.js-react/issues/7
-                    [].concat( document.querySelectorAll('.tippy-popper') ).forEach(function (popper) {
-                        // Have to triple-check
-                        if (popper && popper._tippy) {
-                            popper._tippy.hide(0);
-                        }
-                    });
-
-                    // fire the menuShown function
-                    this$1.menuShown();
-                },
-                onHide: function () {
-                    // fire the menuHidden function
-                    this$1.menuHidden();
-                }
-            });
-        }
-    },
-    mounted: function mounted () {
-        // Let's setup our tippy here in mounted
-        if (this.option.subMenuOptions && this.option.subMenuOptions.length) {
-            this.initTippy();
-        }
-    },
-    components: {
-        DynamicLink: DynamicLink
+    options: {
+      type: Object,
+      required: true
     }
+  },
+  data: function data() {
+    return {
+      currentExpandedStatus: "closed"
+    };
+  },
+  computed: {
+    isExpanded: function isExpanded() {
+      if (this.currentExpandedStatus === "open") {
+        return true;
+      }
+
+      return false;
+    }
+  },
+  methods: {
+    // Each time a sub-menu-option is clicked, close all the tooltips
+    subMenuItemSelected: function subMenuItemSelected(text) {
+      this.closeAllTooltips();
+    },
+
+    // When we keydown tab on the last sub-menu-option, we want to close
+    // all the tooltips
+    subMenuItemTabbed: function subMenuItemTabbed(text) {
+      // Let's check to see if this item is the last
+      // item in the subMenuOptions array
+      if (
+        this.option.subMenuOptions[this.option.subMenuOptions.length - 1]
+          .text === text
+      ) {
+        this.closeAllTooltips();
+      }
+    },
+
+    menuShown: function menuShown() {
+      this.currentExpandedStatus = "open";
+    },
+    menuHidden: function menuHidden() {
+      this.currentExpandedStatus = "closed";
+    },
+
+    closeAllTooltips: function closeAllTooltips() {
+      var elements = document.querySelectorAll(".tippy-popper");
+      if (elements.length > 0) {
+        elements[0]._tippy.hide();
+      }
+    },
+
+    initTippy: function initTippy() {
+      var this$1 = this;
+
+      var el = document.getElementById(
+        "dropdown-menu-parent-" + this.option.id
+      );
+
+      var template = document.getElementById(
+        "sub-menu-options-" + this.option.id
+      );
+      template.style.display = "block";
+
+      tippy(el, {
+        theme: "light",
+        content: template,
+        interactive: true,
+        animation: this.options.tooltipAnimationType,
+        animateFill: true,
+        role: "Menu",
+        // trigger: 'click', // for testing
+        trigger: "click mouseenter focus",
+        appendTo: "parent",
+        arrow: true,
+        inertia: false,
+        onShow: function () {
+          // https://github.com/atomiks/tippy.js-react/issues/7
+          [].concat( document.querySelectorAll(".tippy-popper") ).forEach(function (popper) {
+            // Have to triple-check
+            if (popper && popper._tippy) {
+              popper._tippy.hide(0);
+            }
+          });
+
+          // fire the menuShown function
+          this$1.menuShown();
+        },
+        onHide: function () {
+          // fire the menuHidden function
+          this$1.menuHidden();
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    // Let's setup our tippy here in mounted
+    if (this.option.subMenuOptions && this.option.subMenuOptions.length) {
+      this.initTippy();
+    }
+  },
+  components: {
+    DynamicLink: DynamicLink
+  }
 };
 
 var __$_require_assets_images_chevron_down_png__ = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAcCAYAAADIrlf0AAAABGdBTUEAALGPC/xhBQAAAwNJREFUWAnNmMuOUkEQhjmczSzQeIsJl5Ub4xqYicbEhU+i4szAjFFHjYkuJG7c6Nx0bgzqxoVPoHESo4lL4BVcwguwc3H8f9JFoO0+F2gMnTB1qqu6qr6ubhjwU2qUSqVn2Wz2cy6XO9Pr9X7I/LzJYrH4EjV+yufzC91u9xfr8/kHhlcQL/A6hdcNOJyHw1c8z9XARu+ioCd4sc6bgFnAhn/32QFMEGB0LAHkwjyBoM63QRDcGy0Sz9dR5x+fRwgKyfSxOC8gCmBdL1DpV9J4aFqMKZCvI8A7m/1/zDM/6wjJ1fRxpn7ibJ2D05LFcRH2i/D7YrHPbBp3dQ/B10IS7HY6nafsRAoP9yF4aWyjxoDYEc/m4HKeeRRALSQuAVh3aqwoLNzG3MBgWXzQbrfXPM8LLPappwmAI8QOVEOC7QDggdgHnRBFGXZEN8hquVzen1VHGJfxkTc2AGsc64QUHdURdOKw1WrVXHZEACBXpQ6DHOuA2I0QNMYAOQJI1QWIAjiAXJHCDNIIQL+x4zS6MOpoMSFaf8gCRtclfVYAjGMFwEZtj94BPUdkAbhkW0gwvET/BPC8BjqyOklHCID4R4h5V48rOgHwZvJQdJOMhOCiKBC4HCPRShIQVwCsLxYEHWOANAGyHAdEATQQtsLYphGnA7LOeifEQSRbysCiG2QFd+SYBRpswyna6YcJJwAMHBuCzlEgKPBOGIgA0I/xTAMbtcU8JpttLnTXbItwtDZRiDURCvmAy16BHH6yK4Am5G1bXAWwYbPb5hN1QoJgpzaYUHRdslB05H29Xh/Ep6Q+CwDmnqgTUnSMjnzMZDLL/X6/AYBbsk6Xk3ZA4kwFwSAxQH4D4JIk1CUANtHZR/p8En3wHTvJAt0XX2G/4Rvgacxf1W1KP2uZT7kAYOypIRgEICcRIHQbG64AGNQJBAMlAXEJ4BQiLohrAOcQUSCzAJgJhIDgxwX+DHSNuhpv8O/0Y1FcSmd3Qi8Kv46cFAoFvLsGl9Pp9Gu8jT7XfVzpfwGfPX59eVOliAAAAABJRU5ErkJggg==";
@@ -359,7 +382,13 @@ var __vue_render__$1 = function() {
             path: _vm.option.path,
             isUsingVueRouter: _vm.options.isUsingVueRouter,
             "aria-label": _vm.option.text,
-            tabindex: "0"
+            tabindex: "0",
+            isLinkAction: _vm.option.isLinkAction ? true : false
+          },
+          nativeOn: {
+            click: function($event) {
+              return _vm.$emit("vnb-item-clicked", _vm.option.text)
+            }
           }
         },
         [
@@ -370,7 +399,7 @@ var __vue_render__$1 = function() {
                 domProps: { innerHTML: _vm._s(_vm.option.iconLeft) }
               })
             : _vm._e(),
-          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n\n    "),
+          _vm._v("\n  " + _vm._s(_vm.option.text) + "\n  "),
           _vm.option.iconRight
             ? _c("span", {
                 staticClass:
@@ -400,7 +429,7 @@ var __vue_render__$1 = function() {
                 domProps: { innerHTML: _vm._s(_vm.option.iconLeft) }
               })
             : _vm._e(),
-          _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n\n    "),
+          _vm._v("\n  " + _vm._s(_vm.option.text) + "\n  "),
           _vm.option.iconRight
             ? _c("span", {
                 staticClass:
@@ -449,11 +478,15 @@ var __vue_render__$1 = function() {
                                 path: subOption.path,
                                 isUsingVueRouter: _vm.options.isUsingVueRouter,
                                 "aria-label": subOption.text,
-                                tabindex: "0"
+                                tabindex: "0",
+                                isLinkAction: subOption.isLinkAction
+                                  ? true
+                                  : false
                               },
                               nativeOn: {
                                 click: function($event) {
-                                  return _vm.subMenuItemSelected(subOption.text)
+                                  _vm.subMenuItemSelected(subOption.text);
+                                  _vm.$emit("vnb-item-clicked", subOption.text);
                                 },
                                 keydown: function($event) {
                                   if (
@@ -496,13 +529,7 @@ var __vue_render__$1 = function() {
                                       staticClass:
                                         "vnb__sub-menu-options__option__link__text-wrapper__text"
                                     },
-                                    [
-                                      _vm._v(
-                                        "\n                        " +
-                                          _vm._s(subOption.text) +
-                                          "\n                    "
-                                      )
-                                    ]
+                                    [_vm._v(_vm._s(subOption.text))]
                                   ),
                                   _vm._v(" "),
                                   subOption.subText
@@ -512,13 +539,7 @@ var __vue_render__$1 = function() {
                                           staticClass:
                                             "vnb__sub-menu-options__option__link__text-wrapper__sub-text"
                                         },
-                                        [
-                                          _vm._v(
-                                            "\n                        " +
-                                              _vm._s(subOption.subText) +
-                                              "\n                    "
-                                          )
-                                        ]
+                                        [_vm._v(_vm._s(subOption.subText))]
                                       )
                                     : _vm._e()
                                 ]
@@ -578,28 +599,25 @@ __vue_render__$1._withStripped = true;
 
 //
 var script$3 = {
-    name: 'desktop-menu-item-button',
-    props: {
-        option: {
-            type: Object,
-            required: true
-        },
-        options: {
-            type: Object,
-            required: true
-        }
+  name: "desktop-menu-item-button",
+  props: {
+    option: {
+      type: Object,
+      required: true
     },
-    data: function data () {
-        return {
-        }
-    },
-    computed: {
-    },
-    methods: {
-    },
-    components: {
-        DynamicLink: DynamicLink
+    options: {
+      type: Object,
+      required: true
     }
+  },
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {},
+  components: {
+    DynamicLink: DynamicLink
+  }
 };
 
 /* script */
@@ -620,7 +638,13 @@ var __vue_render__$2 = function() {
       attrs: {
         path: _vm.option.path,
         isUsingVueRouter: _vm.options.isUsingVueRouter,
-        "aria-label": _vm.option.text
+        "aria-label": _vm.option.text,
+        isLinkAction: _vm.option.isLinkAction ? true : false
+      },
+      nativeOn: {
+        click: function($event) {
+          return _vm.$emit("vnb-item-clicked", _vm.option.text)
+        }
       }
     },
     [
@@ -631,7 +655,7 @@ var __vue_render__$2 = function() {
             domProps: { innerHTML: _vm._s(_vm.option.iconLeft) }
           })
         : _vm._e(),
-      _vm._v("\n\n    " + _vm._s(_vm.option.text) + "\n\n    "),
+      _vm._v("\n  " + _vm._s(_vm.option.text) + "\n  "),
       _vm.option.iconRight
         ? _c("span", {
             staticClass:
@@ -735,31 +759,32 @@ __vue_render__$3._withStripped = true;
 //
 
 var script$5 = {
-    name: 'menu-options',
-    mixins: [VueScreenSize.VueScreenSizeMixin],
-    props: {
-        options: {
-            type: Object,
-            required: true
-        },
-        type: {
-            type: String,
-            required: true
-        }
+  name: "menu-options",
+  mixins: [VueScreenSize.VueScreenSizeMixin],
+  props: {
+    options: {
+      type: Object,
+      required: true
     },
-    data: function data () {
-        return {
-        }
-    },
-    computed: {
-    },
-    methods: {
-    },
-    components: {
-        DesktopMenuItemLink: DesktopMenuItemLink,
-        DesktopMenuItemButton: DesktopMenuItemButton,
-        DesktopMenuItemSpacer: DesktopMenuItemSpacer
+    type: {
+      type: String,
+      required: true
     }
+  },
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {
+    vnbItemClicked: function vnbItemClicked(text) {
+      this.$emit("vnb-item-clicked", text);
+    }
+  },
+  components: {
+    DesktopMenuItemLink: DesktopMenuItemLink,
+    DesktopMenuItemButton: DesktopMenuItemButton,
+    DesktopMenuItemSpacer: DesktopMenuItemSpacer
+  }
 };
 
 /* script */
@@ -783,18 +808,20 @@ var __vue_render__$4 = function() {
           _vm.type === "left"
             ? _vm.options.menuOptionsLeft
             : _vm.options.menuOptionsRight,
-          function(option) {
+          function(option, index) {
             return _c(
               "div",
-              { staticClass: "vnb__menu-options__option" },
+              { key: index, staticClass: "vnb__menu-options__option" },
               [
                 option.type === "link"
                   ? _c("desktop-menu-item-link", {
-                      attrs: { option: option, options: _vm.options }
+                      attrs: { option: option, options: _vm.options },
+                      on: { "vnb-item-clicked": _vm.vnbItemClicked }
                     })
                   : option.type === "button"
                   ? _c("desktop-menu-item-button", {
-                      attrs: { option: option, options: _vm.options }
+                      attrs: { option: option, options: _vm.options },
+                      on: { "vnb-item-clicked": _vm.vnbItemClicked }
                     })
                   : _c("desktop-menu-item-spacer", {
                       attrs: { option: option }
@@ -931,40 +958,41 @@ __vue_render__$5._withStripped = true;
 //
 
 var script$7 = {
-    name: 'popup',
-    props: {
-        options: {
-            type: Object,
-            required: true
-        },
-        menuIsVisible: {
-            type: Boolean,
-            required: true
-        }
+  name: "popup",
+  props: {
+    options: {
+      type: Object,
+      required: true
     },
-    data: function data () {
-        return {
-        }
-    },
-    computed: {
-        combinedMenuItems: function combinedMenuItems () {
-            var combinedArray = this.options.menuOptionsLeft.concat(this.options.menuOptionsRight);
-            return combinedArray
-        }
-    },
-    methods: {
-        closeButtonClicked: function closeButtonClicked () {
-            this.$emit('close-button-clicked');
-        },
-        itemSelected: function itemSelected () {
-            console.log('123');
-            this.closeButtonClicked();
-        }
-    },
-    components: {
-        DynamicLink: DynamicLink,
-        SlideYDownTransition: SlideYDownTransition
+    menuIsVisible: {
+      type: Boolean,
+      required: true
     }
+  },
+  data: function data() {
+    return {};
+  },
+  computed: {
+    combinedMenuItems: function combinedMenuItems() {
+      var combinedArray = this.options.menuOptionsLeft.concat(
+        this.options.menuOptionsRight
+      );
+      return combinedArray;
+    }
+  },
+  methods: {
+    closeButtonClicked: function closeButtonClicked() {
+      this.$emit("close-button-clicked");
+    },
+    itemSelected: function itemSelected(option) {
+      this.$emit("vnb-item-clicked", option.text);
+      this.closeButtonClicked();
+    }
+  },
+  components: {
+    DynamicLink: DynamicLink,
+    SlideYDownTransition: SlideYDownTransition
+  }
 };
 
 var __$_require_assets_images_times_png__ = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAABYpJREFUeAHt3M1rG0cUAHBJSQ7Of2DZ0NYBB1LwobaQ8cmF3ipDLzoUCoEc3HPpucX5Fwo9tFCo+3EylLb4XpcEQrF9aIkvNsHJwRL0UHpwfLLjvqdotqvVzu7Oaj7eW70BsbvzrfdDGklotlaTRCoCN3SzabVaC7Ozs/P9fv9vXR3JN49Au91empubu312dvZvWutGWiZgvHd9ff0Uyv5aXl7+emtrK7VeWlvJS49At9u9sbKy8s3l5eWfV1dXTyGu76bVrCczhxi/AsiMKqvX6z90Op37APNK5cmxeAQQ4/T09HuI6YexVhdw3jk8PPwtllcbectKwxhWXjo5Obmzubn5y97e3nW8AznPjoAGAxvdgke32Ww+gWXhOZwPUgQyfAntxl8ZqtLwKCiJgORdZmCopgOU+fn5x71e7wVmxteGhxkYgw6g/KPd3d1tWVNUPPXHAhiq8W2I60N1EYHAOvGTysw6CkpWdF6XGWAMGkBMo9hHILBof4GLd/5wtZqg6KNkigE9bW9sbHypeozWEFyscdHGxRsKl1SFjKOsKYnglMR4EP/0GoFg34KSiLDBpQ0MHG4EBDMEBaNglmxh4KhjIJgpKBiFYskmBo6YCoIFgoJRyE62MXA0LQgWCgpGIT25wMCRMkGwgqBgFEaTKwwcJRcEKwkKRuF1comBIxQCwYqCAr8Epv9qi+HRJfzSN/I9Q1dR5RcGwQbTjOIDA2NsBDKtKL4wSoFMG4pPjNIg04LiG2MikKqjhMCYGKSqKKEwrIBUDSUkhjWQqqCExrAKwh2FAoZ1EK4oVDCcgHBDoYThDIQLCjUMpyDUUShiOAehikIVwwsINRTKGN5AqKBQx/AKEhqFA4Z3kFAoXDCCgPhG4YQRDMQXCjeMoCCuUThiBAdxhcIVgwSIbRTOGGRAbKFwx8A4jG2LxsyQCfcv4j5G3KVVZB5qy/bR0VE9ZetxVhfGf2LL6sxWGTkQfGKmKNDkR4BpAGJ8H3hWjEhi4IRJguDESqBgsyKJLAZO3vifi0WesY06Jf62WmRY0hj4BMiC4OQso5DHIA9iEYUFBgsQCyhsMPC5kl3UcXLJtL6+fvP8/PwYPk29lSzTXD9bWFi4u7Ozc6UpJ5cd3cmB3MwSE8IvfYDxnQEG9nAHvpt8i5/YEt2RvSS9qKuolfgGrprikdUdJ8iDTIihYNigkAaxhMEKhSyIZQw2KCRBSmBsw29ZeNNO9ncxIgdSBgO3Hi8uLv5chVtLkQIpiwEfa1+V+JmF5EJPBmQSDLVAVAGFBIgNjKqgBAexiVEFlKAgLjC4owQDcYnBGSUIiA8MrijeQXxicETxChICgxuKN5CQGJxQvIBQwOCC4hyEEgYHFKcgFDGoozgDoYxBGcUJCAcMqijWQThhUESxCsIRgxqKNRDOGJRQrIBUAYMKysQgVcKggDIRSBUxQqOUBqkyRkiUUiDTgBEKxRhkmjBCoBiBTCOGb5TCINOM4ROlEIhgKJJSG1GN/iGZCyIY/2OoM5f/kMwEEQxFMH50haIFEYxxhGSOC5RUEMFIhl5/bRtlDEQw9MHXldhEGQERDF3I8/NtoUQggpEf9LwaNlAikJmZmU9gwE/zBh2Ws7pdRcHnZKVaGZTj4+N/+v3+HziB+B0OPig4I8HICRRuset0Ovfxbnc5VVVxFPsIpNFofAalF6qG5igYmsAksw1QXkLbz1X76C2r1+u9aDabT6CgC49bqkLsKBixYBQ5LfD29RJeCO8fHBw8Uv1FIJgB72PPNSiCoSJmeMxAGWDs7+//Hu9yBAQLEig34X3wK9gH/jG+BOMN5bx4BGIos9DqHXhc4CsjiZHZ4+rq6pvtdvteZiUpNI5Aq9V6e21t7Q3jhtJAIiARgAj8B7kNT6PB1/G8AAAAAElFTkSuQmCC";
@@ -1033,10 +1061,13 @@ var __vue_render__$6 = function() {
             _c(
               "ul",
               { staticClass: "vnb__popup__bottom__menu-options" },
-              _vm._l(_vm.combinedMenuItems, function(option) {
+              _vm._l(_vm.combinedMenuItems, function(option, index) {
                 return _c(
                   "li",
-                  { staticClass: "vnb__popup__bottom__menu-options__option" },
+                  {
+                    key: index,
+                    staticClass: "vnb__popup__bottom__menu-options__option"
+                  },
                   [
                     !option.subMenuOptions
                       ? _c(
@@ -1047,11 +1078,12 @@ var __vue_render__$6 = function() {
                             attrs: {
                               path: option.path,
                               isUsingVueRouter: _vm.options.isUsingVueRouter,
-                              "aria-label": option.text
+                              "aria-label": option.text,
+                              isLinkAction: option.isLinkAction ? true : false
                             },
                             nativeOn: {
                               click: function($event) {
-                                return _vm.itemSelected($event)
+                                return _vm.itemSelected(option)
                               }
                             }
                           },
@@ -1066,9 +1098,9 @@ var __vue_render__$6 = function() {
                                 })
                               : _vm._e(),
                             _vm._v(
-                              "\n\n                        " +
+                              "\n            " +
                                 _vm._s(option.text) +
-                                "\n\n                        "
+                                "\n            "
                             ),
                             option.iconRight
                               ? _c("span", {
@@ -1087,22 +1119,17 @@ var __vue_render__$6 = function() {
                             staticClass:
                               "vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
                           },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(option.text) +
-                                "\n                    "
-                            )
-                          ]
+                          [_vm._v(_vm._s(option.text))]
                         ),
                     _vm._v(" "),
                     _c(
                       "div",
                       { staticClass: "vnb__popup__bottom__sub-menu-options" },
-                      _vm._l(option.subMenuOptions, function(subOption) {
+                      _vm._l(option.subMenuOptions, function(subOption, index) {
                         return _c(
                           "div",
                           {
+                            key: index,
                             staticClass:
                               "vnb__popup__bottom__sub-menu-options__option"
                           },
@@ -1117,19 +1144,22 @@ var __vue_render__$6 = function() {
                                       path: subOption.path,
                                       isUsingVueRouter:
                                         _vm.options.isUsingVueRouter,
-                                      "aria-label": subOption.text
+                                      "aria-label": subOption.text,
+                                      isLinkAction: option.isLinkAction
+                                        ? true
+                                        : false
                                     },
                                     nativeOn: {
                                       click: function($event) {
-                                        return _vm.itemSelected($event)
+                                        return _vm.itemSelected(subOption)
                                       }
                                     }
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                " +
+                                      "\n                " +
                                         _vm._s(subOption.text) +
-                                        "\n\n                                "
+                                        "\n                "
                                     ),
                                     _c(
                                       "span",
@@ -1190,65 +1220,89 @@ __vue_render__$6._withStripped = true;
 //
 
 var script$8 = {
-    name: 'vue-navigation-bar',
-    mixins: [VueScreenSize.VueScreenSizeMixin],
-    props: {
-        options: {
-            type: Object,
-            required: true
-        }
-    },
-    data: function data () {
-        return {
-            menuIsVisible: false
-        }
-    },
-    computed: {
-        finalOptions: function finalOptions () {
-            // What we're doing here is giving each top-level menu-option a unique id
-            if (this.options.menuOptionsLeft) {
-                for (var x = 0; x < this.options.menuOptionsLeft.length; x++) {
-                    this.$set(this.options.menuOptionsLeft[x], 'id', uuidV4());
-                }
-            }
-            if (this.options.menuOptionsRight) {
-                for (var x$1 = 0; x$1 < this.options.menuOptionsRight.length; x$1++) {
-                    this.$set(this.options.menuOptionsRight[x$1], 'id', uuidV4());
-                }
-            }
-
-            return {
-                elementId: (this.options.elementId) ? this.options.elementId : uuidV4(),
-                isUsingVueRouter: (this.options.isUsingVueRouter) ? true : false,
-                mobileBreakpoint: (this.options.mobileBreakpoint) ? this.options.mobileBreakpoint : 992,
-                brandImagePath: (this.options.brandImagePath) ? this.options.brandImagePath : '/',
-                brandImage: (this.options.brandImage) ? this.options.brandImage : null,
-                brandImageAltText: (this.options.brandImageAltText) ? this.options.brandImageAltText : 'brand-image',
-                collapseButtonImageOpen: (this.options.collapseButtonImageOpen) ? this.options.collapseButtonImageOpen : null,
-                collapseButtonImageClose: (this.options.collapseButtonImageClose) ? this.options.collapseButtonImageClose : null,
-                showBrandImageInMobilePopup: (this.options.showBrandImageInMobilePopup) ? true : false,
-                ariaLabelMainNav: (this.options.ariaLabelMainNav) ? this.options.ariaLabelMainNav : 'Main Navigation',
-                menuOptionsLeft: (this.options.menuOptionsLeft) ? this.options.menuOptionsLeft : [],
-                menuOptionsRight: (this.options.menuOptionsRight) ? this.options.menuOptionsRight : []
-            }
-        }
-    },
-    methods: {
-        closeMobilePopup: function closeMobilePopup () {
-            this.menuIsVisible = false;
-            this.$emit('mobile-popup-hidden');
-        },
-        showMobilePopup: function showMobilePopup () {
-            this.menuIsVisible = true;
-            this.$emit('mobile-popup-shown');
-        }
-    },
-    components: {
-        BrandImage: BrandImage,
-        MenuOptions: MenuOptions,
-        CollapseButton: CollapseButton,
-        Popup: Popup
+  name: "vue-navigation-bar",
+  mixins: [VueScreenSize.VueScreenSizeMixin],
+  props: {
+    options: {
+      type: Object,
+      required: true
     }
+  },
+  data: function data() {
+    return {
+      menuIsVisible: false
+    };
+  },
+  computed: {
+    finalOptions: function finalOptions() {
+      // What we're doing here is giving each top-level menu-option a unique id
+      if (this.options.menuOptionsLeft) {
+        for (var x = 0; x < this.options.menuOptionsLeft.length; x++) {
+          this.$set(this.options.menuOptionsLeft[x], "id", uuidV4());
+        }
+      }
+      if (this.options.menuOptionsRight) {
+        for (var x$1 = 0; x$1 < this.options.menuOptionsRight.length; x$1++) {
+          this.$set(this.options.menuOptionsRight[x$1], "id", uuidV4());
+        }
+      }
+
+      return {
+        elementId: this.options.elementId ? this.options.elementId : uuidV4(),
+        isUsingVueRouter: this.options.isUsingVueRouter ? true : false,
+        mobileBreakpoint: this.options.mobileBreakpoint
+          ? this.options.mobileBreakpoint
+          : 992,
+        brandImagePath: this.options.brandImagePath
+          ? this.options.brandImagePath
+          : "/",
+        brandImage: this.options.brandImage ? this.options.brandImage : null,
+        brandImageAltText: this.options.brandImageAltText
+          ? this.options.brandImageAltText
+          : "brand-image",
+        collapseButtonImageOpen: this.options.collapseButtonImageOpen
+          ? this.options.collapseButtonImageOpen
+          : null,
+        collapseButtonImageClose: this.options.collapseButtonImageClose
+          ? this.options.collapseButtonImageClose
+          : null,
+        showBrandImageInMobilePopup: this.options.showBrandImageInMobilePopup
+          ? true
+          : false,
+        ariaLabelMainNav: this.options.ariaLabelMainNav
+          ? this.options.ariaLabelMainNav
+          : "Main Navigation",
+        tooltipAnimationType: this.options.tooltipAnimationType
+          ? this.options.tooltipAnimationType
+          : "fade",
+        menuOptionsLeft: this.options.menuOptionsLeft
+          ? this.options.menuOptionsLeft
+          : [],
+        menuOptionsRight: this.options.menuOptionsRight
+          ? this.options.menuOptionsRight
+          : []
+      };
+    }
+  },
+  methods: {
+    closeMobilePopup: function closeMobilePopup() {
+      this.menuIsVisible = false;
+      this.$emit("vnb-mobile-popup-hidden");
+    },
+    showMobilePopup: function showMobilePopup() {
+      this.menuIsVisible = true;
+      this.$emit("vnb-mobile-popup-shown");
+    },
+    vnbItemClicked: function vnbItemClicked(text) {
+      this.$emit("vnb-item-clicked", text);
+    }
+  },
+  components: {
+    BrandImage: BrandImage,
+    MenuOptions: MenuOptions,
+    CollapseButton: CollapseButton,
+    Popup: Popup
+  }
 };
 
 /* script */
@@ -1268,10 +1322,14 @@ var __vue_render__$7 = function() {
       }
     },
     [
-      _c("brand-image", { attrs: { options: _vm.finalOptions } }),
+      _c("brand-image", {
+        attrs: { options: _vm.finalOptions },
+        on: { "vnb-item-clicked": _vm.vnbItemClicked }
+      }),
       _vm._v(" "),
       _c("menu-options", {
-        attrs: { options: _vm.finalOptions, type: "left" }
+        attrs: { options: _vm.finalOptions, type: "left" },
+        on: { "vnb-item-clicked": _vm.vnbItemClicked }
       }),
       _vm._v(" "),
       _vm.$vssWidth > _vm.options.mobileBreakpoint
@@ -1279,31 +1337,47 @@ var __vue_render__$7 = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("menu-options", {
-        attrs: { options: _vm.finalOptions, type: "right" }
+        attrs: { options: _vm.finalOptions, type: "right" },
+        on: { "vnb-item-clicked": _vm.vnbItemClicked }
       }),
       _vm._v(" "),
-      _c("collapse-button", {
-        attrs: { options: _vm.finalOptions, menuIsVisible: _vm.menuIsVisible },
-        on: { "collapse-button-clicked": _vm.showMobilePopup }
-      }),
+      _vm.finalOptions.menuOptionsLeft.length ||
+      _vm.finalOptions.menuOptionsRight.length
+        ? _c("collapse-button", {
+            attrs: {
+              options: _vm.finalOptions,
+              menuIsVisible: _vm.menuIsVisible
+            },
+            on: { "collapse-button-clicked": _vm.showMobilePopup }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _c("popup", {
-        attrs: { options: _vm.finalOptions, menuIsVisible: _vm.menuIsVisible },
-        on: { "close-button-clicked": _vm.closeMobilePopup },
-        scopedSlots: _vm._u(
-          [
-            {
-              key: "custom-section",
-              fn: function() {
-                return [_vm._t("custom-section")]
-              },
-              proxy: true
-            }
-          ],
-          null,
-          true
-        )
-      })
+      _vm.finalOptions.menuOptionsLeft.length ||
+      _vm.finalOptions.menuOptionsRight.length
+        ? _c("popup", {
+            attrs: {
+              options: _vm.finalOptions,
+              menuIsVisible: _vm.menuIsVisible
+            },
+            on: {
+              "close-button-clicked": _vm.closeMobilePopup,
+              "vnb-item-clicked": _vm.vnbItemClicked
+            },
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "custom-section",
+                  fn: function() {
+                    return [_vm._t("custom-section")]
+                  },
+                  proxy: true
+                }
+              ],
+              null,
+              true
+            )
+          })
+        : _vm._e()
     ],
     2
   )
@@ -1340,25 +1414,25 @@ __vue_render__$7._withStripped = true;
 
 // install function executed by Vue.use()
 function install(Vue) {
-	if (install.installed) { return; }
-	install.installed = true;
-	Vue.component('VueNavigationBar', component);
+  if (install.installed) { return; }
+  install.installed = true;
+  Vue.component("VueNavigationBar", component);
 }
 
 // Create module definition for Vue.use()
 var plugin = {
-	install: install,
+  install: install
 };
 
 // To auto-install when vue is found
 var GlobalVue = null;
-if (typeof window !== 'undefined') {
-	GlobalVue = window.Vue;
-} else if (typeof global !== 'undefined') {
-	GlobalVue = global.Vue;
+if (typeof window !== "undefined") {
+  GlobalVue = window.Vue;
+} else if (typeof global !== "undefined") {
+  GlobalVue = global.Vue;
 }
 if (GlobalVue) {
-	GlobalVue.use(plugin);
+  GlobalVue.use(plugin);
 }
 
 // It's possible to expose named exports when writing components that can
