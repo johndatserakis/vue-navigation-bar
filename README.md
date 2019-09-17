@@ -23,40 +23,44 @@ A simple, pretty navbar for your Vue projects.
 
 ##### Download
 
-``` bash
+```bash
 # npm
-npm i vue - navigation - bar
+npm i vue-navigation-bar
 
 # yarn
-yarn add vue - navigation - bar
+yarn add vue-navigation-bar
 ```
 
 Or you can include it through the browser at the bottom of your page along with the css:
 
-``` html
+```html
 <!-- Please note if you're using the browser method you're going to want to
 adjust the version number as needed. The number given here is just an
 initial version. -->
 
 <script src="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.css" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.css"
+/>
 ```
 
 ##### Use
 
-``` scss
+```scss
 // css import for when you want to import the component css into your css file/files
-@import '/path/to/node_modules/vue-navigation-bar.css';
+@import "/path/to/node_modules/vue-navigation-bar.css";
 ```
 
-``` js
+```js
 // javascript import for when you're importing the css directly in your javascript
-import 'vue-navigation-bar/dist/vue-navigation-bar.css'
+import "vue-navigation-bar/dist/vue-navigation-bar.css";
 
 // import the library
-import VueNavigationBar from 'vue-navigation-bar'
-Vue.component('vue-navigation-bar', VueNavigationBar)
+import VueNavigationBar from "vue-navigation-bar";
+Vue.component("vue-navigation-bar", VueNavigationBar);
 ```
 
 ### About
@@ -77,120 +81,124 @@ The component will work well with frontend component frameworks. I'm using Boots
 
 ### Usage Example
 
-``` html
+```javascript
 <template>
-    <vue-navigation-bar :options="navbarOptions" />
+  <vue-navigation-bar :options="navbarOptions" />
 </template>
 
 <script>
-    export default {
-        ...
-        data() {
-            return {
-                navbarOptions: {
-                    elementId: 'main-navbar',
-                    isUsingVueRouter: true,
-                    mobileBreakpoint: 992,
-                    brandImagePath: './',
-                    brandImage: require('../src/assets/images/lockup-color.png'),
-                    brandImageAltText: 'brand-image',
-                    collapseButtonImageOpen: require('../src/assets/images/collapse-menu-dark.png'),
-                    collapseButtonImageClose: require('../src/assets/images/times.png'),
-                    showBrandImageInMobilePopup: true,
-                    ariaLabelMainNav: 'Main Navigation',
-                    tooltipAnimationType: 'shift-away',
-                    menuOptionsLeft: [{
-                            type: 'link',
-                            text: 'Why Dunder Mifflin',
-                            subMenuOptions: [{
-                                    isLinkAction: true,
-                                    type: "link",
-                                    text: "About",
-                                    subText: "Stupid corporate wet blankets. Like booze ever killed anyone.",
-                                    path: "./about",
-                                    iconLeft: '<i class="fa fa-star fa-fw"></i>'
-                                },
-                                {
-                                    type: 'hr',
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Locations',
-                                    subText: 'You\'re a presentation tool!',
-                                    path: './locations',
-                                },
-                                {
-                                    type: 'hr',
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Blog',
-                                    subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
-                                    path: './blog',
-                                },
-                            ]
-                        },
-                        {
-                            type: 'link',
-                            text: 'Contact',
-                            subMenuOptions: [{
-                                    type: 'link',
-                                    text: 'Customer Service',
-                                    path: './customer-service'
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Accounting',
-                                    path: './accounting',
-                                },
-                                {
-                                    type: 'hr',
-                                },
-                                {
-                                    type: 'link',
-                                    text: 'Reception',
-                                    path: './reception',
-                                    iconLeft: '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>',
-                                },
-                            ]
-                        },
-                        {
-                            type: 'link',
-                            text: 'Pricing',
-                            path: './pricing',
-                            iconRight: '<i class="fa fa-long-arrow-right fa-fw"></i>',
-                        },
-                    ],
-                    menuOptionsRight: [{
-                            type: 'button',
-                            text: 'Signup',
-                            path: './signup',
-                            class: 'button-red'
-                        },
-                        {
-                            type: 'button',
-                            text: 'Login',
-                            path: './login',
-                            iconRight: '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>'
-                        }
-                    ]
-                }
-            }
+  export default {
+      ...
+      data() {
+        return {
+          navbarOptions: {
+            elementId: 'main-navbar',
+            isUsingVueRouter: true,
+            mobileBreakpoint: 992,
+            brandImagePath: './',
+            brandImage: require('../src/assets/images/lockup-color.png'),
+            brandImageAltText: 'brand-image',
+            collapseButtonImageOpen: require('../src/assets/images/collapse-menu-dark.png'),
+            collapseButtonImageClose: require('../src/assets/images/times.png'),
+            showBrandImageInMobilePopup: true,
+            ariaLabelMainNav: 'Main Navigation',
+            tooltipAnimationType: 'shift-away',
+            menuOptionsLeft: [
+              {
+                type: 'link',
+                text: 'Why Dunder Mifflin',
+                subMenuOptions: [
+                  {
+                    isLinkAction: true,
+                    type: "link",
+                    text: "About",
+                    subText: "Stupid corporate wet blankets. Like booze ever killed anyone.",
+                    path: "./about",
+                    iconLeft: '<i class="fa fa-star fa-fw"></i>'
+                  },
+                  {
+                    type: 'hr',
+                  },
+                  {
+                    type: 'link',
+                    text: 'Locations',
+                    subText: 'You\'re a presentation tool!',
+                    path: './locations',
+                  },
+                  {
+                    type: 'hr',
+                  },
+                  {
+                    type: 'link',
+                    text: 'Blog',
+                    subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
+                    path: './blog',
+                  },
+                ]
+              },
+              {
+                type: 'link',
+                text: 'Contact',
+                subMenuOptions: [
+                  {
+                    type: 'link',
+                    text: 'Customer Service',
+                    path: './customer-service'
+                  },
+                  {
+                    type: 'link',
+                    text: 'Accounting',
+                    path: './accounting',
+                  },
+                  {
+                    type: 'hr',
+                  },
+                  {
+                    type: 'link',
+                    text: 'Reception',
+                    path: './reception',
+                    iconLeft: '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>',
+                  },
+                ]
+              },
+              {
+                type: 'link',
+                text: 'Pricing',
+                path: './pricing',
+                iconRight: '<i class="fa fa-long-arrow-right fa-fw"></i>',
+              },
+            ],
+            menuOptionsRight: [
+              {
+                type: 'button',
+                text: 'Signup',
+                path: './signup',
+                class: 'button-red'
+              },
+              {
+                type: 'button',
+                text: 'Login',
+                path: './login',
+                iconRight: '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>'
+              }
+            ]
+          }
         }
-        ...
-    }
+      }
+      ...
+  }
 </script>
 
 <style lang="scss">
-    .vnb {
-        .button-red {
-            background: #ff3b30;
+  .vnb {
+    .button-red {
+      background: #ff3b30;
 
-            &:hover {
-                background: darken(#ff3b30, 10%);
-            }
-        }
+      &:hover {
+        background: darken(#ff3b30, 10%);
+      }
     }
+  }
 </style>
 ```
 
@@ -202,21 +210,21 @@ In the style section you'll see that I provide a button class to color a button 
 
 Note - the first example uses basic `css` , the second example is the same thing just using `sass` nesting - same result.
 
-``` css
+```css
 .vnb .button-red {
-    background: #ff3b30;
+  background: #ff3b30;
 }
 
 .vnb .button-red:hover {
-    background: #fc0d00;
+  background: #fc0d00;
 }
 ```
 
-``` scss
+```scss
 .vnb {
   .button-red {
     background: #ff3b30;
-    
+
     &:hover {
       background: darken(#ff3b30, 10%);
     }
@@ -234,35 +242,35 @@ Sometimes you may want your links to perform an action instead of following a li
 
 ### Props
 
-| prop                                     | type        | required | default           | possible values                                            | description                                                                                                                                                                                                                                                                           |
-| ---------------------------------------- | ----------- | -------- | ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| elementId                                | String      | no       | A generated uuid  |                                                            | This value will be set as the `id` of the instance                                                                                                                                                                                                                                    |
-| isUsingVueRouter                         | Boolean     | no       | false             |                                                            | If you want to use vue-router, set this to true and all links will automatically be `<router-link></router-link>` |
-| mobileBreakpoint                         | Number      | no       | 992               |                                                            | Width at which the navbar turns into the mobile version                                                                                                                                                                                                                               |
-| brandImagePath                           | String      | no       | '/'               |                                                            | The path for your `brand-image` 's link                                                                                                                                                                                                                                               |
-| brandImage                               | Image       | no       |                   |                                                            | `require()` your image here to use your brand image                                                                                                                                                                                                                                   |
-| brandImageAltText                        | String      | no       | 'brand-image'     |                                                            | The `alt` tag text for your brand image                                                                                                                                                                                                                                               |
-| collapseButtonImageOpen                  | Image       | no       | A hamburger icon  |                                                            | `require()` your image here                                                                                                                                                                                                                                                           |
-| collapseButtonImageClose                 | Image       | no       | A times icon      |                                                            | `require()` your image here                                                                                                                                                                                                                                                           |
-| showBrandImageInMobilePopup              | Boolean     | no       | false             |                                                            | If you want to show your brand logo in the mobile popup                                                                                                                                                                                                                               |
-| ariaLabelMainNav                         | String      | no       | 'Main Navigation' |                                                            | The `aria-label` value for the main navbar element                                                                                                                                                                                                                                    |
+| prop                                     | type        | required | default           | possible values                                              | description                                                                                                                                                                                                                                                                           |
+| ---------------------------------------- | ----------- | -------- | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| elementId                                | String      | no       | A generated uuid  |                                                              | This value will be set as the `id` of the instance                                                                                                                                                                                                                                    |
+| isUsingVueRouter                         | Boolean     | no       | false             |                                                              | If you want to use vue-router, set this to true and all links will automatically be `<router-link></router-link>`                                                                                                                                                                     |
+| mobileBreakpoint                         | Number      | no       | 992               |                                                              | Width at which the navbar turns into the mobile version                                                                                                                                                                                                                               |
+| brandImagePath                           | String      | no       | '/'               |                                                              | The path for your `brand-image` 's link                                                                                                                                                                                                                                               |
+| brandImage                               | Image       | no       |                   |                                                              | `require()` your image here to use your brand image                                                                                                                                                                                                                                   |
+| brandImageAltText                        | String      | no       | 'brand-image'     |                                                              | The `alt` tag text for your brand image                                                                                                                                                                                                                                               |
+| collapseButtonImageOpen                  | Image       | no       | A hamburger icon  |                                                              | `require()` your image here                                                                                                                                                                                                                                                           |
+| collapseButtonImageClose                 | Image       | no       | A times icon      |                                                              | `require()` your image here                                                                                                                                                                                                                                                           |
+| showBrandImageInMobilePopup              | Boolean     | no       | false             |                                                              | If you want to show your brand logo in the mobile popup                                                                                                                                                                                                                               |
+| ariaLabelMainNav                         | String      | no       | 'Main Navigation' |                                                              | The `aria-label` value for the main navbar element                                                                                                                                                                                                                                    |
 | tooltipAnimationType                     | String      | no       | 'fade'            | 'shift-away', 'shift-toward', 'fade', 'scale', 'perspective' | See [tippy.js docs](https://atomiks.github.io/tippyjs/all-options/)                                                                                                                                                                                                                   |
-| menuOptionsLeft                          | Object      | no       | {}                |                                                            | Menu options that will be _pulled_ to the left towards the `brand-image` |
-| menuOptionsLeft.type                     | String      | yes      |                   | 'link', 'button', 'spacer', 'dropdown'                     | What type of link will this menu-option be? `link` will be a link, `button` will be a button, `spacer` will be a spacer with a width of `30px` , `dropdown` will create a dropdown on desktop and a `ul/li` list on mobile. `dropdown` only works on menuOptions, not subMenuOptions.|
-| menuOptionsLeft.text                     | String      | yes      |                   |                                                            | Text of menu-option                                                                                                                                                                                                                                                                   |
-| menuOptionsLeft.path                     | String      | yes      |                   |                                                            | Link path of menu-option. Not applicable to `dropdown` menuOption types.|
-| menuOptionsLeft.class                    | String      | no       |                   |                                                            | Only for `menuOptionsLeft.type === 'button'` - provide a class name so you can style your buttons                                                                                                                                                                                     |
-| menuOptionsLeft.isLinkAction             | Boolean     | no       | false             |                                                            | When `true` , the `path` option of the `menuOption` will not fire - instead, you'll be able to register for the `@vnb-item-clicked` event which will spit you out the `text` value of your `menuOption` . That way, you can do an action you may want to trigger.|
-| menuOptionsLeft.iconLeft                 | HTML String | no       |                   |                                                            | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'` . HTML string of the icon you want to use. See more info on the `Icon` section of the README.|
-| menuOptionsLeft.iconRight                | HTML String | no       |                   |                                                            | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'` . HTML string of the icon you want to use. See more info on the `Icon` section of the README.|
-| menuOptionsLeft.subMenuOptions           | Object      | no       |                   |                                                            | Sub-menu-options that will be shown                                                                                                                                                                                                                                                   |
-| menuOptionsLeft.subMenuOptions.type      | String      | yes      |                   | 'link', 'hr'                                               | What type of link will this sub-menu-option be? `link` will be a link, `hr` will be a `hr` spacer                                                                                                                                                                                     |
-| menuOptionsLeft.subMenuOptions.text      | String      | yes      |                   |                                                            | Text of sub-menu-option                                                                                                                                                                                                                                                               |
-| menuOptionsLeft.subMenuOptions.subText   | String      | no       |                   |                                                            | Sub text of sub-menu-option                                                                                                                                                                                                                                                           |
-| menuOptionsLeft.subMenuOptions.path      | String      | yes      |                   |                                                            | Link path of sub-menu-option                                                                                                                                                                                                                                                          |
-| menuOptionsLeft.subMenuOptions.iconLeft  | HTML String | no       |                   |                                                            | HTML string of the icon you want to use. See more info on the `Icon` section of the README.|
-| menuOptionsLeft.subMenuOptions.iconRight | HTML String | no       |                   |                                                            | HTML string of the icon you want to use. See more info on the `Icon` section of the README.|
-| menuOptionsRight                         | Object      | no       | {}                |                                                            | Menu options that will be pushed to the right of the navbar. See above - all `menuOptionsLeft` apply                                                                                                                                                                                  |
+| menuOptionsLeft                          | Object      | no       | {}                |                                                              | Menu options that will be _pulled_ to the left towards the `brand-image`                                                                                                                                                                                                              |
+| menuOptionsLeft.type                     | String      | yes      |                   | 'link', 'button', 'spacer', 'dropdown'                       | What type of link will this menu-option be? `link` will be a link, `button` will be a button, `spacer` will be a spacer with a width of `30px` , `dropdown` will create a dropdown on desktop and a `ul/li` list on mobile. `dropdown` only works on menuOptions, not subMenuOptions. |
+| menuOptionsLeft.text                     | String      | yes      |                   |                                                              | Text of menu-option                                                                                                                                                                                                                                                                   |
+| menuOptionsLeft.path                     | String      | yes      |                   |                                                              | Link path of menu-option. Not applicable to `dropdown` menuOption types.                                                                                                                                                                                                              |
+| menuOptionsLeft.class                    | String      | no       |                   |                                                              | Only for `menuOptionsLeft.type === 'button'` - provide a class name so you can style your buttons                                                                                                                                                                                     |
+| menuOptionsLeft.isLinkAction             | Boolean     | no       | false             |                                                              | When `true` , the `path` option of the `menuOption` will not fire - instead, you'll be able to register for the `@vnb-item-clicked` event which will spit you out the `text` value of your `menuOption` . That way, you can do an action you may want to trigger.                     |
+| menuOptionsLeft.iconLeft                 | HTML String | no       |                   |                                                              | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'` . HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                        |
+| menuOptionsLeft.iconRight                | HTML String | no       |                   |                                                              | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'` . HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                        |
+| menuOptionsLeft.subMenuOptions           | Object      | no       |                   |                                                              | Sub-menu-options that will be shown                                                                                                                                                                                                                                                   |
+| menuOptionsLeft.subMenuOptions.type      | String      | yes      |                   | 'link', 'hr'                                                 | What type of link will this sub-menu-option be? `link` will be a link, `hr` will be a `hr` spacer                                                                                                                                                                                     |
+| menuOptionsLeft.subMenuOptions.text      | String      | yes      |                   |                                                              | Text of sub-menu-option                                                                                                                                                                                                                                                               |
+| menuOptionsLeft.subMenuOptions.subText   | String      | no       |                   |                                                              | Sub text of sub-menu-option                                                                                                                                                                                                                                                           |
+| menuOptionsLeft.subMenuOptions.path      | String      | yes      |                   |                                                              | Link path of sub-menu-option                                                                                                                                                                                                                                                          |
+| menuOptionsLeft.subMenuOptions.iconLeft  | HTML String | no       |                   |                                                              | HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                                                                                                           |
+| menuOptionsLeft.subMenuOptions.iconRight | HTML String | no       |                   |                                                              | HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                                                                                                           |
+| menuOptionsRight                         | Object      | no       | {}                |                                                              | Menu options that will be pushed to the right of the navbar. See above - all `menuOptionsLeft` apply                                                                                                                                                                                  |
 
 ### Events
 
@@ -270,7 +278,7 @@ Sometimes you may want your links to perform an action instead of following a li
 | ----------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | vnb-mobile-popup-shown  | null                      | Emitted when the mobile popup is shown                                                                                                                                              |
 | vnb-mobile-popup-hidden | null                      | Emitted when the mobile popup is hidden                                                                                                                                             |
-| vnb-item-clicked        | String, `menuOption.text` | Emitted when a menu option is clicked. Listen to this event to then trigger a function based on the returned value, which is the `text` value of the `menuOption` that was clicked.|
+| vnb-item-clicked        | String, `menuOption.text` | Emitted when a menu option is clicked. Listen to this event to then trigger a function based on the returned value, which is the `text` value of the `menuOption` that was clicked. |
 
 ### Methods
 
@@ -285,11 +293,11 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />` , some
 
 | name           | description                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| custom-section | Use this to provide custom content in the navbar. Checkout the example code - in the commented-out section is an example search-bar setup.|
+| custom-section | Use this to provide custom content in the navbar. Checkout the example code - in the commented-out section is an example search-bar setup. |
 
 ### SCSS Structure
 
-``` scss
+```scss
 .vnb {
   &__brand-image-wrapper {
     &__link {
@@ -301,45 +309,45 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />` , some
   &__menu-options {
     &--left {
     }
-    
+
     &--right {
     }
-    
+
     &__option {
       &__link {
         &:hover {
         }
-    
+
         &__icon {
           svg {
           }
-    
+
           &--left {
           }
-    
+
           &--right {
           }
         }
       }
-    
+
       &__arrow {
         &--hover {
         }
       }
-    
+
       &__button {
         &__icon {
           svg {
           }
-    
+
           &--left {
           }
-    
+
           &--right {
           }
         }
       }
-    
+
       &__spacer {
       }
     }
@@ -350,27 +358,27 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />` , some
       &__link {
         &:hover {
         }
-    
+
         &__icon {
           svg {
           }
-    
+
           &--left {
           }
-    
+
           &--right {
           }
         }
-    
+
         &__text-wrapper {
           &__text {
           }
-    
+
           &__sub-text {
           }
         }
       }
-    
+
       &__hr {
       }
     }
@@ -379,7 +387,7 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />` , some
   &__collapse-button {
     &:hover {
     }
-    
+
     &__image {
     }
   }
@@ -388,54 +396,54 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />` , some
     &__top {
       &__image {
       }
-    
+
       &__close-button {
         &:hover {
         }
-    
+
         &__image {
         }
       }
     }
-    
+
     &__bottom {
       &__custom-section {
       }
-    
+
       &__menu-options {
         &__option {
           &:not(:last-child) {
           }
-    
+
           &__link {
             &:hover {
             }
-    
+
             &--no-highlight {
               &:hover {
               }
             }
-    
+
             &__icon {
               svg {
               }
-    
+
               &--left {
               }
-    
+
               &--right {
               }
             }
           }
         }
       }
-    
+
       &__sub-menu-options {
         &__option {
           &__link {
             &:hover {
             }
-    
+
             &__sub-text {
             }
           }
@@ -463,9 +471,9 @@ Throughout the development of this component I've been making sure to allow for 
 
 ### Browser Support
 
-To have this work with a browser like IE11, stick this at the bottom of your `index.html` 
+To have this work with a browser like IE11, stick this at the bottom of your `index.html`
 
-``` html
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js"></script>
 ```
 
@@ -473,7 +481,7 @@ Or, you can install `babel-polyfill` and import that in the main script of your 
 
 ### Development
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -495,11 +503,11 @@ npm run build
 
 ### TODO
 
-* ~~Add an optional search input bar.~~ What I've done is add an optional `slot` named `custom-section` . Use this `slot` to add whatever custom content you want to show in the nav bar. In the demo, I have an example search bar shown. Look at the `./example` folder to check it out.
+- ~~Add an optional search input bar.~~ What I've done is add an optional `slot` named `custom-section` . Use this `slot` to add whatever custom content you want to show in the nav bar. In the demo, I have an example search bar shown. Look at the `./example` folder to check it out.
 
-* See if there's a way to let users pass a component for an icon and not be limited to HTML strings of the icon they want.
+- See if there's a way to let users pass a component for an icon and not be limited to HTML strings of the icon they want.
 
-* Add more thorough tests.
+- Add more thorough tests.
 
 ### Other
 
@@ -516,4 +524,3 @@ Thank you to [Stripe](https://stripe.com/) for making that sick navbar - absolut
 [MIT](http://opensource.org/licenses/MIT)
 
 Packaged with a mixture of [vue-lib-template](https://github.com/biigpongsatorn/vue-lib-template) and [vue-sfc-rollup](https://github.com/team-innovation/vue-sfc-rollup).
-
