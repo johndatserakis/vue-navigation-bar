@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const env = process.env.NODE_ENV || "development";
 
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
@@ -96,12 +96,20 @@ const config = {
       filename: env === "development" ? "[name].css" : "[name].[hash].css",
       chunkFilename: env === "development" ? "[id].css" : "[id].[hash].css"
     }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, "src", "assets", "images", "favicon.png"),
-        to: "./favicon.png"
-      }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(
+            __dirname,
+            "src",
+            "assets",
+            "images",
+            "favicon.png"
+          ),
+          to: "./favicon.png"
+        }
+      ]
+    })
   ],
   resolve: {
     extensions: [".js", ".json"],

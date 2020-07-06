@@ -1,11 +1,15 @@
-import vue from 'rollup-plugin-vue';
-import url from "rollup-plugin-url"
-import css from 'rollup-plugin-css-only'
-import buble from 'rollup-plugin-buble';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
-import minimist from 'minimist';
+import vue from "rollup-plugin-vue";
+import url from "rollup-plugin-url";
+import url from "@rollup/plugin-url";
+import css from "rollup-plugin-css-only";
+import buble from "rollup-plugin-buble";
+import commonjs from "rollup-plugin-commonjs";
+import resolve from "rollup-plugin-node-resolve";
+import buble from "@rollup/plugin-buble";
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
+import { terser } from "rollup-plugin-terser";
+import minimist from "minimist";
 
 const argv = minimist(process.argv.slice(2));
 

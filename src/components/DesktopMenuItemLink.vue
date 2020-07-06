@@ -109,7 +109,7 @@
 <script>
 import DynamicLink from "../components/DynamicLink.vue";
 import "tippy.js/themes/light.css";
-import tippy from "tippy.js";
+import tippy, {animateFill} from "tippy.js";
 
 export default {
   name: "desktop-menu-item-link",
@@ -185,7 +185,7 @@ export default {
         content: template,
         interactive: true,
         animation: this.options.tooltipAnimationType,
-        animateFill: true,
+        plugins: [animateFill],
         role: "Menu",
         // trigger: 'click', // for testing
         trigger: "click mouseenter focus",
