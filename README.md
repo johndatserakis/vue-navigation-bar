@@ -35,15 +35,14 @@ Or you can include it through the browser at the bottom of your page along with 
 
 ```html
 <!-- Please note if you're using the browser method you're going to want to
-adjust the version number as needed. The number given here is just an
-initial version. -->
+adjust the version number as needed. -->
 
-<script src="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.min.js"></script>
+<script src="https://unpkg.com/vue-navigation-bar@X.X.X/dist/vue-navigation-bar.min.js"></script>
 
 <link
   rel="stylesheet"
   type="text/css"
-  href="https://unpkg.com/vue-navigation-bar@1.0.9/dist/vue-navigation-bar.css"
+  href="https://unpkg.com/vue-navigation-bar@X.X.X/dist/vue-navigation-bar.css"
 />
 ```
 
