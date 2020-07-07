@@ -109,7 +109,8 @@
 <script>
 import DynamicLink from "../components/DynamicLink.vue";
 import "tippy.js/themes/light.css";
-import tippy from "tippy.js";
+import 'tippy.js/animations/shift-away.css';
+import tippy, {animateFill} from "tippy.js";
 
 export default {
   name: "desktop-menu-item-link",
