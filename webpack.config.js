@@ -68,7 +68,10 @@ const config = {
         use: [
           {
             loader: "file-loader",
-            options: {}
+            options: {
+              // https://github.com/vuejs/vue-loader/issues/1612#issuecomment-614542603
+              esModule: false
+            }
           }
         ]
       }

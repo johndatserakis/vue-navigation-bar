@@ -2,10 +2,10 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue-screen-size'), require('tippy.js'), require('vue2-transitions')) :
   typeof define === 'function' && define.amd ? define(['exports', 'vue-screen-size', 'tippy.js', 'vue2-transitions'], factory) :
   (global = global || self, factory(global.VueNavigationBar = {}, global.VueScreenSize, global.tippy, global.Vue2Transitions));
-}(this, function (exports, VueScreenSize, tippy, vue2Transitions) { 'use strict';
+}(this, (function (exports, VueScreenSize, tippy, vue2Transitions) { 'use strict';
 
-  VueScreenSize = VueScreenSize && VueScreenSize.hasOwnProperty('default') ? VueScreenSize['default'] : VueScreenSize;
-  tippy = tippy && tippy.hasOwnProperty('default') ? tippy['default'] : tippy;
+  VueScreenSize = VueScreenSize && Object.prototype.hasOwnProperty.call(VueScreenSize, 'default') ? VueScreenSize['default'] : VueScreenSize;
+  tippy = tippy && Object.prototype.hasOwnProperty.call(tippy, 'default') ? tippy['default'] : tippy;
 
   // https://stackoverflow.com/a/2117523/8014660
   function uuidV4() {
@@ -49,90 +49,80 @@
     }
   };
 
-  function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
-  /* server only */
-  , shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
-    if (typeof shadowMode !== 'boolean') {
-      createInjectorSSR = createInjector;
-      createInjector = shadowMode;
-      shadowMode = false;
-    } // Vue.extend constructor export interop.
-
-
-    var options = typeof script === 'function' ? script.options : script; // render functions
-
-    if (template && template.render) {
-      options.render = template.render;
-      options.staticRenderFns = template.staticRenderFns;
-      options._compiled = true; // functional template
-
-      if (isFunctionalTemplate) {
-        options.functional = true;
+  function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+      if (typeof shadowMode !== 'boolean') {
+          createInjectorSSR = createInjector;
+          createInjector = shadowMode;
+          shadowMode = false;
       }
-    } // scopedId
-
-
-    if (scopeId) {
-      options._scopeId = scopeId;
-    }
-
-    var hook;
-
-    if (moduleIdentifier) {
-      // server build
-      hook = function hook(context) {
-        // 2.3 injection
-        context = context || // cached call
-        this.$vnode && this.$vnode.ssrContext || // stateful
-        this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
-        // 2.2 with runInNewContext: true
-
-        if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-          context = __VUE_SSR_CONTEXT__;
-        } // inject component styles
-
-
-        if (style) {
-          style.call(this, createInjectorSSR(context));
-        } // register component module identifier for async chunk inference
-
-
-        if (context && context._registeredComponents) {
-          context._registeredComponents.add(moduleIdentifier);
-        }
-      }; // used by ssr in case component is cached and beforeCreate
-      // never gets called
-
-
-      options._ssrRegister = hook;
-    } else if (style) {
-      hook = shadowMode ? function () {
-        style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
-      } : function (context) {
-        style.call(this, createInjector(context));
-      };
-    }
-
-    if (hook) {
-      if (options.functional) {
-        // register for functional component in vue file
-        var originalRender = options.render;
-
-        options.render = function renderWithStyleInjection(h, context) {
-          hook.call(context);
-          return originalRender(h, context);
-        };
-      } else {
-        // inject component registration as beforeCreate hook
-        var existing = options.beforeCreate;
-        options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+      // Vue.extend constructor export interop.
+      var options = typeof script === 'function' ? script.options : script;
+      // render functions
+      if (template && template.render) {
+          options.render = template.render;
+          options.staticRenderFns = template.staticRenderFns;
+          options._compiled = true;
+          // functional template
+          if (isFunctionalTemplate) {
+              options.functional = true;
+          }
       }
-    }
-
-    return script;
+      // scopedId
+      if (scopeId) {
+          options._scopeId = scopeId;
+      }
+      var hook;
+      if (moduleIdentifier) {
+          // server build
+          hook = function (context) {
+              // 2.3 injection
+              context =
+                  context || // cached call
+                      (this.$vnode && this.$vnode.ssrContext) || // stateful
+                      (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+              // 2.2 with runInNewContext: true
+              if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                  context = __VUE_SSR_CONTEXT__;
+              }
+              // inject component styles
+              if (style) {
+                  style.call(this, createInjectorSSR(context));
+              }
+              // register component module identifier for async chunk inference
+              if (context && context._registeredComponents) {
+                  context._registeredComponents.add(moduleIdentifier);
+              }
+          };
+          // used by ssr in case component is cached and beforeCreate
+          // never gets called
+          options._ssrRegister = hook;
+      }
+      else if (style) {
+          hook = shadowMode
+              ? function (context) {
+                  style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
+              }
+              : function (context) {
+                  style.call(this, createInjector(context));
+              };
+      }
+      if (hook) {
+          if (options.functional) {
+              // register for functional component in vue file
+              var originalRender = options.render;
+              options.render = function renderWithStyleInjection(h, context) {
+                  hook.call(context);
+                  return originalRender(h, context);
+              };
+          }
+          else {
+              // inject component registration as beforeCreate hook
+              var existing = options.beforeCreate;
+              options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+          }
+      }
+      return script;
   }
-
-  var normalizeComponent_1 = normalizeComponent;
 
   /* script */
   var __vue_script__ = script;
@@ -151,15 +141,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var DynamicLink = normalizeComponent_1(
+    var __vue_component__ = /*#__PURE__*/normalizeComponent(
       {},
       __vue_inject_styles__,
       __vue_script__,
       __vue_scope_id__,
       __vue_is_functional_template__,
       __vue_module_identifier__,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -180,7 +174,7 @@
     computed: {},
     methods: {},
     components: {
-      DynamicLink: DynamicLink
+      DynamicLink: __vue_component__
     }
   };
 
@@ -242,15 +236,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var BrandImage = normalizeComponent_1(
+    var __vue_component__$1 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
       __vue_inject_styles__$1,
       __vue_script__$1,
       __vue_scope_id__$1,
       __vue_is_functional_template__$1,
       __vue_module_identifier__$1,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -333,7 +331,7 @@
           content: template,
           interactive: true,
           animation: this.options.tooltipAnimationType,
-          animateFill: true,
+          plugins: [animateFill],
           role: "Menu",
           // trigger: 'click', // for testing
           trigger: "click mouseenter focus",
@@ -366,7 +364,7 @@
       }
     },
     components: {
-      DynamicLink: DynamicLink
+      DynamicLink: __vue_component__
     }
   };
 
@@ -589,15 +587,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var DesktopMenuItemLink = normalizeComponent_1(
+    var __vue_component__$2 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
       __vue_inject_styles__$2,
       __vue_script__$2,
       __vue_scope_id__$2,
       __vue_is_functional_template__$2,
       __vue_module_identifier__$2,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -621,7 +623,7 @@
     computed: {},
     methods: {},
     components: {
-      DynamicLink: DynamicLink
+      DynamicLink: __vue_component__
     }
   };
 
@@ -686,15 +688,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var DesktopMenuItemButton = normalizeComponent_1(
+    var __vue_component__$3 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
       __vue_inject_styles__$3,
       __vue_script__$3,
       __vue_scope_id__$3,
       __vue_is_functional_template__$3,
       __vue_module_identifier__$3,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -748,15 +754,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var DesktopMenuItemSpacer = normalizeComponent_1(
+    var __vue_component__$4 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
       __vue_inject_styles__$4,
       __vue_script__$4,
       __vue_scope_id__$4,
       __vue_is_functional_template__$4,
       __vue_module_identifier__$4,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -786,9 +796,9 @@
       }
     },
     components: {
-      DesktopMenuItemLink: DesktopMenuItemLink,
-      DesktopMenuItemButton: DesktopMenuItemButton,
-      DesktopMenuItemSpacer: DesktopMenuItemSpacer
+      DesktopMenuItemLink: __vue_component__$2,
+      DesktopMenuItemButton: __vue_component__$3,
+      DesktopMenuItemSpacer: __vue_component__$4
     }
   };
 
@@ -855,15 +865,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var MenuOptions = normalizeComponent_1(
+    var __vue_component__$5 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
       __vue_inject_styles__$5,
       __vue_script__$5,
       __vue_scope_id__$5,
       __vue_is_functional_template__$5,
       __vue_module_identifier__$5,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -947,15 +961,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var CollapseButton = normalizeComponent_1(
+    var __vue_component__$6 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
       __vue_inject_styles__$6,
       __vue_script__$6,
       __vue_scope_id__$6,
       __vue_is_functional_template__$6,
       __vue_module_identifier__$6,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -995,7 +1013,7 @@
       }
     },
     components: {
-      DynamicLink: DynamicLink,
+      DynamicLink: __vue_component__,
       SlideYDownTransition: vue2Transitions.SlideYDownTransition
     }
   };
@@ -1209,15 +1227,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var Popup = normalizeComponent_1(
+    var __vue_component__$7 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
       __vue_inject_styles__$7,
       __vue_script__$7,
       __vue_scope_id__$7,
       __vue_is_functional_template__$7,
       __vue_module_identifier__$7,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1303,10 +1325,10 @@
       }
     },
     components: {
-      BrandImage: BrandImage,
-      MenuOptions: MenuOptions,
-      CollapseButton: CollapseButton,
-      Popup: Popup
+      BrandImage: __vue_component__$1,
+      MenuOptions: __vue_component__$5,
+      CollapseButton: __vue_component__$6,
+      Popup: __vue_component__$7
     }
   };
 
@@ -1402,15 +1424,19 @@
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    var component = normalizeComponent_1(
+    var __vue_component__$8 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
       __vue_inject_styles__$8,
       __vue_script__$8,
       __vue_scope_id__$8,
       __vue_is_functional_template__$8,
       __vue_module_identifier__$8,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1421,7 +1447,7 @@
   function install(Vue) {
     if (install.installed) { return; }
     install.installed = true;
-    Vue.component("VueNavigationBar", component);
+    Vue.component("VueNavigationBar", __vue_component__$8);
   }
 
   // Create module definition for Vue.use()
@@ -1444,9 +1470,9 @@
   // also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
   // export const RollupDemoDirective = component;
 
-  exports.default = component;
+  exports.default = __vue_component__$8;
   exports.install = install;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
