@@ -1,9 +1,9 @@
+import url from '@rollup/plugin-url';
+import buble from '@rollup/plugin-buble';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 import vue from 'rollup-plugin-vue';
-import url from "rollup-plugin-url"
-import css from 'rollup-plugin-css-only'
-import buble from 'rollup-plugin-buble';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
+import css from 'rollup-plugin-css-only';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 

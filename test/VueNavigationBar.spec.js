@@ -158,6 +158,6 @@ describe("VueNavigationBar.vue", () => {
       }
     });
 
-    expect(wrapper.find({ name: "vue-navigation-bar" })).toBeTruthy();
+    expect(wrapper.findComponent({ name: "vue-navigation-bar" })).toBeTruthy();
   });
 });
