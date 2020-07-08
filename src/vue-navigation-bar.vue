@@ -113,7 +113,7 @@ export default {
           : "Main Navigation",
         tooltipAnimationType: this.options.tooltipAnimationType
           ? this.options.tooltipAnimationType
-          : "fade",
+          : "shift-away",
         menuOptionsLeft: this.options.menuOptionsLeft
           ? this.options.menuOptionsLeft
           : [],
