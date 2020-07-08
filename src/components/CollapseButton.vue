@@ -58,10 +58,6 @@ export default {
         collapseButtonClicked () {
             this.$emit('collapse-button-clicked')
         }
-    },
-    created() {
-        console.log(this.options);
-        
     }
 }
 </script>
