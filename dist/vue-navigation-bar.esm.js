@@ -326,7 +326,6 @@ var script$2 = {
         content: template,
         interactive: true,
         animation: this.options.tooltipAnimationType,
-        plugins: [animateFill],
         role: "Menu",
         // trigger: 'click', // for testing
         trigger: "click mouseenter focus",
