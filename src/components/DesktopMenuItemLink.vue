@@ -268,7 +268,7 @@ export default {
 
       &__arrow {
         max-height: 5px;
-        width: 25px;
+        max-width: 25px;
         transition: transform 0.2s ease-in-out;
 
         &--hover {
