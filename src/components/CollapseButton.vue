@@ -12,12 +12,23 @@
             :alt="'Menu'"
             class="vnb__collapse-button__image"
         >
-        <img
+         <svg 
             v-else
-            :src="require('../assets/images/collapse-menu-dark.png')"
-            :alt="'Menu'"
+            height="100pt" 
+            preserveAspectRatio="xMidYMid meet" 
+            viewBox="0 0 100 100" 
+            width="100pt" 
+            xmlns="http://www.w3.org/2000/svg"
             class="vnb__collapse-button__image"
+            :style="{ fill: options.collapseButtonColor }"
         >
+            <title>Menu</title>
+            <g transform="matrix(.1 0 0 -.1 0 100)">
+                <path d="m0 850v-40h500 500v40 40h-500-500z"/>
+                <path d="m0 495v-45h500 500v45 45h-500-500z"/>
+                <path d="m0 140v-40h500 500v40 40h-500-500z"/>
+            </g>
+        </svg>
     </button>
 </template>
 
@@ -47,6 +58,10 @@ export default {
         collapseButtonClicked () {
             this.$emit('collapse-button-clicked')
         }
+    },
+    created() {
+        console.log(this.options);
+        
     }
 }
 </script>
@@ -67,6 +82,7 @@ export default {
 
             &__image {
                 max-height: 30px;
+                max-width: 30px;
             }
         }
     }

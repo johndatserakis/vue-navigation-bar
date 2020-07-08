@@ -105,6 +105,12 @@ export default {
         collapseButtonImageClose: this.options.collapseButtonImageClose
           ? this.options.collapseButtonImageClose
           : null,
+        collapseButtonColor: this.options.collapseButtonColor
+          ? this.options.collapseButtonColor
+          : '#373737',
+        popupCloseButtonColor: this.options.popupCloseButtonColor
+          ? this.options.popupCloseButtonColor
+          : '#373737',
         showBrandImageInMobilePopup: this.options.showBrandImageInMobilePopup
           ? true
           : false,
