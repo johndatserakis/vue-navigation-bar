@@ -116,8 +116,10 @@ export default {
         brandImagePath: "./",
         brandImage: require("../src/assets/images/lockup-color.png"),
         brandImageAltText: "brand-image",
-        collapseButtonImageOpen: require("../src/assets/images/collapse-menu-dark.png"),
-        collapseButtonImageClose: require("../src/assets/images/times.png"),
+        collapseButtonImageOpen: require("../src/assets/images/collapse-menu-dark.svg"),
+        collapseButtonImageClose: require("../src/assets/images/times.svg"),
+        collapseButtonColor: "#dc3545",
+        popupCloseButtonColor: "#dc3545",
         showBrandImageInMobilePopup: true,
         ariaLabelMainNav: "Main Navigation",
         tooltipAnimationType: "shift-away",
@@ -125,6 +127,7 @@ export default {
           {
             type: "link",
             text: "Why Dunder Mifflin",
+            arrowColor: "#659CC8",
             subMenuOptions: [
               {
                 isLinkAction: true,

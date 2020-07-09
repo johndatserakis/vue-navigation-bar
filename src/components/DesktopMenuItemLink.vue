@@ -42,15 +42,21 @@
       class="vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--right"
       v-html="option.iconRight"
     ></span>
-
-    <img
-      :src="require('../assets/images/chevron-down.png')"
-      alt="arrow"
+    <svg 
+      height="28pt" 
+      preserveAspectRatio="xMidYMid meet" 
+      viewBox="0 0 49 28" 
+      width="49pt" 
+      xmlns="http://www.w3.org/2000/svg"
+      :style="{ fill: option.arrowColor }"
       :class="[
         'vnb__menu-options__option__arrow',
         { 'vnb__menu-options__option__arrow--hover': isExpanded }
       ]"
-    />
+    >
+      <title>Toggle Arrow</title>
+      <path d="m12 268c-7-7-12-17-12-23 0-13 232-245 245-245 6 0 64 54 129 119 119 119 132 142 90 158-11 4-44-23-113-91-53-53-101-96-106-96-6 0-53 43-105 95s-99 95-105 95-16-5-23-12z" transform="matrix(.1 0 0 -.1 0 28)"/>
+    </svg>
 
     <div
       class="vnb__sub-menu-options"
@@ -264,8 +270,8 @@ export default {
       }
 
       &__arrow {
-        margin-left: 8px;
         max-height: 5px;
+        max-width: 25px;
         transition: transform 0.2s ease-in-out;
 
         &--hover {
