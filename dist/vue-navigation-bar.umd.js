@@ -367,10 +367,9 @@
     }
   };
 
-  var __$_require_assets_images_chevron_down_png__ = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAcCAYAAADIrlf0AAAABGdBTUEAALGPC/xhBQAAAwNJREFUWAnNmMuOUkEQhjmczSzQeIsJl5Ub4xqYicbEhU+i4szAjFFHjYkuJG7c6Nx0bgzqxoVPoHESo4lL4BVcwguwc3H8f9JFoO0+F2gMnTB1qqu6qr6ubhjwU2qUSqVn2Wz2cy6XO9Pr9X7I/LzJYrH4EjV+yufzC91u9xfr8/kHhlcQL/A6hdcNOJyHw1c8z9XARu+ioCd4sc6bgFnAhn/32QFMEGB0LAHkwjyBoM63QRDcGy0Sz9dR5x+fRwgKyfSxOC8gCmBdL1DpV9J4aFqMKZCvI8A7m/1/zDM/6wjJ1fRxpn7ibJ2D05LFcRH2i/D7YrHPbBp3dQ/B10IS7HY6nafsRAoP9yF4aWyjxoDYEc/m4HKeeRRALSQuAVh3aqwoLNzG3MBgWXzQbrfXPM8LLPappwmAI8QOVEOC7QDggdgHnRBFGXZEN8hquVzen1VHGJfxkTc2AGsc64QUHdURdOKw1WrVXHZEACBXpQ6DHOuA2I0QNMYAOQJI1QWIAjiAXJHCDNIIQL+x4zS6MOpoMSFaf8gCRtclfVYAjGMFwEZtj94BPUdkAbhkW0gwvET/BPC8BjqyOklHCID4R4h5V48rOgHwZvJQdJOMhOCiKBC4HCPRShIQVwCsLxYEHWOANAGyHAdEATQQtsLYphGnA7LOeifEQSRbysCiG2QFd+SYBRpswyna6YcJJwAMHBuCzlEgKPBOGIgA0I/xTAMbtcU8JpttLnTXbItwtDZRiDURCvmAy16BHH6yK4Am5G1bXAWwYbPb5hN1QoJgpzaYUHRdslB05H29Xh/Ep6Q+CwDmnqgTUnSMjnzMZDLL/X6/AYBbsk6Xk3ZA4kwFwSAxQH4D4JIk1CUANtHZR/p8En3wHTvJAt0XX2G/4Rvgacxf1W1KP2uZT7kAYOypIRgEICcRIHQbG64AGNQJBAMlAXEJ4BQiLohrAOcQUSCzAJgJhIDgxwX+DHSNuhpv8O/0Y1FcSmd3Qi8Kv46cFAoFvLsGl9Pp9Gu8jT7XfVzpfwGfPX59eVOliAAAAABJRU5ErkJggg==";
-
   /* script */
   var __vue_script__$2 = script$2;
+  /* template */
   var __vue_render__$1 = function() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -440,16 +439,34 @@
                 })
               : _vm._e(),
             _vm._v(" "),
-            _c("img", {
-              class: [
-                "vnb__menu-options__option__arrow",
-                { "vnb__menu-options__option__arrow--hover": _vm.isExpanded }
-              ],
-              attrs: {
-                src: __$_require_assets_images_chevron_down_png__,
-                alt: "arrow"
-              }
-            }),
+            _c(
+              "svg",
+              {
+                class: [
+                  "vnb__menu-options__option__arrow",
+                  { "vnb__menu-options__option__arrow--hover": _vm.isExpanded }
+                ],
+                style: { fill: _vm.option.arrowColor },
+                attrs: {
+                  height: "28pt",
+                  preserveAspectRatio: "xMidYMid meet",
+                  viewBox: "0 0 49 28",
+                  width: "49pt",
+                  xmlns: "http://www.w3.org/2000/svg"
+                }
+              },
+              [
+                _c("title", [_vm._v("Toggle Arrow")]),
+                _vm._v(" "),
+                _c("path", {
+                  attrs: {
+                    d:
+                      "m12 268c-7-7-12-17-12-23 0-13 232-245 245-245 6 0 64 54 129 119 119 119 132 142 90 158-11 4-44-23-113-91-53-53-101-96-106-96-6 0-53 43-105 95s-99 95-105 95-16-5-23-12z",
+                    transform: "matrix(.1 0 0 -.1 0 28)"
+                  }
+                })
+              ]
+            ),
             _vm._v(" "),
             _vm.option.type === "link"
               ? _c(
@@ -909,10 +926,9 @@
       }
   };
 
-  var __$_require_assets_images_collapse_menu_dark_png__ = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAcVJREFUeAHt3UFqwkAUBmCTanoJl80JxIJX6Lon6BXaGxS6qb1J172MJ3EE0zctLRIQd5kBv4EBkwjv8f0JGsiQ2cwgQIAAAQIECBAgQIAAAQIECBA4I9CsVqu3OPYcszvzHbunEUhR5iMHkj8spqmpygWBQyuMC0TTHl7kQIyKBARSURi5FYFUGEj+UTfqEEg3y+XyNnq5j5mvlsEsY9A0zb5t2/fwNwgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBK5ToNlsNncppcd4rtSStoLnwPF4TF3Xfc4jjK/oo48dBdtROgtEFk/5ifceRzUCvQU71WTx24hABFKZQGXtuEIqDGRXWU/X3M5uHv99H9yHlD8H/u5DyneiAwIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUICzXq9fh2G4SWmNYaFQshl4/0hKeY2vzZvH9vCKBjGSemU14cI40Sk8MfOgp3CCYzLC2QsUnhbIIUDGJfPgRzGO20XE/h5F+42ynuXYbEM/gvnDHIWBgECBAgQIECAAAECBAgQIFCNwDcsuZak5BfxfwAAAABJRU5ErkJggg==";
-
   /* script */
   var __vue_script__$6 = script$6;
+  /* template */
   var __vue_render__$5 = function() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -934,13 +950,41 @@
                   staticClass: "vnb__collapse-button__image",
                   attrs: { src: _vm.options.collapseButtonImageOpen, alt: "Menu" }
                 })
-              : _c("img", {
-                  staticClass: "vnb__collapse-button__image",
-                  attrs: {
-                    src: __$_require_assets_images_collapse_menu_dark_png__,
-                    alt: "Menu"
-                  }
-                })
+              : _c(
+                  "svg",
+                  {
+                    staticClass: "vnb__collapse-button__image",
+                    style: { fill: _vm.options.collapseButtonOpenColor },
+                    attrs: {
+                      height: "100pt",
+                      preserveAspectRatio: "xMidYMid meet",
+                      viewBox: "0 0 100 100",
+                      width: "100pt",
+                      xmlns: "http://www.w3.org/2000/svg"
+                    }
+                  },
+                  [
+                    _c("title", [_vm._v("Menu")]),
+                    _vm._v(" "),
+                    _c(
+                      "g",
+                      { attrs: { transform: "matrix(.1 0 0 -.1 0 100)" } },
+                      [
+                        _c("path", {
+                          attrs: { d: "m0 850v-40h500 500v40 40h-500-500z" }
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: { d: "m0 495v-45h500 500v45 45h-500-500z" }
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: { d: "m0 140v-40h500 500v40 40h-500-500z" }
+                        })
+                      ]
+                    )
+                  ]
+                )
           ]
         )
       : _vm._e()
@@ -1017,10 +1061,9 @@
     }
   };
 
-  var __$_require_assets_images_times_png__ = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAABYpJREFUeAHt3M1rG0cUAHBJSQ7Of2DZ0NYBB1LwobaQ8cmF3ipDLzoUCoEc3HPpucX5Fwo9tFCo+3EylLb4XpcEQrF9aIkvNsHJwRL0UHpwfLLjvqdotqvVzu7Oaj7eW70BsbvzrfdDGklotlaTRCoCN3SzabVaC7Ozs/P9fv9vXR3JN49Au91empubu312dvZvWutGWiZgvHd9ff0Uyv5aXl7+emtrK7VeWlvJS49At9u9sbKy8s3l5eWfV1dXTyGu76bVrCczhxi/AsiMKqvX6z90Op37APNK5cmxeAQQ4/T09HuI6YexVhdw3jk8PPwtllcbectKwxhWXjo5Obmzubn5y97e3nW8AznPjoAGAxvdgke32Ww+gWXhOZwPUgQyfAntxl8ZqtLwKCiJgORdZmCopgOU+fn5x71e7wVmxteGhxkYgw6g/KPd3d1tWVNUPPXHAhiq8W2I60N1EYHAOvGTysw6CkpWdF6XGWAMGkBMo9hHILBof4GLd/5wtZqg6KNkigE9bW9sbHypeozWEFyscdHGxRsKl1SFjKOsKYnglMR4EP/0GoFg34KSiLDBpQ0MHG4EBDMEBaNglmxh4KhjIJgpKBiFYskmBo6YCoIFgoJRyE62MXA0LQgWCgpGIT25wMCRMkGwgqBgFEaTKwwcJRcEKwkKRuF1comBIxQCwYqCAr8Epv9qi+HRJfzSN/I9Q1dR5RcGwQbTjOIDA2NsBDKtKL4wSoFMG4pPjNIg04LiG2MikKqjhMCYGKSqKKEwrIBUDSUkhjWQqqCExrAKwh2FAoZ1EK4oVDCcgHBDoYThDIQLCjUMpyDUUShiOAehikIVwwsINRTKGN5AqKBQx/AKEhqFA4Z3kFAoXDCCgPhG4YQRDMQXCjeMoCCuUThiBAdxhcIVgwSIbRTOGGRAbKFwx8A4jG2LxsyQCfcv4j5G3KVVZB5qy/bR0VE9ZetxVhfGf2LL6sxWGTkQfGKmKNDkR4BpAGJ8H3hWjEhi4IRJguDESqBgsyKJLAZO3vifi0WesY06Jf62WmRY0hj4BMiC4OQso5DHIA9iEYUFBgsQCyhsMPC5kl3UcXLJtL6+fvP8/PwYPk29lSzTXD9bWFi4u7Ozc6UpJ5cd3cmB3MwSE8IvfYDxnQEG9nAHvpt8i5/YEt2RvSS9qKuolfgGrprikdUdJ8iDTIihYNigkAaxhMEKhSyIZQw2KCRBSmBsw29ZeNNO9ncxIgdSBgO3Hi8uLv5chVtLkQIpiwEfa1+V+JmF5EJPBmQSDLVAVAGFBIgNjKqgBAexiVEFlKAgLjC4owQDcYnBGSUIiA8MrijeQXxicETxChICgxuKN5CQGJxQvIBQwOCC4hyEEgYHFKcgFDGoozgDoYxBGcUJCAcMqijWQThhUESxCsIRgxqKNRDOGJRQrIBUAYMKysQgVcKggDIRSBUxQqOUBqkyRkiUUiDTgBEKxRhkmjBCoBiBTCOGb5TCINOM4ROlEIhgKJJSG1GN/iGZCyIY/2OoM5f/kMwEEQxFMH50haIFEYxxhGSOC5RUEMFIhl5/bRtlDEQw9MHXldhEGQERDF3I8/NtoUQggpEf9LwaNlAikJmZmU9gwE/zBh2Ws7pdRcHnZKVaGZTj4+N/+v3+HziB+B0OPig4I8HICRRuset0Ovfxbnc5VVVxFPsIpNFofAalF6qG5igYmsAksw1QXkLbz1X76C2r1+u9aDabT6CgC49bqkLsKBixYBQ5LfD29RJeCO8fHBw8Uv1FIJgB72PPNSiCoSJmeMxAGWDs7+//Hu9yBAQLEig34X3wK9gH/jG+BOMN5bx4BGIos9DqHXhc4CsjiZHZ4+rq6pvtdvteZiUpNI5Aq9V6e21t7Q3jhtJAIiARgAj8B7kNT6PB1/G8AAAAAElFTkSuQmCC";
-
   /* script */
   var __vue_script__$7 = script$7;
+  /* template */
   var __vue_render__$6 = function() {
     var _vm = this;
     var _h = _vm.$createElement;
@@ -1059,13 +1102,31 @@
                           alt: "Close button"
                         }
                       })
-                    : _c("img", {
-                        staticClass: "vnb__popup__top__close-button__image",
-                        attrs: {
-                          src: __$_require_assets_images_times_png__,
-                          alt: "Close button"
-                        }
-                      })
+                    : _c(
+                        "svg",
+                        {
+                          staticClass: "vnb__popup__top__close-button__image",
+                          style: { fill: _vm.options.collapseButtonCloseColor },
+                          attrs: {
+                            height: "100pt",
+                            preserveAspectRatio: "xMidYMid meet",
+                            viewBox: "0 0 100 100",
+                            width: "100pt",
+                            xmlns: "http://www.w3.org/2000/svg"
+                          }
+                        },
+                        [
+                          _c("title", [_vm._v("Close button")]),
+                          _vm._v(" "),
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "m42 967c-12-13-22-27-22-33 0-5 93-102 207-216l208-208-208-208c-114-114-207-214-207-223 0-8 11-26 25-39l26-24 214 214 215 215 215-215 214-214 26 24c14 13 25 28 25 34s-92 103-205 216-205 209-205 215 92 102 205 215 205 210 205 216c0 12-42 54-55 54-5 0-104-94-220-210l-210-210-210 210c-115 116-212 210-216 210-3 0-15-10-27-23z",
+                              transform: "matrix(.1 0 0 -.1 0 100)"
+                            }
+                          })
+                        ]
+                      )
                 ]
               )
             ]),
@@ -1292,6 +1353,12 @@
           collapseButtonImageClose: this.options.collapseButtonImageClose
             ? this.options.collapseButtonImageClose
             : null,
+          collapseButtonOpenColor: this.options.collapseButtonOpenColor
+            ? this.options.collapseButtonOpenColor
+            : '#373737',
+          collapseButtonCloseColor: this.options.collapseButtonCloseColor
+            ? this.options.collapseButtonCloseColor
+            : '#373737',
           showBrandImageInMobilePopup: this.options.showBrandImageInMobilePopup
             ? true
             : false,
@@ -1300,7 +1367,7 @@
             : "Main Navigation",
           tooltipAnimationType: this.options.tooltipAnimationType
             ? this.options.tooltipAnimationType
-            : "fade",
+            : "shift-away",
           menuOptionsLeft: this.options.menuOptionsLeft
             ? this.options.menuOptionsLeft
             : [],
