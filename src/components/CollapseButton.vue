@@ -12,15 +12,15 @@
             :alt="'Menu'"
             class="vnb__collapse-button__image"
         >
-         <svg 
+         <svg
             v-else
-            height="100pt" 
-            preserveAspectRatio="xMidYMid meet" 
-            viewBox="0 0 100 100" 
-            width="100pt" 
+            height="100pt"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 100 100"
+            width="100pt"
             xmlns="http://www.w3.org/2000/svg"
             class="vnb__collapse-button__image"
-            :style="{ fill: options.collapseButtonColor }"
+            :style="{ fill: options.collapseButtonOpenColor }"
         >
             <title>Menu</title>
             <g transform="matrix(.1 0 0 -.1 0 100)">
