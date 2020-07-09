@@ -109,6 +109,10 @@
 <script>
 import DynamicLink from "../components/DynamicLink.vue";
 import "tippy.js/themes/light.css";
+import 'tippy.js/animations/shift-away.css';
+import 'tippy.js/animations/shift-toward.css';
+import 'tippy.js/animations/scale.css';
+import 'tippy.js/animations/perspective.css';
 import tippy from "tippy.js";
 
 export default {
