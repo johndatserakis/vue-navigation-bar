@@ -1151,8 +1151,10 @@ var __vue_render__$6 = function() {
                       ? _c(
                           "dynamic-link",
                           {
-                            staticClass:
+                            class: [
                               "vnb__popup__bottom__menu-options__option__link",
+                              option.class
+                            ],
                             attrs: {
                               path: option.path,
                               isUsingVueRouter: _vm.options.isUsingVueRouter,

@@ -56,7 +56,10 @@
               v-if="!option.subMenuOptions"
               :path="option.path"
               :isUsingVueRouter="options.isUsingVueRouter"
-              class="vnb__popup__bottom__menu-options__option__link"
+              :class="[
+                'vnb__popup__bottom__menu-options__option__link',
+                option.class
+              ]"
               @click.native="itemSelected(option)"
               :aria-label="option.text"
               :isLinkAction="option.isLinkAction ? true : false"

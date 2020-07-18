@@ -301,11 +301,13 @@ body {
 .vnb {
   font-family: "Montserrat", sans-serif;
 
-  .button-red {
-    background: #ff3b30;
+  @media (min-width: 992px) {
+    .button-red {
+      background: #ff3b30;
 
-    &:hover {
-      background: darken(#ff3b30, 10%);
+      &:hover {
+        background: darken(#ff3b30, 10%);
+      }
     }
   }
 
