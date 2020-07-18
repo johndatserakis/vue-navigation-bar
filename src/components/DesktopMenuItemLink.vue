@@ -42,11 +42,11 @@
       class="vnb__menu-options__option__link__icon vnb__menu-options__option__button__icon--right"
       v-html="option.iconRight"
     ></span>
-    <svg 
-      height="28pt" 
-      preserveAspectRatio="xMidYMid meet" 
-      viewBox="0 0 49 28" 
-      width="49pt" 
+    <svg
+      height="28pt"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 49 28"
+      width="49pt"
       xmlns="http://www.w3.org/2000/svg"
       :style="{ fill: option.arrowColor }"
       :class="[
@@ -119,7 +119,7 @@ import 'tippy.js/animations/shift-away.css';
 import 'tippy.js/animations/shift-toward.css';
 import 'tippy.js/animations/scale.css';
 import 'tippy.js/animations/perspective.css';
-import tippy from "tippy.js";
+import tippy, { hideAll } from "tippy.js";
 
 export default {
   name: "desktop-menu-item-link",
@@ -174,10 +174,8 @@ export default {
     },
 
     closeAllTooltips() {
-      let elements = document.querySelectorAll(".tippy-popper");
-      if (elements.length > 0) {
-        elements[0]._tippy.hide();
-      }
+      // https://atomiks.github.io/tippyjs/v6/methods/#hideall
+      hideAll();
     },
 
     initTippy() {
@@ -201,14 +199,8 @@ export default {
         appendTo: "parent",
         arrow: true,
         inertia: false,
-        onShow: () => {
-          // https://github.com/atomiks/tippy.js-react/issues/7
-          [...document.querySelectorAll(".tippy-popper")].forEach(popper => {
-            // Have to triple-check
-            if (popper && popper._tippy) {
-              popper._tippy.hide(0);
-            }
-          });
+        onShow: (instance) => {
+          hideAll({exclude: instance});
 
           // fire the menuShown function
           this.menuShown();
