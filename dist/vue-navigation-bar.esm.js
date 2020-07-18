@@ -1,5 +1,5 @@
 import VueScreenSize from 'vue-screen-size';
-import tippy from 'tippy.js';
+import tippy, { hideAll } from 'tippy.js';
 import { SlideYDownTransition } from 'vue2-transitions';
 
 // https://stackoverflow.com/a/2117523/8014660
@@ -21,7 +21,8 @@ var script = {
     if (this.isUsingVueRouter) {
       return h(
         "router-link",
-        { props: { to: { path: this.path } } },
+        { props: { to: { name: this.path.name } } },
+
         this.$slots.default
       );
     }
@@ -34,7 +35,7 @@ var script = {
       required: true
     },
     path: {
-      type: String,
+      type: [String, Object],
       required: true
     },
     isLinkAction: {
@@ -303,10 +304,8 @@ var script$2 = {
     },
 
     closeAllTooltips: function closeAllTooltips() {
-      var elements = document.querySelectorAll(".tippy-popper");
-      if (elements.length > 0) {
-        elements[0]._tippy.hide();
-      }
+      // https://atomiks.github.io/tippyjs/v6/methods/#hideall
+      hideAll();
     },
 
     initTippy: function initTippy() {
@@ -332,14 +331,8 @@ var script$2 = {
         appendTo: "parent",
         arrow: true,
         inertia: false,
-        onShow: function () {
-          // https://github.com/atomiks/tippy.js-react/issues/7
-          [].concat( document.querySelectorAll(".tippy-popper") ).forEach(function (popper) {
-            // Have to triple-check
-            if (popper && popper._tippy) {
-              popper._tippy.hide(0);
-            }
-          });
+        onShow: function (instance) {
+          hideAll({exclude: instance});
 
           // fire the menuShown function
           this$1.menuShown();
