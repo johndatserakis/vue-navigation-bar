@@ -91,21 +91,21 @@ The component will work well with frontend component frameworks. I'm using Boots
       data() {
         return {
           navbarOptions: {
-            elementId: 'main-navbar',
+            elementId: "main-navbar",
             isUsingVueRouter: true,
             mobileBreakpoint: 992,
-            brandImagePath: './',
-            brandImage: require('../src/assets/images/lockup-color.png'),
-            brandImageAltText: 'brand-image',
+            brandImagePath: "./",
+            brandImage: require("../src/assets/images/lockup-color.png"),
+            brandImageAltText: "brand-image",
             collapseButtonOpenColor: "#661c23",
             collapseButtonCloseColor: "#661c23",
             showBrandImageInMobilePopup: true,
-            ariaLabelMainNav: 'Main Navigation',
-            tooltipAnimationType: 'shift-away',
+            ariaLabelMainNav: "Main Navigation",
+            tooltipAnimationType: "shift-away",
             menuOptionsLeft: [
               {
-                type: 'link',
-                text: 'Why Dunder Mifflin',
+                type: "link",
+                text: "Why Dunder Mifflin",
                 arrowColor: "#659CC8",
                 subMenuOptions: [
                   {
@@ -113,73 +113,73 @@ The component will work well with frontend component frameworks. I'm using Boots
                     type: "link",
                     text: "About",
                     subText: "Stupid corporate wet blankets. Like booze ever killed anyone.",
-                    path: "./about",
+                    path: { name: "about" },
                     iconLeft: '<i class="fa fa-star fa-fw"></i>'
                   },
                   {
-                    type: 'hr',
+                    type: "hr",
                   },
                   {
-                    type: 'link',
-                    text: 'Locations',
-                    subText: 'You\'re a presentation tool!',
-                    path: './locations',
+                    type: "link",
+                    text: "Locations",
+                    subText: "You\'re a presentation tool!",
+                    path: { name: "locations" }
                     arrowColor: "#659CC8",
                   },
                   {
-                    type: 'hr',
+                    type: "hr",
                   },
                   {
-                    type: 'link',
-                    text: 'Blog',
-                    subText: 'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
-                    path: './blog',
+                    type: "link",
+                    text: "Blog",
+                    subText: "I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.",
+                    path: { name: "blog" }
                   },
                 ]
               },
               {
-                type: 'link',
-                text: 'Contact',
+                type: "link",
+                text: "Contact",
                 subMenuOptions: [
                   {
-                    type: 'link',
-                    text: 'Customer Service',
-                    path: './customer-service'
+                    type: "link",
+                    text: "Customer Service",
+                    path: { name: "customer-service" },
                   },
                   {
-                    type: 'link',
-                    text: 'Accounting',
-                    path: './accounting',
+                    type: "link",
+                    text: "Accounting",
+                    path: { name: "accounting" },
                   },
                   {
-                    type: 'hr',
+                    type: "hr",
                   },
                   {
-                    type: 'link',
-                    text: 'Reception',
-                    path: './reception',
+                    type: "link",
+                    text: "Reception",
+                    path: { name: "reception"},
                     iconLeft: '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>',
                   },
                 ]
               },
               {
-                type: 'link',
-                text: 'Pricing',
-                path: './pricing',
+                type: "link",
+                text: "Pricing",
+                path: { name: "pricing"},
                 iconRight: '<i class="fa fa-long-arrow-right fa-fw"></i>',
               },
             ],
             menuOptionsRight: [
               {
-                type: 'button',
-                text: 'Signup',
-                path: './signup',
-                class: 'button-red'
+                type: "button",
+                text: "Signup",
+                path: { name: "signup" },
+                class: "button-red"
               },
               {
-                type: 'button',
-                text: 'Login',
-                path: './login',
+                type: "button",
+                text: "Login",
+                path: { name: "login" },
                 iconRight: '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>'
               }
             ]
@@ -248,7 +248,7 @@ Sometimes you may want your links to perform an action instead of following a li
 | elementId                                | String      | no       | A generated uuid  |                                                              | This value will be set as the `id` of the instance                                                                                                                                                                                                                                    |
 | isUsingVueRouter                         | Boolean     | no       | false             |                                                              | If you want to use vue-router, set this to true and all links will automatically be `<router-link></router-link>`                                                                                                                                                                     |
 | mobileBreakpoint                         | Number      | no       | 992               |                                                              | Width at which the navbar turns into the mobile version                                                                                                                                                                                                                               |
-| brandImagePath                           | String      | no       | '/'               |                                                              | The path for your `brand-image`'s link                                                                                                                                                                                                                                               |
+| brandImagePath                           | String or Object      | no       | '/'               |                                                              | The path for your `brand-image`. If you have `isUsingVueRouter === true`, then this needs to be an `Object` with a `name` property. Otherwise, just provide a `String`.  link                                                                                                                                                                                                                                               |
 | brandImage                               | Image       | no       |                   |                                                              | `require()` your image here to use your brand image                                                                                                                                                                                                                                   |
 | brandImageAltText                        | String      | no       | 'brand-image'     |                                                              | The `alt` tag text for your brand image                                                                                                                                                                                                                                               |
 | collapseButtonImageOpen                  | Image       | no       | A hamburger icon  |                                                              | `require()` your image here                                                                                                                                                                                                                                                           |
@@ -261,7 +261,7 @@ Sometimes you may want your links to perform an action instead of following a li
 | menuOptionsLeft                          | Object      | no       | {}                |                                                              | Menu options that will be _pulled_ to the left towards the `brand-image`                                                                                                                                                                                                              |
 | menuOptionsLeft.type                     | String      | yes      |                   | 'link', 'button', 'spacer', 'dropdown'                       | What type of link will this menu-option be? `link` will be a link, `button` will be a button, `spacer` will be a spacer with a width of `30px` , `dropdown` will create a dropdown on desktop and a `ul/li` list on mobile. `dropdown` only works on menuOptions, not subMenuOptions. |
 | menuOptionsLeft.text                     | String      | yes      |                   |                                                              | Text of menu-option                                                                                                                                                                                                                                                                   |
-| menuOptionsLeft.path                     | String      | yes      |                   |                                                              | Link path of menu-option. Not applicable to `dropdown` menuOption types.                                                                                                                                                                                                              |
+| menuOptionsLeft.path                     | String or Object      | yes      |                   |                                                              | Link path of menu-option. If you have `isUsingVueRouter === true`, then this needs to be an `Object` with a `name` property. Otherwise, just provide a `String`. Not applicable to `dropdown` menuOption types.                                                                                                                                                                                                              |
 | menuOptionsLeft.arrowColor                     | String      | no      |                   |                                                              | CSS hex - `#FFF`. This styles the little chevron icon.                                                                                                                                                                                                                                                                  |
 | menuOptionsLeft.class                    | String      | no       |                   |                                                              | Only for `menuOptionsLeft.type === 'button'` - provide a class name so you can style your buttons                                                                                                                                                                                     |
 | menuOptionsLeft.isLinkAction             | Boolean     | no       | false             |                                                              | When `true` , the `path` option of the `menuOption` will not fire - instead, you'll be able to register for the `@vnb-item-clicked` event which will spit you out the `text` value of your `menuOption` . That way, you can do an action you may want to trigger.                     |

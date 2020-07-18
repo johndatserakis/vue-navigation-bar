@@ -5,7 +5,7 @@
 }(this, (function (exports, VueScreenSize, tippy, vue2Transitions) { 'use strict';
 
   VueScreenSize = VueScreenSize && Object.prototype.hasOwnProperty.call(VueScreenSize, 'default') ? VueScreenSize['default'] : VueScreenSize;
-  tippy = tippy && Object.prototype.hasOwnProperty.call(tippy, 'default') ? tippy['default'] : tippy;
+  var tippy__default = 'default' in tippy ? tippy['default'] : tippy;
 
   // https://stackoverflow.com/a/2117523/8014660
   function uuidV4() {
@@ -26,7 +26,8 @@
       if (this.isUsingVueRouter) {
         return h(
           "router-link",
-          { props: { to: { path: this.path } } },
+          { props: { to: { name: this.path.name } } },
+
           this.$slots.default
         );
       }
@@ -39,7 +40,7 @@
         required: true
       },
       path: {
-        type: String,
+        type: [String, Object],
         required: true
       },
       isLinkAction: {
@@ -308,10 +309,8 @@
       },
 
       closeAllTooltips: function closeAllTooltips() {
-        var elements = document.querySelectorAll(".tippy-popper");
-        if (elements.length > 0) {
-          elements[0]._tippy.hide();
-        }
+        // https://atomiks.github.io/tippyjs/v6/methods/#hideall
+        tippy.hideAll();
       },
 
       initTippy: function initTippy() {
@@ -326,7 +325,7 @@
         );
         template.style.display = "block";
 
-        tippy(el, {
+        tippy__default(el, {
           theme: "light",
           content: template,
           interactive: true,
@@ -337,14 +336,8 @@
           appendTo: "parent",
           arrow: true,
           inertia: false,
-          onShow: function () {
-            // https://github.com/atomiks/tippy.js-react/issues/7
-            [].concat( document.querySelectorAll(".tippy-popper") ).forEach(function (popper) {
-              // Have to triple-check
-              if (popper && popper._tippy) {
-                popper._tippy.hide(0);
-              }
-            });
+          onShow: function (instance) {
+            tippy.hideAll({exclude: instance});
 
             // fire the menuShown function
             this$1.menuShown();

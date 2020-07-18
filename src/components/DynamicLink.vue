@@ -9,7 +9,8 @@ export default {
     if (this.isUsingVueRouter) {
       return h(
         "router-link",
-        { props: { to: { path: this.path } } },
+        { props: { to: { name: this.path.name } } },
+
         this.$slots.default
       );
     }
@@ -22,7 +23,7 @@ export default {
       required: true
     },
     path: {
-      type: String,
+      type: [String, Object],
       required: true
     },
     isLinkAction: {
