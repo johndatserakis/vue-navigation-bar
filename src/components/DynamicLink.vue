@@ -7,12 +7,22 @@ export default {
     }
 
     if (this.isUsingVueRouter) {
-      return h(
-        "router-link",
-        { props: { to: { name: this.path.name } } },
-
-        this.$slots.default
-      );
+      if (this.path.name) {
+        // If an object with the name property is passed assume
+        // it's a named route.
+        return h(
+          "router-link",
+          { props: { to: { name: this.path.name } } },
+          this.$slots.default
+        );
+      } else {
+        // Otherwise pass along the string as a path.
+        return h(
+          "router-link",
+          { props: { to: { path: this.path } } },
+          this.$slots.default
+        );
+      }
     }
 
     return h("a", { attrs: { href: this.path } }, this.$slots.default);
