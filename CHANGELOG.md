@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 4.1.0 (2020-10-15)
+
+- Adds `tooltipPlacement` prop to control direction of menu tooltip. This prevents the tooltip libraries from adjusting the position once set. This is preferable for a dropdown-type system we have here. Thank you @jeffreykthomas for your research and help on this.
+
 ## 1.3.1 (2019-08-06)
 
 - Adjusting project formatting.
