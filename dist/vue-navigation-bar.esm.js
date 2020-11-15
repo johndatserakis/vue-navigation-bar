@@ -341,6 +341,17 @@ var script$2 = {
         appendTo: "parent",
         arrow: true,
         inertia: false,
+        placement: this.options.tooltipPlacement,
+        popperOptions: {
+          modifiers: [
+            {
+              name: 'flip',
+              options: {
+                fallbackPlacements: [this.options.tooltipPlacement]
+              }
+            }
+          ]
+        },
         onShow: function (instance) {
           hideAll({exclude: instance});
 
@@ -1368,6 +1379,7 @@ var script$8 = {
         tooltipAnimationType: this.options.tooltipAnimationType
           ? this.options.tooltipAnimationType
           : "shift-away",
+        tooltipPlacement: this.options.tooltipPlacement || "bottom",
         menuOptionsLeft: this.options.menuOptionsLeft
           ? this.options.menuOptionsLeft
           : [],

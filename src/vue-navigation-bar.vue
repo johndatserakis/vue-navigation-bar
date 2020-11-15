@@ -120,6 +120,7 @@ export default {
         tooltipAnimationType: this.options.tooltipAnimationType
           ? this.options.tooltipAnimationType
           : "shift-away",
+        tooltipPlacement: this.options.tooltipPlacement || "bottom",
         menuOptionsLeft: this.options.menuOptionsLeft
           ? this.options.menuOptionsLeft
           : [],

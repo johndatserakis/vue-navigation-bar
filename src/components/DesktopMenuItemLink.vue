@@ -199,6 +199,17 @@ export default {
         appendTo: "parent",
         arrow: true,
         inertia: false,
+        placement: this.options.tooltipPlacement,
+        popperOptions: {
+          modifiers: [
+            {
+              name: 'flip',
+              options: {
+                fallbackPlacements: [this.options.tooltipPlacement]
+              }
+            }
+          ]
+        },
         onShow: (instance) => {
           hideAll({exclude: instance});
 

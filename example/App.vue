@@ -121,6 +121,7 @@ export default {
         showBrandImageInMobilePopup: true,
         ariaLabelMainNav: "Main Navigation",
         tooltipAnimationType: "shift-away",
+        tooltipPlacement: "bottom",
         menuOptionsLeft: [
           {
             type: "link",
@@ -287,7 +288,7 @@ body {
 .main-content-section {
   padding: 45px 0;
   background: #eee;
-  height: 95vh;
+  min-height: 100%;
 }
 
 //
