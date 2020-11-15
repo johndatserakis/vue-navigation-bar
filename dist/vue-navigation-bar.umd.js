@@ -346,6 +346,17 @@
           appendTo: "parent",
           arrow: true,
           inertia: false,
+          placement: this.options.tooltipPlacement,
+          popperOptions: {
+            modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  fallbackPlacements: [this.options.tooltipPlacement]
+                }
+              }
+            ]
+          },
           onShow: function (instance) {
             tippy.hideAll({exclude: instance});
 
@@ -1373,6 +1384,7 @@
           tooltipAnimationType: this.options.tooltipAnimationType
             ? this.options.tooltipAnimationType
             : "shift-away",
+          tooltipPlacement: this.options.tooltipPlacement || "bottom",
           menuOptionsLeft: this.options.menuOptionsLeft
             ? this.options.menuOptionsLeft
             : [],
