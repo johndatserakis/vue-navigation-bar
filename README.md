@@ -64,6 +64,8 @@ Vue.component("vue-navigation-bar", VueNavigationBar);
 
 ### About
 
+**Note:** This component is not compatible with Vue 3 currently, that may change in the future when I have time to do a proper conversion. At that point, perhaps the addition of TypeScript would be warranted.
+
 Often when starting a new project I like to get together the main foundation pieces first. A main part of that process is working on the main navbar.
 
 This component is meant to help with that process - it gives you a standard looking navigation bar for for your app that can be easily defined using `JSON` or a just an array of objects.
