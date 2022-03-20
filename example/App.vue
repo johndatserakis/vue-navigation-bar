@@ -2,10 +2,7 @@
   <div id="app">
     <section class="main-navbar-section">
       <div class="container">
-        <vue-navigation-bar
-          :options="navbarOptions"
-          @vnb-item-clicked="vnbItemClicked"
-        >
+        <vue-navigation-bar :options="navbarOptions" @vnb-item-clicked="vnbItemClicked">
           <!-- Custom Slot - Uncomment to use -->
           <!-- <template v-slot:custom-section>
             <div class="custom-section-content">
@@ -28,7 +25,7 @@
                 </div>
               </div>
             </div>
-          </template> -->
+          </template>-->
         </vue-navigation-bar>
       </div>
     </section>
@@ -47,8 +44,8 @@
       <div class="container pt-3 pb-4">
         <div class="row justify-content-center mb-4">
           <div class="col-lg-6">
-            <span class="badge badge-primary mb-1">install</span>
-            <div class="code-text">npm i vue-navigation-bar</div>
+            <span class="badge badge-primary mb-1">To install:</span>
+            <div class="code-text">yarn add vue-navigation-bar</div>
           </div>
         </div>
 
@@ -59,14 +56,12 @@
                 href="https://github.com/johndatserakis/vue-navigation-bar"
                 class="list-group-item list-group-item-action"
                 target="_blank"
-                >View on GitHub</a
-              >
+              >View on GitHub</a>
               <a
                 href="https://www.npmjs.com/package/vue-navigation-bar"
                 class="list-group-item list-group-item-action"
                 target="_blank"
-                >View on NPM</a
-              >
+              >View on NPM</a>
             </div>
           </div>
         </div>
@@ -84,18 +79,15 @@
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <p>
-              <code>vue-navigation-bar</code> is a simple, pretty navbar for
-              your Vue projects. And wouldn't you know it - this page is using
-              it right now!
+              <code>vue-navigation-bar</code> is a simple, pretty navbar for your Vue projects. And
+              wouldn't you know it - this page is using it right now!
             </p>
 
             <p>
               Check out
-              <a href="https://github.com/johndatserakis/vue-navigation-bar"
-                >the GitHub</a
-              >
-              page to see how you can use <code>vue-navigation-bar</code> in
-              your Vue projects.
+              <a href="https://github.com/johndatserakis/vue-navigation-bar">the GitHub</a>
+              page to see how you can use
+              <code>vue-navigation-bar</code> in your Vue projects.
             </p>
           </div>
         </div>
@@ -106,111 +98,110 @@
 
 <script>
 export default {
-  name: "app",
-  data() {
+  name: 'app',
+  data () {
     return {
       navbarOptions: {
-        elementId: "main-navbar",
+        elementId: 'main-navbar',
         isUsingVueRouter: true,
         mobileBreakpoint: 992,
-        brandImagePath: "./",
-        brandImage: require("../src/assets/images/lockup-color.png"),
-        brandImageAltText: "brand-image",
-        collapseButtonOpenColor: "#661c23",
-        collapseButtonCloseColor: "#661c23",
+        brandImagePath: './',
+        brandImage: require('../src/assets/images/lockup-color.png'),
+        brandImageAltText: 'brand-image',
+        collapseButtonOpenColor: '#661c23',
+        collapseButtonCloseColor: '#661c23',
         showBrandImageInMobilePopup: true,
-        ariaLabelMainNav: "Main Navigation",
-        tooltipAnimationType: "shift-away",
-        tooltipPlacement: "bottom",
+        ariaLabelMainNav: 'Main Navigation',
+        tooltipAnimationType: 'shift-away',
+        tooltipPlacement: 'bottom',
         menuOptionsLeft: [
           {
-            type: "link",
-            text: "Why Dunder Mifflin",
-            arrowColor: "#659CC8",
+            type: 'link',
+            text: 'Why Dunder Mifflin',
+            arrowColor: '#659CC8',
             subMenuOptions: [
               {
                 isLinkAction: true,
-                type: "link",
-                text: "About",
-                subText:
-                  "Stupid corporate wet blankets. Like booze ever killed anyone.",
-                path: { name: "about" },
+                type: 'link',
+                text: 'About',
+                subText: 'Stupid corporate wet blankets. Like booze ever killed anyone.',
+                path: {name: 'about'},
               },
               {
-                type: "hr"
+                type: 'hr',
               },
               {
-                type: "link",
-                text: "Locations",
+                type: 'link',
+                text: 'Locations',
                 subText: "You're a presentation tool!",
-                path: { name: "locations" }
+                path: {name: 'locations'},
               },
               {
-                type: "hr"
+                type: 'hr',
               },
               {
-                type: "link",
-                text: "Blog",
+                type: 'link',
+                text: 'Blog',
                 subText:
-                  "I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.",
-                path: { name: "blog" }
-              }
-            ]
+                  'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
+                path: {name: 'blog'},
+              },
+            ],
           },
           {
-            type: "link",
-            text: "Contact",
+            type: 'link',
+            text: 'Contact',
             subMenuOptions: [
               {
-                type: "link",
-                text: "Customer Service",
-                path: { name: "customer-service" },
-                iconLeft: '<i class="fa fa-user fa-fw"></i>'
+                type: 'link',
+                text: 'Customer Service',
+                path: {name: 'customer-service'},
+                iconLeft: '<i class="fa fa-user fa-fw"></i>',
               },
               {
-                type: "link",
-                text: "Accounting",
-                path: { name: "accounting" },
-                iconLeft: '<i class="fa fa-star fa-fw"></i>'
+                type: 'link',
+                text: 'Accounting',
+                path: {name: 'accounting'},
+                iconLeft: '<i class="fa fa-star fa-fw"></i>',
               },
               {
-                type: "hr"
+                type: 'hr',
               },
               {
-                type: "link",
-                text: "Reception",
-                path: { name: "reception"},
+                type: 'link',
+                text: 'Reception',
+                path: {name: 'reception'},
                 iconLeft:
-                  '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>'
-              }
-            ]
-          }
+                  '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>',
+              },
+            ],
+          },
         ],
         menuOptionsRight: [
           {
-            type: "button",
-            text: "Signup",
-            path: { name: "signup" },
-            class: "button-red"
+            type: 'button',
+            text: 'Signup',
+            path: {name: 'signup'},
+            class: 'button-red',
           },
           {
-            type: "button",
-            text: "Login",
-             path: { name: "login" },
+            type: 'button',
+            text: 'Login',
+            path: {name: 'login'},
             iconRight:
-              '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>'
-          }
-        ]
-      }
+              '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>',
+          },
+        ],
+      },
     };
   },
   methods: {
-    vnbItemClicked(text) {
-      if (text === "About") {
+    vnbItemClicked (text) {
+      if (text === 'About') {
         alert("'About' was selected.");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,158 +1,159 @@
 <template>
-  <slide-y-down-transition>
-    <div v-if="menuIsVisible" class="vnb__popup">
-      <div class="vnb__popup__top">
-        <img
-          v-if="options.showBrandImageInMobilePopup && options.brandImage"
-          :src="options.brandImage"
-          :alt="options.brandImageAltText"
-          class="vnb-image vnb__popup__top__image"
-        />
+  <div v-if="menuIsVisible" class="vnb__popup">
+    <div class="vnb__popup__top">
+      <img
+        v-if="options.showBrandImageInMobilePopup && options.brandImage"
+        :src="options.brandImage"
+        :alt="options.brandImageAltText"
+        class="vnb-image vnb__popup__top__image"
+      />
 
-        <button
-          class="vnb__popup__top__close-button"
-          @click="closeButtonClicked"
-          aria-label="Close Button"
-          title="Close"
-          :aria-expanded="menuIsVisible ? 'true' : 'false'"
+      <button
+        class="vnb__popup__top__close-button"
+        @click="closeButtonClicked"
+        aria-label="Close Button"
+        title="Close"
+        :aria-expanded="menuIsVisible ? 'true' : 'false'"
+      >
+        <img
+          v-if="options.collapseButtonImageClose"
+          :src="options.collapseButtonImageClose"
+          :alt="'Close button'"
+          class="vnb__popup__top__close-button__image"
+        />
+        <svg
+          v-else
+          height="100pt"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 100 100"
+          width="100pt"
+          xmlns="http://www.w3.org/2000/svg"
+          class="vnb__popup__top__close-button__image"
+          :style="{fill: options.collapseButtonCloseColor}"
         >
-          <img
-            v-if="options.collapseButtonImageClose"
-            :src="options.collapseButtonImageClose"
-            :alt="'Close button'"
-            class="vnb__popup__top__close-button__image"
+          <title>Close button</title>
+          <path
+            d="m42 967c-12-13-22-27-22-33 0-5 93-102 207-216l208-208-208-208c-114-114-207-214-207-223 0-8 11-26 25-39l26-24 214 214 215 215 215-215 214-214 26 24c14 13 25 28 25 34s-92 103-205 216-205 209-205 215 92 102 205 215 205 210 205 216c0 12-42 54-55 54-5 0-104-94-220-210l-210-210-210 210c-115 116-212 210-216 210-3 0-15-10-27-23z"
+            transform="matrix(.1 0 0 -.1 0 100)"
           />
-          <svg
-            v-else
-            height="100pt"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 100 100"
-            width="100pt"
-            xmlns="http://www.w3.org/2000/svg"
-            class="vnb__popup__top__close-button__image"
-            :style="{ fill: options.collapseButtonCloseColor }"
-          >
-            <title>Close button</title>
-            <path d="m42 967c-12-13-22-27-22-33 0-5 93-102 207-216l208-208-208-208c-114-114-207-214-207-223 0-8 11-26 25-39l26-24 214 214 215 215 215-215 214-214 26 24c14 13 25 28 25 34s-92 103-205 216-205 209-205 215 92 102 205 215 205 210 205 216c0 12-42 54-55 54-5 0-104-94-220-210l-210-210-210 210c-115 116-212 210-216 210-3 0-15-10-27-23z" transform="matrix(.1 0 0 -.1 0 100)"/>
-          </svg>
-        </button>
+        </svg>
+      </button>
+    </div>
+
+    <div class="vnb__popup__bottom">
+      <div v-if="!!this.$slots['custom-section']" class="vnb__popup__bottom__custom-section">
+        <slot name="custom-section"></slot>
       </div>
 
-      <div class="vnb__popup__bottom">
-        <div
-          v-if="!!this.$slots['custom-section']"
-          class="vnb__popup__bottom__custom-section"
+      <ul class="vnb__popup__bottom__menu-options">
+        <li
+          v-for="(option, index) in combinedMenuItems"
+          :key="index"
+          class="vnb__popup__bottom__menu-options__option"
         >
-          <slot name="custom-section"></slot>
-        </div>
-
-        <ul class="vnb__popup__bottom__menu-options">
-          <li
-            v-for="(option, index) in combinedMenuItems"
-            :key="index"
-            class="vnb__popup__bottom__menu-options__option"
+          <dynamic-link
+            v-if="!option.subMenuOptions"
+            :path="option.path"
+            :isUsingVueRouter="options.isUsingVueRouter"
+            :class="['vnb__popup__bottom__menu-options__option__link', option.class]"
+            @click="itemSelected(option)"
+            :aria-label="option.text"
+            :isLinkAction="option.isLinkAction ? true : false"
           >
-            <dynamic-link
-              v-if="!option.subMenuOptions"
-              :path="option.path"
-              :isUsingVueRouter="options.isUsingVueRouter"
-              :class="[
-                'vnb__popup__bottom__menu-options__option__link',
-                option.class
-              ]"
-              @click.native="itemSelected(option)"
-              :aria-label="option.text"
-              :isLinkAction="option.isLinkAction ? true : false"
-            >
+            <template #content>
               <span
                 v-if="option.iconLeft"
                 class="vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--left"
                 v-html="option.iconLeft"
               ></span>
-              {{ option.text }}
+              {{option.text}}
               <span
                 v-if="option.iconRight"
                 class="vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--right"
                 v-html="option.iconRight"
               ></span>
-            </dynamic-link>
+            </template>
+          </dynamic-link>
 
-            <span
-              v-else
-              class="vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
-              >{{ option.text }}</span
+          <span
+            v-else
+            class="vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
+          >{{option.text}}</span>
+
+          <div class="vnb__popup__bottom__sub-menu-options">
+            <div
+              v-for="(subOption, index) in option.subMenuOptions"
+              :key="index"
+              class="vnb__popup__bottom__sub-menu-options__option"
             >
-
-            <div class="vnb__popup__bottom__sub-menu-options">
-              <div
-                v-for="(subOption, index) in option.subMenuOptions"
-                :key="index"
-                class="vnb__popup__bottom__sub-menu-options__option"
+              <dynamic-link
+                :path="subOption.path"
+                :isUsingVueRouter="options.isUsingVueRouter"
+                v-if="subOption.type === 'link'"
+                class="vnb__popup__bottom__sub-menu-options__option__link"
+                @click="itemSelected(subOption)"
+                :aria-label="subOption.text"
+                :isLinkAction="option.isLinkAction ? true : false"
               >
-                <dynamic-link
-                  :path="subOption.path"
-                  :isUsingVueRouter="options.isUsingVueRouter"
-                  v-if="subOption.type === 'link'"
-                  class="vnb__popup__bottom__sub-menu-options__option__link"
-                  @click.native="itemSelected(subOption)"
-                  :aria-label="subOption.text"
-                  :isLinkAction="option.isLinkAction ? true : false"
-                >
-                  {{ subOption.text }}
+                <template #content>
+                  {{subOption.text}}
                   <span
                     class="vnb__popup__bottom__sub-menu-options__option__link__sub-text"
-                    >{{ subOption.subText }}</span
                   >
-                </dynamic-link>
-              </div>
+                    {{
+                      subOption.subText
+                    }}
+                  </span>
+                </template>
+              </dynamic-link>
             </div>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </li>
+      </ul>
     </div>
-  </slide-y-down-transition>
+  </div>
 </template>
 
 <script>
-import DynamicLink from "../components/DynamicLink.vue";
-import { SlideYDownTransition } from "vue2-transitions";
+import DynamicLink from '../components/DynamicLink.vue';
 
 export default {
-  name: "popup",
+  name: 'popup',
   props: {
     options: {
       type: Object,
-      required: true
+      required: true,
     },
     menuIsVisible: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
-  data() {
+  data () {
     return {};
   },
   computed: {
-    combinedMenuItems() {
-      let combinedArray = this.options.menuOptionsLeft.concat(
-        this.options.menuOptionsRight
-      );
+    combinedMenuItems () {
+      let combinedArray = this.options.menuOptionsLeft.concat(this.options.menuOptionsRight);
       return combinedArray;
-    }
+    },
   },
   methods: {
-    closeButtonClicked() {
-      this.$emit("close-button-clicked");
+    closeButtonClicked () {
+      this.$emit('close-button-clicked');
     },
-    itemSelected(option) {
-      this.$emit("vnb-item-clicked", option.text);
+    itemSelected (option) {
+      this.$emit('vnb-item-clicked', option.text);
       this.closeButtonClicked();
-    }
+    },
   },
   components: {
     DynamicLink,
-    SlideYDownTransition
-  }
+  },
+  emits: [
+    'close-button-clicked',
+    'vnb-item-clicked',
+  ]
 };
 </script>
 
@@ -200,6 +201,10 @@ export default {
 
         &__image {
           max-height: 15px;
+        }
+
+        svg {
+          width: auto;
         }
       }
     }

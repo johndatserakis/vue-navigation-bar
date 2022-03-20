@@ -3,14 +3,14 @@
     v-if="$vssWidth > options.mobileBreakpoint"
     :class="[
       'vnb__menu-options',
-      { 'vnb__menu-options--left': type === 'left' },
-      { 'vnb__menu-options--right': type === 'right' }
+      {'vnb__menu-options--left': type === 'left'},
+      {'vnb__menu-options--right': type === 'right'},
     ]"
   >
     <div
       v-for="(option, index) in type === 'left'
-        ? options.menuOptionsLeft
-        : options.menuOptionsRight"
+      ? options.menuOptionsLeft
+      : options.menuOptionsRight"
       :key="index"
       class="vnb__menu-options__option"
     >
@@ -34,38 +34,40 @@
 </template>
 
 <script>
-import VueScreenSize from "vue-screen-size";
-import DesktopMenuItemLink from "../components/DesktopMenuItemLink.vue";
-import DesktopMenuItemButton from "../components/DesktopMenuItemButton.vue";
-import DesktopMenuItemSpacer from "../components/DesktopMenuItemSpacer.vue";
+import {VueScreenSizeMixin} from 'vue-screen-size';
+import DesktopMenuItemButton from '../components/DesktopMenuItemButton.vue';
+import DesktopMenuItemLink from '../components/DesktopMenuItemLink.vue';
+import DesktopMenuItemSpacer from '../components/DesktopMenuItemSpacer.vue';
 
 export default {
-  name: "menu-options",
-  mixins: [VueScreenSize.VueScreenSizeMixin],
+  name: 'menu-options',
+  mixins: [VueScreenSizeMixin],
   props: {
     options: {
       type: Object,
-      required: true
+      required: true,
     },
     type: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  data() {
+  data () {
     return {};
   },
-  computed: {},
   methods: {
-    vnbItemClicked(text) {
-      this.$emit("vnb-item-clicked", text);
-    }
+    vnbItemClicked (text) {
+      this.$emit('vnb-item-clicked', text);
+    },
   },
   components: {
     DesktopMenuItemLink,
     DesktopMenuItemButton,
-    DesktopMenuItemSpacer
-  }
+    DesktopMenuItemSpacer,
+  },
+  emits: [
+    'vnb-item-clicked',
+  ]
 };
 </script>
 

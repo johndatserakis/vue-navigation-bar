@@ -3,6 +3,6 @@
 
 module.exports = {
   process() {
-    return ''
-  }
-}
+    return '';
+  },
+};

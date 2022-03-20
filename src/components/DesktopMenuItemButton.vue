@@ -2,51 +2,51 @@
   <dynamic-link
     :path="option.path"
     :isUsingVueRouter="options.isUsingVueRouter"
-    :class="[
-        'vnb__menu-options__option__button',
-        'vnb-button',
-        option.class
-    ]"
+    :class="['vnb__menu-options__option__button', 'vnb-button', option.class]"
     :aria-label="option.text"
     :isLinkAction="option.isLinkAction ? true : false"
-    @click.native="$emit('vnb-item-clicked', option.text)"
+    @click="$emit('vnb-item-clicked', option.text)"
   >
-    <span
-      v-if="option.iconLeft"
-      class="vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--left"
-      v-html="option.iconLeft"
-    ></span>
-    {{option.text}}
-    <span
-      v-if="option.iconRight"
-      class="vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--right"
-      v-html="option.iconRight"
-    ></span>
+    <template #content>
+      <span
+        v-if="option.iconLeft"
+        class="vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--left"
+        v-html="option.iconLeft"
+      ></span>
+      {{option.text}}
+      <span
+        v-if="option.iconRight"
+        class="vnb__menu-options__option__button__icon vnb__menu-options__option__button__icon--right"
+        v-html="option.iconRight"
+      ></span>
+    </template>
   </dynamic-link>
 </template>
 
 <script>
-import DynamicLink from "../components/DynamicLink.vue";
+import DynamicLink from '../components/DynamicLink.vue';
+
 export default {
-  name: "desktop-menu-item-button",
+  name: 'desktop-menu-item-button',
   props: {
     option: {
       type: Object,
-      required: true
+      required: true,
     },
     options: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data() {
+  data () {
     return {};
   },
-  computed: {},
-  methods: {},
   components: {
-    DynamicLink
-  }
+    DynamicLink,
+  },
+  emits: [
+    'vnb-item-clicked',
+  ]
 };
 </script>
 

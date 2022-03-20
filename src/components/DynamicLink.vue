@@ -1,45 +1,37 @@
+<template>
+  <template>
+    <slot v-if="isLinkAction" v-bind="$attrs" name="content"></slot>
+  </template>
+
+  <template v-if="isUsingVueRouter">
+    <router-link v-if="path.name" v-bind="$attrs" :to="{name: this.path.name}">
+      <slot name="content"></slot>
+    </router-link>
+    <router-link v-else v-bind="$attrs" :to="{path: this.path}">
+      <slot name="content"></slot>
+    </router-link>
+  </template>
+  <a v-else v-bind="$attrs" :href="path">
+    <slot name="content"></slot>
+  </a>
+</template>
+
 <script>
 export default {
-  name: "dynamic-link",
-  render: function(h) {
-    if (this.isLinkAction) {
-      return h("div", {}, this.$slots.default);
-    }
-
-    if (this.isUsingVueRouter) {
-      if (this.path.name) {
-        // If an object with the name property is passed assume
-        // it's a named route.
-        return h(
-          "router-link",
-          { props: { to: { name: this.path.name } } },
-          this.$slots.default
-        );
-      } else {
-        // Otherwise pass along the string as a path.
-        return h(
-          "router-link",
-          { props: { to: { path: this.path } } },
-          this.$slots.default
-        );
-      }
-    }
-
-    return h("a", { attrs: { href: this.path } }, this.$slots.default);
-  },
+  name: 'dynamic-link',
   props: {
     isUsingVueRouter: {
       type: Boolean,
-      required: true
+      required: true,
     },
     path: {
       type: [String, Object],
-      required: true
+      required: true,
     },
     isLinkAction: {
       type: Boolean,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>

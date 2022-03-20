@@ -11,60 +11,47 @@ A simple, pretty navbar for your Vue projects.
   <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjohndatserakis%2Fvue-navigation-bar&text=Check%20out%20vue-navigation-bar%20on%20GitHub&via=johndatserakis"><img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/vue-navigation-bar.svg?style=social" alt="Tweet"></a>
 </p>
 
-### Links
+## Vue 3 Support
 
-[View demo](https://johndatserakis.github.io/vue-navigation-bar/)
+Vue 3 is supported from `v5.0.0` and beyond (current `master`). To use `vue-navigation-bar` with Vue 2, use `v4.1.0`.
 
-[View on npm](https://www.npmjs.com/package/vue-navigation-bar)
+## Links
 
-[View on GitHub](https://github.com/johndatserakis/vue-navigation-bar)
+- [Demo](https://johndatserakis.github.io/vue-navigation-bar/)
+- [View on GitHub](https://github.com/johndatserakis/vue-navigation-bar)
+- [View on npm](https://www.npmjs.com/package/vue-navigation-bar)
 
-### Install
-
-##### Download
+## Install
 
 ```bash
-# npm
-npm i vue-navigation-bar
-
-# yarn
 yarn add vue-navigation-bar
 ```
 
 Or you can include it through the browser at the bottom of your page along with the css:
 
 ```html
-<!-- Please note if you're using the browser method you're going to want to
-adjust the version number as needed. -->
-
-<script src="https://unpkg.com/vue-navigation-bar@X.X.X/dist/vue-navigation-bar.min.js"></script>
+<script src="https://unpkg.com/vue-navigation-bar/dist/vue-navigation-bar.min.js"></script>
 
 <link
   rel="stylesheet"
   type="text/css"
-  href="https://unpkg.com/vue-navigation-bar@X.X.X/dist/vue-navigation-bar.css"
+  href="https://unpkg.com/vue-navigation-bar/dist/vue-navigation-bar.css"
 />
 ```
 
-##### Use
-
-```scss
-// css import for when you want to import the component css into your css file/files
-@import "/path/to/node_modules/vue-navigation-bar.css";
-```
+## Usage
 
 ```js
-// javascript import for when you're importing the css directly in your javascript
-import "vue-navigation-bar/dist/vue-navigation-bar.css";
+import { createApp } from 'vue';
+import VueNavigationBar from 'vue-navigation-bar';
+import 'vue-navigation-bar/dist/vue-navigation-bar.css';
 
-// import the library
-import VueNavigationBar from "vue-navigation-bar";
-Vue.component("vue-navigation-bar", VueNavigationBar);
+const app = createApp(App);
+
+app.component('vue-navigation-bar', VueNavigationBar);
 ```
 
-### About
-
-**Note:** This component is not compatible with Vue 3 currently, that may change in the future when I have time to do a proper conversion. At that point, perhaps the addition of TypeScript would be warranted.
+## About
 
 Often when starting a new project I like to get together the main foundation pieces first. A main part of that process is working on the main navbar.
 
@@ -80,7 +67,7 @@ The trade-off is that the initialization and usage of this component is very eas
 
 The component will work well with frontend component frameworks. I'm using Bootstrap 4 in the demo page and have it sitting in a container - that helps keep it from stretching too far across the page - although that may be the style you're going for, so have at it.
 
-### Usage Example
+## Usage Example
 
 ```javascript
 <template>
@@ -206,7 +193,7 @@ The component will work well with frontend component frameworks. I'm using Boots
 </style>
 ```
 
-### Notes
+## Notes
 
 Above is a basic usage example. You'll see that a lot of the work is actually just declaring your `options` object.
 
@@ -269,8 +256,8 @@ Sometimes you may want your links to perform an action instead of following a li
 | menuOptionsLeft.arrowColor               | String           | no       |                   |                                                      | CSS hex - `#FFF`. This styles the little chevron icon.                                                                                                                                                                                                                                |
 | menuOptionsLeft.class                    | String           | no       |                   |                                                      | Only for `menuOptionsLeft.type === 'button'` - provide a class name so you can style your buttons                                                                                                                                                                                     |
 | menuOptionsLeft.isLinkAction             | Boolean          | no       | false             |                                                      | When `true` , the `path` option of the `menuOption` will not fire - instead, you'll be able to register for the `@vnb-item-clicked` event which will spit you out the `text` value of your `menuOption` . That way, you can do an action you may want to trigger.                     |
-| menuOptionsLeft.iconLeft                 | HTML String      | no       |                   |                                                      | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                         |
-| menuOptionsLeft.iconRight                | HTML String      | no       |                   |                                                      | Only for `menuOptionsLeft.type === 'link || menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                         |
+| menuOptionsLeft.iconLeft                 | HTML String      | no       |                   |                                                      | Only for `menuOptionsLeft.type === 'link or menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                         |
+| menuOptionsLeft.iconRight                | HTML String      | no       |                   |                                                      | Only for `menuOptionsLeft.type === 'link or menuOptionsLeft.type === 'dropdown'`. HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                         |
 | menuOptionsLeft.subMenuOptions           | Object           | no       |                   |                                                      | Sub-menu-options that will be shown                                                                                                                                                                                                                                                   |
 | menuOptionsLeft.subMenuOptions.type      | String           | yes      |                   | 'link', 'hr'                                         | What type of link will this sub-menu-option be? `link` will be a link, `hr` will be a `hr` spacer                                                                                                                                                                                     |
 | menuOptionsLeft.subMenuOptions.text      | String           | yes      |                   |                                                      | Text of sub-menu-option                                                                                                                                                                                                                                                               |
@@ -280,7 +267,7 @@ Sometimes you may want your links to perform an action instead of following a li
 | menuOptionsLeft.subMenuOptions.iconRight | HTML String      | no       |                   |                                                      | HTML string of the icon you want to use. See more info on the `Icon` section of the README.                                                                                                                                                                                           |
 | menuOptionsRight                         | Object           | no       | {}                |                                                      | Menu options that will be pushed to the right of the navbar. See above - all `menuOptionsLeft` apply                                                                                                                                                                                  |
 
-### Events
+## Events
 
 | event                   | value                     | description                                                                                                                                                                         |
 | ----------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -288,7 +275,7 @@ Sometimes you may want your links to perform an action instead of following a li
 | vnb-mobile-popup-hidden | null                      | Emitted when the mobile popup is hidden                                                                                                                                             |
 | vnb-item-clicked        | String, `menuOption.text` | Emitted when a menu option is clicked. Listen to this event to then trigger a function based on the returned value, which is the `text` value of the `menuOption` that was clicked. |
 
-### Methods
+## Methods
 
 | method           | parameters | description            |
 | ---------------- | ---------- | ---------------------- |
@@ -297,13 +284,13 @@ Sometimes you may want your links to perform an action instead of following a li
 
 Note - to call these methods set a `ref` on your `<vue-navigation-bar />` , something like this: `<vue-navigation-bar :ref="myNavbar" />` . Then, manually call the methods like this in your javascript: `this.$refs.myNavbar.closeMobilePopup()` .
 
-### Slots
+## Slots
 
 | name           | description                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | custom-section | Use this to provide custom content in the navbar. Checkout the example code - in the commented-out section is an example search-bar setup. |
 
-### SCSS Structure
+## SCSS Structure
 
 ```scss
 .vnb {
@@ -467,17 +454,17 @@ Note - to call these methods set a `ref` on your `<vue-navigation-bar />` , some
 }
 ```
 
-### Icons
+## Icons
 
 So right now to use icons in some of the options, you need to pass in full `HTML` strings which get rendered as `HTML` in the desktop version of the navbar.
 
 In the demo I use this really great set of `svg` icons called [bytesize-icons](https://github.com/danklammer/bytesize-icons). You can just copy the `<svg></svg>` code and pass it in your initialization object. You can do the same thing with the FontAwesome style of `<i class="fa fa-star"></i>` . In the future I'll be looking at a way to pass in full components as icons. Right now, passing in `svg` icons works well and does the job. Check out the `.example` folder to see how I have it in the demo.
 
-### Accessibility
+## Accessibility
 
 Throughout the development of this component I've been making sure to allow for proper a11y options to be set when possible. This means things like `aria-haspopup` and `aria-expanded` are set on the popup-menus, `aria-label` 's are set on the elements, and any user can come through and use the navbar nicely using the `tab` button. Of course there can probably be improvements on this front, so I'll keep an eye on it myself and look for any pull-requests that improve it.
 
-### Browser Support
+## Browser Support
 
 To have this work with a browser like IE11, stick this at the bottom of your `index.html`
 
@@ -487,29 +474,29 @@ To have this work with a browser like IE11, stick this at the bottom of your `in
 
 Or, you can install `babel-polyfill` and import that in the main script of your app. You can read more about `babel-polyfill` [here](https://babeljs.io/docs/en/babel-polyfill). In the example folder I use the external script method.
 
-### Development
+## Development
 
 ```bash
-# install dependencies
-npm install
+# Install dependencies
+yarn
 
-# serve with hot reload
-npm run watch
+# Serve with hot reload
+yarn dev
 
-# run the tests
-npm run test
+# Run the tests
+yarn test
 
-# build demo page
-npm run build:example
+# Build demo page
+yarn build:example
 
-# build library
-npm run build:library
+# Build library
+yarn build:library
 
-# build everything and run tests
-npm run build
+# Build everything and run tests
+yarn build
 ```
 
-### TODO
+## TODO
 
 - [x] ~~Add an optional search input bar.~~ What I've done is add an optional `slot` named `custom-section` . Use this `slot` to add whatever custom content you want to show in the nav bar. In the demo, I have an example search bar shown. Look at the `./example` folder to check it out.
 
@@ -521,18 +508,14 @@ npm run build
 
 - [] Fix the awful nesting job I did with the `SCSS` `BEM` nesting. I took the nesting way too far - really I should only need to go one level deep - maybe two. Anyways - I'll get to this soon - sorry about that until then. It's not anything too bad, but I've grown since then and realized the error in my ways ha.
 
-### Other
+## Other
 
 Go ahead and fork the project! Submit an issue if needed. Have fun!
 
-If you use this in a project let me know and I'll make a list here linking to it.
-
-### Thank You
+## Thank You
 
 Thank you to [Stripe](https://stripe.com/) for making that sick navbar - absolutely filthy. A lot of my styling is inspired by them - although I'm definitely butchering it. Also to [Bootstrap](https://getbootstrap.com/) - I've used Bootstrap and their navbar for many years and drew inspiration from lessons I've learned using it.
 
-### License
+## License
 
 [MIT](http://opensource.org/licenses/MIT)
-
-Packaged with a mixture of [vue-lib-template](https://github.com/biigpongsatorn/vue-lib-template) and [vue-sfc-rollup](https://github.com/team-innovation/vue-sfc-rollup).

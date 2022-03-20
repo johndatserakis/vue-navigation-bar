@@ -1,33 +1,33 @@
-import Vue from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import App from './App.vue';
+import VueNavigationBar from '../src/index.js';
+import { createRouter, createWebHistory } from 'vue-router';
 
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
+const app = createApp(App);
 
-const router = new VueRouter({
-  mode: "hash",
+const StubbedRoute = { template: '<div></div>' };
+
+const router = createRouter({
+  history: createWebHistory(),
   routes: [
-    { path: "/", name: "home" },
-    { path: "/about", name: "about" },
-    { path: "/locations", name: "locations" },
-    { path: "/blog", name: "blog" },
-    { path: "/pricing", name: "pricing" },
-    { path: "/pricing/pro", name: "pricing-pro" },
-    { path: "/pricing/starter", name: "pricing-starter" },
-    { path: "/contact", name: "contact" },
-    { path: "/customer-service", name: "customer-service" },
-    { path: "/accounting", name: "accounting" },
-    { path: "/reception", name: "reception" },
-    { path: "/signup", name: "signup" },
-    { path: "/login", name: "login" }
-  ]
+    { path: '/', name: 'home', component: StubbedRoute },
+    { path: '/about', name: 'about', component: StubbedRoute },
+    { path: '/locations', name: 'locations', component: StubbedRoute },
+    { path: '/blog', name: 'blog', component: StubbedRoute },
+    { path: '/pricing', name: 'pricing', component: StubbedRoute },
+    { path: '/pricing/pro', name: 'pricing-pro', component: StubbedRoute },
+    { path: '/pricing/starter', name: 'pricing-starter', component: StubbedRoute },
+    { path: '/contact', name: 'contact', component: StubbedRoute },
+    { path: '/customer-service', name: 'customer-service', component: StubbedRoute },
+    { path: '/accounting', name: 'accounting', component: StubbedRoute },
+    { path: '/reception', name: 'reception', component: StubbedRoute },
+    { path: '/signup', name: 'signup', component: StubbedRoute },
+    { path: '/login', name: 'login', component: StubbedRoute },
+  ],
 });
 
-import VueNavigationBar from "../src/index.js";
-Vue.component("vue-navigation-bar", VueNavigationBar);
+app.use(router);
 
-new Vue({
-  el: "#app",
-  router,
-  render: h => h(App)
-});
+app.component('vue-navigation-bar', VueNavigationBar);
+
+app.mount('#app');
