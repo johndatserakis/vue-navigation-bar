@@ -1,163 +1,144 @@
-import { shallowMount } from "@vue/test-utils";
-import VueNavigationBar from "@/vue-navigation-bar.vue";
+import { shallowMount } from '@vue/test-utils';
+import VueNavigationBar from '@/vue-navigation-bar.vue';
 
-describe("VueNavigationBar.vue", () => {
-  it("Sets props correctly", async () => {
-    let initialPropsData = {
-      elementId: "main-navbar",
+describe('VueNavigationBar.vue', () => {
+  it('Sets props correctly', async () => {
+    let initialProps = {
+      elementId: 'main-navbar',
       isUsingVueRouter: true,
       mobileBreakpoint: 992,
-      brandImagePath: "/",
+      brandImagePath: '/',
       brandImage: null,
-      brandImageAltText: "vnb",
+      brandImageAltText: 'vnb',
       collapseButtonImageOpen: null,
       collapseButtonImageClose: null,
       showBrandImageInMobilePopup: false,
-      ariaLabelMainNav: "Main Navigation",
-      tooltipAnimationType: "shift-away",
+      ariaLabelMainNav: 'Main Navigation',
+      tooltipAnimationType: 'shift-away',
       menuOptionsLeft: [
         {
-          type: "link",
-          text: "Why Dunder Mifflin",
-          path: "/why",
+          type: 'link',
+          text: 'Why Dunder Mifflin',
+          path: '/why',
           subMenuOptions: [
             {
               isLinkAction: true,
-              type: "link",
-              text: "About",
-              path: "/about"
+              type: 'link',
+              text: 'About',
+              path: '/about',
             },
             {
-              type: "hr"
+              type: 'hr',
             },
             {
-              type: "link",
-              text: "Locations",
-              path: "/locations"
+              type: 'link',
+              text: 'Locations',
+              path: '/locations',
             },
             {
-              type: "link",
-              text: "Blog",
-              path: "/blog"
-            }
-          ]
+              type: 'link',
+              text: 'Blog',
+              path: '/blog',
+            },
+          ],
         },
         {
-          type: "link",
-          text: "Contact",
-          path: "/contact",
+          type: 'link',
+          text: 'Contact',
+          path: '/contact',
           subMenuOptions: [
             {
-              type: "link",
-              text: "Customer Service",
-              path: "/customer-service"
+              type: 'link',
+              text: 'Customer Service',
+              path: '/customer-service',
             },
             {
-              type: "link",
-              text: "Accounting",
-              path: "/accounting"
+              type: 'link',
+              text: 'Accounting',
+              path: '/accounting',
             },
             {
-              type: "link",
-              text: "Reception",
-              path: "/reception"
-            }
-          ]
+              type: 'link',
+              text: 'Reception',
+              path: '/reception',
+            },
+          ],
         },
         {
-          type: "link",
-          text: "Pricing",
-          path: "/pricing"
-        }
+          type: 'link',
+          text: 'Pricing',
+          path: '/pricing',
+        },
       ],
       menuOptionsRight: [
         {
-          type: "button",
-          text: "Signup",
-          path: "/signup",
-          class: "button-red"
+          type: 'button',
+          text: 'Signup',
+          path: '/signup',
+          class: 'button-red',
         },
         {
-          type: "button",
-          text: "Login",
-          path: "/login"
-        }
-      ]
+          type: 'button',
+          text: 'Login',
+          path: '/login',
+        },
+      ],
     };
 
     const wrapper = shallowMount(VueNavigationBar, {
-      propsData: {
+      props: {
         options: {
-          elementId: initialPropsData.elementId,
-          isUsingVueRouter: initialPropsData.isUsingVueRouter,
-          mobileBreakpoint: initialPropsData.mobileBreakpoint,
-          brandImagePath: initialPropsData.brandImagePath,
-          brandImage: initialPropsData.brandImage,
-          brandImageAltText: initialPropsData.brandImageAltText,
-          collapseButtonImageOpen: initialPropsData.collapseButtonImageOpen,
-          collapseButtonImageClose: initialPropsData.collapseButtonImageClose,
-          showBrandImageInMobilePopup:
-            initialPropsData.showBrandImageInMobilePopup,
-          ariaLabelMainNav: initialPropsData.ariaLabelMainNav,
-          tooltipAnimationType: initialPropsData.tooltipAnimationType,
-          menuOptionsLeft: initialPropsData.menuOptionsLeft,
-          menuOptionsRight: initialPropsData.menuOptionsRight
-        }
-      }
+          elementId: initialProps.elementId,
+          isUsingVueRouter: initialProps.isUsingVueRouter,
+          mobileBreakpoint: initialProps.mobileBreakpoint,
+          brandImagePath: initialProps.brandImagePath,
+          brandImage: initialProps.brandImage,
+          brandImageAltText: initialProps.brandImageAltText,
+          collapseButtonImageOpen: initialProps.collapseButtonImageOpen,
+          collapseButtonImageClose: initialProps.collapseButtonImageClose,
+          showBrandImageInMobilePopup: initialProps.showBrandImageInMobilePopup,
+          ariaLabelMainNav: initialProps.ariaLabelMainNav,
+          tooltipAnimationType: initialProps.tooltipAnimationType,
+          menuOptionsLeft: initialProps.menuOptionsLeft,
+          menuOptionsRight: initialProps.menuOptionsRight,
+        },
+      },
     });
 
-    expect(wrapper.vm.finalOptions.elementId).toBe(initialPropsData.elementId);
-    expect(wrapper.vm.finalOptions.isUsingVueRouter).toBe(
-      initialPropsData.isUsingVueRouter
-    );
-    expect(wrapper.vm.finalOptions.mobileBreakpoint).toBe(
-      initialPropsData.mobileBreakpoint
-    );
-    expect(wrapper.vm.finalOptions.brandImagePath).toBe(
-      initialPropsData.brandImagePath
-    );
-    expect(wrapper.vm.finalOptions.brandImage).toBe(
-      initialPropsData.brandImage
-    );
-    expect(wrapper.vm.finalOptions.brandImageAltText).toBe(
-      initialPropsData.brandImageAltText
-    );
+    expect(wrapper.vm.finalOptions.elementId).toBe(initialProps.elementId);
+    expect(wrapper.vm.finalOptions.isUsingVueRouter).toBe(initialProps.isUsingVueRouter);
+    expect(wrapper.vm.finalOptions.mobileBreakpoint).toBe(initialProps.mobileBreakpoint);
+    expect(wrapper.vm.finalOptions.brandImagePath).toBe(initialProps.brandImagePath);
+    expect(wrapper.vm.finalOptions.brandImage).toBe(initialProps.brandImage);
+    expect(wrapper.vm.finalOptions.brandImageAltText).toBe(initialProps.brandImageAltText);
     expect(wrapper.vm.finalOptions.collapseButtonImageOpen).toBe(
-      initialPropsData.collapseButtonImageOpen
+      initialProps.collapseButtonImageOpen,
     );
     expect(wrapper.vm.finalOptions.collapseButtonImageClose).toBe(
-      initialPropsData.collapseButtonImageClose
+      initialProps.collapseButtonImageClose,
     );
     expect(wrapper.vm.finalOptions.showBrandImageInMobilePopup).toBe(
-      initialPropsData.showBrandImageInMobilePopup
+      initialProps.showBrandImageInMobilePopup,
     );
-    expect(wrapper.vm.finalOptions.ariaLabelMainNav).toBe(
-      initialPropsData.ariaLabelMainNav
-    );
-    expect(wrapper.vm.finalOptions.tooltipAnimationType).toBe(
-      initialPropsData.tooltipAnimationType
-    );
-    expect(wrapper.vm.finalOptions.menuOptionsLeft).toBe(
-      initialPropsData.menuOptionsLeft
-    );
-    expect(wrapper.vm.finalOptions.menuOptionsRight).toBe(
-      initialPropsData.menuOptionsRight
-    );
+    expect(wrapper.vm.finalOptions.ariaLabelMainNav).toBe(initialProps.ariaLabelMainNav);
+    expect(wrapper.vm.finalOptions.tooltipAnimationType).toBe(initialProps.tooltipAnimationType);
+    expect(wrapper.vm.finalOptions.menuOptionsLeft).toStrictEqual(initialProps.menuOptionsLeft);
+    expect(wrapper.vm.finalOptions.menuOptionsRight).toStrictEqual(initialProps.menuOptionsRight);
   });
 
-  it("Confirms the `vue-navigation-bar` was built", async () => {
-    let initialPropsData = {
-      elementId: "main-navbar"
+  it('Confirms the `vue-navigation-bar` was built', async () => {
+    let initialProps = {
+      elementId: 'main-navbar',
     };
 
     const wrapper = shallowMount(VueNavigationBar, {
-      propsData: {
+      props: {
         options: {
-          elementId: initialPropsData.elementId
-        }
-      }
+          elementId: initialProps.elementId,
+        },
+      },
     });
 
-    expect(wrapper.findComponent({ name: "vue-navigation-bar" })).toBeTruthy();
+    expect(wrapper.findComponent({ name: 'vue-navigation-bar' })).toBeTruthy();
   });
 });

@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 5.0.0 (2022-03-20)
+
+- Upgrade to Vue 3 support at `v5.0.0` and beyond. Vue 2 support is available at `v4.1.0`.
+
 ## 4.1.0 (2020-10-15)
 
 - Adds `tooltipPlacement` prop to control direction of menu tooltip. This prevents the tooltip libraries from adjusting the position once set. This is preferable for a dropdown-type system we have here. Thank you @jeffreykthomas for your research and help on this.

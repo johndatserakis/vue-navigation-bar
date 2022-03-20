@@ -8,35 +8,38 @@
       :isLinkAction="false"
       @click.native="$emit('vnb-item-clicked', 'brand-image')"
     >
-      <img
-        v-if="options.brandImage"
-        :src="options.brandImage"
-        :alt="options.brandImageAltText"
-        class="vnb-image vnb__brand-image-wrapper__link__image"
-      />
+      <template #content>
+        <img
+          v-if="options.brandImage"
+          :src="options.brandImage"
+          :alt="options.brandImageAltText"
+          class="vnb-image vnb__brand-image-wrapper__link__image"
+        />
+      </template>
     </dynamic-link>
   </div>
 </template>
 
 <script>
-import DynamicLink from "../components/DynamicLink.vue";
+import DynamicLink from '../components/DynamicLink.vue';
 
 export default {
-  name: "brand-image",
+  name: 'brand-image',
   props: {
     options: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data() {
+  data () {
     return {};
   },
-  computed: {},
-  methods: {},
   components: {
-    DynamicLink
-  }
+    DynamicLink,
+  },
+  emits: [
+    'vnb-item-clicked',
+  ]
 };
 </script>
 

@@ -1,43 +1,22 @@
 <template>
-  <nav
-    class="vnb"
-    :id="finalOptions.elementId"
-    :aria-label="finalOptions.ariaLabelMainNav"
-  >
+  <nav class="vnb" :id="finalOptions.elementId" :aria-label="finalOptions.ariaLabelMainNav">
     <brand-image :options="finalOptions" @vnb-item-clicked="vnbItemClicked" />
 
-    <menu-options
-      :options="finalOptions"
-      :type="'left'"
-      @vnb-item-clicked="vnbItemClicked"
-    />
+    <menu-options :options="finalOptions" :type="'left'" @vnb-item-clicked="vnbItemClicked" />
 
-    <slot
-      v-if="$vssWidth > options.mobileBreakpoint"
-      name="custom-section"
-    ></slot>
+    <slot v-if="$vssWidth > options.mobileBreakpoint" name="custom-section"></slot>
 
-    <menu-options
-      :options="finalOptions"
-      :type="'right'"
-      @vnb-item-clicked="vnbItemClicked"
-    />
+    <menu-options :options="finalOptions" :type="'right'" @vnb-item-clicked="vnbItemClicked" />
 
     <collapse-button
-      v-if="
-        finalOptions.menuOptionsLeft.length ||
-          finalOptions.menuOptionsRight.length
-      "
+      v-if="finalOptions.menuOptionsLeft.length || finalOptions.menuOptionsRight.length"
       :options="finalOptions"
       :menuIsVisible="menuIsVisible"
       @collapse-button-clicked="showMobilePopup"
     />
 
     <popup
-      v-if="
-        finalOptions.menuOptionsLeft.length ||
-          finalOptions.menuOptionsRight.length
-      "
+      v-if="finalOptions.menuOptionsLeft.length || finalOptions.menuOptionsRight.length"
       :options="finalOptions"
       :menuIsVisible="menuIsVisible"
       @close-button-clicked="closeMobilePopup"
@@ -51,54 +30,50 @@
 </template>
 
 <script>
-import VueScreenSize from "vue-screen-size";
-import uuidV4 from "./common/uuidv4";
-import BrandImage from "./components/BrandImage.vue";
-import MenuOptions from "./components/MenuOptions.vue";
-import CollapseButton from "./components/CollapseButton.vue";
-import Popup from "./components/Popup.vue";
+import {VueScreenSizeMixin} from 'vue-screen-size';
+import uuidV4 from './common/uuidv4';
+import BrandImage from './components/BrandImage.vue';
+import MenuOptions from './components/MenuOptions.vue';
+import CollapseButton from './components/CollapseButton.vue';
+import Popup from './components/Popup.vue';
 
 export default {
-  name: "vue-navigation-bar",
-  mixins: [VueScreenSize.VueScreenSizeMixin],
+  name: 'vue-navigation-bar',
+  mixins: [VueScreenSizeMixin],
   props: {
     options: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data() {
+  data () {
     return {
-      menuIsVisible: false
+      menuIsVisible: false,
     };
   },
   computed: {
-    finalOptions() {
+    finalOptions () {
       // What we're doing here is giving each top-level menu-option a unique id
       if (this.options.menuOptionsLeft) {
         for (let x = 0; x < this.options.menuOptionsLeft.length; x++) {
-          this.$set(this.options.menuOptionsLeft[x], "id", uuidV4());
+          this.options.menuOptionsLeft[x].id = uuidV4();
         }
       }
       if (this.options.menuOptionsRight) {
         for (let x = 0; x < this.options.menuOptionsRight.length; x++) {
-          this.$set(this.options.menuOptionsRight[x], "id", uuidV4());
+          this.options.menuOptionsRight[x].id = uuidV4();
         }
       }
 
       return {
         elementId: this.options.elementId ? this.options.elementId : uuidV4(),
         isUsingVueRouter: this.options.isUsingVueRouter ? true : false,
-        mobileBreakpoint: this.options.mobileBreakpoint
-          ? this.options.mobileBreakpoint
-          : 992,
-        brandImagePath: this.options.brandImagePath
-          ? this.options.brandImagePath
-          : "/",
+        mobileBreakpoint: this.options.mobileBreakpoint ? this.options.mobileBreakpoint : 992,
+        brandImagePath: this.options.brandImagePath ? this.options.brandImagePath : '/',
         brandImage: this.options.brandImage ? this.options.brandImage : null,
         brandImageAltText: this.options.brandImageAltText
           ? this.options.brandImageAltText
-          : "brand-image",
+          : 'brand-image',
         collapseButtonImageOpen: this.options.collapseButtonImageOpen
           ? this.options.collapseButtonImageOpen
           : null,
@@ -111,44 +86,43 @@ export default {
         collapseButtonCloseColor: this.options.collapseButtonCloseColor
           ? this.options.collapseButtonCloseColor
           : '#373737',
-        showBrandImageInMobilePopup: this.options.showBrandImageInMobilePopup
-          ? true
-          : false,
+        showBrandImageInMobilePopup: this.options.showBrandImageInMobilePopup ? true : false,
         ariaLabelMainNav: this.options.ariaLabelMainNav
           ? this.options.ariaLabelMainNav
-          : "Main Navigation",
+          : 'Main Navigation',
         tooltipAnimationType: this.options.tooltipAnimationType
           ? this.options.tooltipAnimationType
-          : "shift-away",
-        tooltipPlacement: this.options.tooltipPlacement || "bottom",
-        menuOptionsLeft: this.options.menuOptionsLeft
-          ? this.options.menuOptionsLeft
-          : [],
-        menuOptionsRight: this.options.menuOptionsRight
-          ? this.options.menuOptionsRight
-          : []
+          : 'shift-away',
+        tooltipPlacement: this.options.tooltipPlacement || 'bottom',
+        menuOptionsLeft: this.options.menuOptionsLeft ? this.options.menuOptionsLeft : [],
+        menuOptionsRight: this.options.menuOptionsRight ? this.options.menuOptionsRight : [],
       };
-    }
+    },
   },
   methods: {
-    closeMobilePopup() {
+    closeMobilePopup () {
       this.menuIsVisible = false;
-      this.$emit("vnb-mobile-popup-hidden");
+      this.$emit('vnb-mobile-popup-hidden');
     },
-    showMobilePopup() {
+    showMobilePopup () {
       this.menuIsVisible = true;
-      this.$emit("vnb-mobile-popup-shown");
+      this.$emit('vnb-mobile-popup-shown');
     },
-    vnbItemClicked(text) {
-      this.$emit("vnb-item-clicked", text);
-    }
+    vnbItemClicked (text) {
+      this.$emit('vnb-item-clicked', text);
+    },
   },
   components: {
     BrandImage,
     MenuOptions,
     CollapseButton,
-    Popup
-  }
+    Popup,
+  },
+  emits: [
+    'vnb-mobile-popup-hidden',
+    'vnb-mobile-popup-shown',
+    'vnb-item-clicked',
+  ]
 };
 </script>
 
