@@ -56,7 +56,7 @@
             :path="option.path"
             :isUsingVueRouter="options.isUsingVueRouter"
             :class="['vnb__popup__bottom__menu-options__option__link', option.class]"
-            @click.native="itemSelected(option)"
+            @click="itemSelected(option)"
             :aria-label="option.text"
             :isLinkAction="option.isLinkAction ? true : false"
           >
@@ -91,7 +91,7 @@
                 :isUsingVueRouter="options.isUsingVueRouter"
                 v-if="subOption.type === 'link'"
                 class="vnb__popup__bottom__sub-menu-options__option__link"
-                @click.native="itemSelected(subOption)"
+                @click="itemSelected(subOption)"
                 :aria-label="subOption.text"
                 :isLinkAction="option.isLinkAction ? true : false"
               >

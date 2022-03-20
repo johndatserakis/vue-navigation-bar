@@ -33,8 +33,8 @@
 import {VueScreenSizeMixin} from 'vue-screen-size';
 import uuidV4 from './common/uuidv4';
 import BrandImage from './components/BrandImage.vue';
-import MenuOptions from './components/MenuOptions.vue';
 import CollapseButton from './components/CollapseButton.vue';
+import MenuOptions from './components/MenuOptions.vue';
 import Popup from './components/Popup.vue';
 
 export default {

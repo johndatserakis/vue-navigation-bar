@@ -6,7 +6,7 @@
       class="vnb__brand-image-wrapper__link"
       aria-label="Homepage"
       :isLinkAction="false"
-      @click.native="$emit('vnb-item-clicked', 'brand-image')"
+      @click="$emit('vnb-item-clicked', 'brand-image')"
     >
       <template #content>
         <img

@@ -35,8 +35,8 @@
 
 <script>
 import {VueScreenSizeMixin} from 'vue-screen-size';
-import DesktopMenuItemLink from '../components/DesktopMenuItemLink.vue';
 import DesktopMenuItemButton from '../components/DesktopMenuItemButton.vue';
+import DesktopMenuItemLink from '../components/DesktopMenuItemLink.vue';
 import DesktopMenuItemSpacer from '../components/DesktopMenuItemSpacer.vue';
 
 export default {

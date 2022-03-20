@@ -5,7 +5,7 @@
     :class="['vnb__menu-options__option__button', 'vnb-button', option.class]"
     :aria-label="option.text"
     :isLinkAction="option.isLinkAction ? true : false"
-    @click.native="$emit('vnb-item-clicked', option.text)"
+    @click="$emit('vnb-item-clicked', option.text)"
   >
     <template #content>
       <span

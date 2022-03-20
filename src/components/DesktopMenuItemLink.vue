@@ -7,7 +7,7 @@
     :aria-label="option.text"
     tabindex="0"
     :isLinkAction="option.isLinkAction ? true : false"
-    @click.native="$emit('vnb-item-clicked', option.text)"
+    @click="$emit('vnb-item-clicked', option.text)"
   >
     <template #content>
       <span
@@ -76,13 +76,13 @@
             :isUsingVueRouter="options.isUsingVueRouter"
             :key="index"
             class="vnb__sub-menu-options__option__link"
-            @click.native="
+            @click="
   subMenuItemSelected(subOption.text);
 $emit('vnb-item-clicked', subOption.text);
             "
             :aria-label="subOption.text"
             tabindex="0"
-            @keydown.tab.native="subMenuItemTabbed(subOption.text)"
+            @keydown.tab="subMenuItemTabbed(subOption.text)"
             :isLinkAction="subOption.isLinkAction ? true : false"
           >
             <template #content>
@@ -121,13 +121,13 @@ $emit('vnb-item-clicked', subOption.text);
 </template>
 
 <script>
-import DynamicLink from '../components/DynamicLink.vue';
-import 'tippy.js/themes/light.css';
+import tippy, {hideAll} from 'tippy.js';
+import 'tippy.js/animations/perspective.css';
+import 'tippy.js/animations/scale.css';
 import 'tippy.js/animations/shift-away.css';
 import 'tippy.js/animations/shift-toward.css';
-import 'tippy.js/animations/scale.css';
-import 'tippy.js/animations/perspective.css';
-import tippy, {hideAll} from 'tippy.js';
+import 'tippy.js/themes/light.css';
+import DynamicLink from '../components/DynamicLink.vue';
 
 export default {
   name: 'desktop-menu-item-link',
