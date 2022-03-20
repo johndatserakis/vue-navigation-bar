@@ -93,7 +93,7 @@
     "build": "npm run test && npm run build:example && npm run build:library",
     "build:es": "rollup --config rollup.config.js --format es --file dist/vue-navigation-bar.esm.js",
     "build:example": "rm -rf ./docs && cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "build:library": "rm -rf ./dist npm run build:unpkg & npm run build:es & npm run build:umd & npm run build:unpkg",
+    "build:library": "rm -rf ./dist && npm run build:unpkg & npm run build:es & npm run build:umd & npm run build:unpkg",
     "build:umd": "rollup --config rollup.config.js --format umd --file dist/vue-navigation-bar.umd.js",
     "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/vue-navigation-bar.min.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
