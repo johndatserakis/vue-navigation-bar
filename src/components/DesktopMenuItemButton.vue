@@ -25,6 +25,7 @@
 
 <script>
 import DynamicLink from '../components/DynamicLink.vue';
+
 export default {
   name: 'desktop-menu-item-button',
   props: {

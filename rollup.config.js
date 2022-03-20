@@ -1,10 +1,10 @@
-import { terser } from 'rollup-plugin-terser';
 import buble from '@rollup/plugin-buble';
 import commonjs from '@rollup/plugin-commonjs';
-import scss from 'rollup-plugin-scss';
-import minimist from 'minimist';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
+import minimist from 'minimist';
+import scss from 'rollup-plugin-scss';
+import { terser } from 'rollup-plugin-terser';
 import vue from 'rollup-plugin-vue';
 
 const argv = minimist(process.argv.slice(2));

@@ -109,6 +109,7 @@ const config = {
     extensions: ['.js', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'example'),
+      vue$: 'vue/dist/vue.esm-bundler.js',
     },
   },
 };
