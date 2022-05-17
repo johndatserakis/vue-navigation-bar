@@ -52,6 +52,7 @@ const config = {
         },
       },
       {
+        sideEffects: true,
         test: /\.(scss|css)$/,
         use: [
           // For hot reload in dev https://github.com/webpack-contrib/mini-css-extract-plugin/issues/34
