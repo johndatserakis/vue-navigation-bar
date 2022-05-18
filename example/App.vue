@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import brandImage from '../src/assets/images/lockup-color.png'
+
 export default {
   name: 'app',
   data () {
@@ -106,7 +108,7 @@ export default {
         isUsingVueRouter: true,
         mobileBreakpoint: 992,
         brandImagePath: './',
-        brandImage: require('../src/assets/images/lockup-color.png'),
+        brandImage,
         brandImageAltText: 'brand-image',
         collapseButtonOpenColor: '#661c23',
         collapseButtonCloseColor: '#661c23',

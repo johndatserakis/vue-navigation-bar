@@ -1,6 +1,6 @@
 # CHANGELOG.md
 
-## 5.0.1 (2022-03-20)
+## 5.0.2 (2022-03-20)
 
 - Upgrade to Vue 3 support at `v5.0.0` and beyond. Vue 2 support is available at `v4.1.0`.
 
