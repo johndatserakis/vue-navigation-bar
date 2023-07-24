@@ -1,4 +1,4 @@
-<p align="center"><a href="https://johndatserakis.github.io/vue-navigation-bar/" target="_blank" rel="noopener noreferrer"><img src="./src/assets/images/lockup-color.png" width="200" style="max-height: 100px; " alt="vue-navigation-bar"></a></p>
+<p align="center"><a href="https://johndatserakis.github.io/vue-navigation-bar/" target="_blank" rel="noopener noreferrer"><img src="./src/assets/images/lockup-color.png" width="200" style="max-height: 100px;" alt="vue-navigation-bar"></a></p>
 
 # vue-navigation-bar
 
@@ -501,14 +501,10 @@ yarn build
 ## TODO
 
 - [x] ~~Add an optional search input bar.~~ What I've done is add an optional `slot` named `custom-section` . Use this `slot` to add whatever custom content you want to show in the nav bar. In the demo, I have an example search bar shown. Look at the `./example` folder to check it out.
-
-- [] See if there's a way to let users pass a component for an icon and not be limited to HTML strings of the icon they want.
-
-- [] Add more thorough tests.
-
-- [] Add `prettier`, and `eslint` to the project. Pretty much mirror the settings from something like [this](https://github.com/johndatserakis/koa-vue-notes-web).
-
-- [] Fix the awful nesting job I did with the `SCSS` `BEM` nesting. I took the nesting way too far - really I should only need to go one level deep - maybe two. Anyways - I'll get to this soon - sorry about that until then. It's not anything too bad, but I've grown since then and realized the error in my ways ha.
+- [ ] See if there's a way to let users pass a component for an icon and not be limited to HTML strings of the icon they want.
+- [ ] Add more thorough tests.
+- [ ] Add `prettier`, and `eslint` to the project. Pretty much mirror the settings from something like [this](https://github.com/johndatserakis/koa-vue-notes-web).
+- [ ] Fix the awful nesting job I did with the `SCSS` `BEM` nesting. I took the nesting way too far - really I should only need to go one level deep - maybe two. Anyways - I'll get to this soon - sorry about that until then. It's not anything too bad, but I've grown since then and realized the error in my ways ha.
 
 ## Other
 
