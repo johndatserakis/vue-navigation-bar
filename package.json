@@ -86,5 +86,5 @@
   },
   "sideEffects": false,
   "unpkg": "dist/vue-navigation-bar.min.js",
-  "version": "6.0.0"
+  "version": "6.0.1"
 }

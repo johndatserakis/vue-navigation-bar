@@ -1,16 +1,5 @@
 <template>
-  <router-link
-    v-if="isUsingVueRouter && path && path.name"
-    v-bind="$attrs"
-    :to="{ name: this.path.name }"
-  >
-    <slot name="content"></slot>
-  </router-link>
-  <router-link
-    v-if="isUsingVueRouter && path && !path.name"
-    v-bind="$attrs"
-    :to="{ path: this.path }"
-  >
+  <router-link v-if="isUsingVueRouter && path" v-bind="$attrs" :to="localPath">
     <slot name="content"></slot>
   </router-link>
   <a v-if="!isUsingVueRouter && !isLinkAction && path" v-bind="$attrs" :href="path">
@@ -36,6 +25,13 @@ export default {
     isLinkAction: {
       type: Boolean,
       required: true,
+    },
+  },
+  computed: {
+    localPath() {
+      if (!this.path) return;
+
+      return typeof this.path === 'string' ? this.path : Object.assign({}, this.path);
     },
   },
 };

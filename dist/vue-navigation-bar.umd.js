@@ -33,6 +33,13 @@
         required: true,
       },
     },
+    computed: {
+      localPath: function localPath() {
+        if (!this.path) { return; }
+
+        return typeof this.path === 'string' ? this.path : Object.assign({}, this.path);
+      },
+    },
   };
 
   var _hoisted_1$7 = ["href"];
@@ -41,20 +48,8 @@
     var _component_router_link = vue.resolveComponent("router-link");
 
     return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-      ($props.isUsingVueRouter && $props.path && $props.path.name)
-        ? (vue.openBlock(), vue.createBlock(_component_router_link, vue.mergeProps({ key: 0 }, _ctx.$attrs, {
-            to: { name: this.path.name }
-          }), {
-            default: vue.withCtx(function () { return [
-              vue.renderSlot(_ctx.$slots, "content")
-            ]; }),
-            _: 3 /* FORWARDED */
-          }, 16 /* FULL_PROPS */, ["to"]))
-        : vue.createCommentVNode("v-if", true),
-      ($props.isUsingVueRouter && $props.path && !$props.path.name)
-        ? (vue.openBlock(), vue.createBlock(_component_router_link, vue.mergeProps({ key: 1 }, _ctx.$attrs, {
-            to: { path: this.path }
-          }), {
+      ($props.isUsingVueRouter && $props.path)
+        ? (vue.openBlock(), vue.createBlock(_component_router_link, vue.mergeProps({ key: 0 }, _ctx.$attrs, { to: $options.localPath }), {
             default: vue.withCtx(function () { return [
               vue.renderSlot(_ctx.$slots, "content")
             ]; }),
@@ -62,12 +57,12 @@
           }, 16 /* FULL_PROPS */, ["to"]))
         : vue.createCommentVNode("v-if", true),
       (!$props.isUsingVueRouter && !$props.isLinkAction && $props.path)
-        ? (vue.openBlock(), vue.createElementBlock("a", vue.mergeProps({ key: 2 }, _ctx.$attrs, { href: $props.path }), [
+        ? (vue.openBlock(), vue.createElementBlock("a", vue.mergeProps({ key: 1 }, _ctx.$attrs, { href: $props.path }), [
             vue.renderSlot(_ctx.$slots, "content")
           ], 16 /* FULL_PROPS */, _hoisted_1$7))
         : vue.createCommentVNode("v-if", true),
       ($props.isLinkAction)
-        ? (vue.openBlock(), vue.createElementBlock("a", vue.mergeProps({ key: 3 }, _ctx.$attrs, { href: "javascript:void(0);" }), [
+        ? (vue.openBlock(), vue.createElementBlock("a", vue.mergeProps({ key: 2 }, _ctx.$attrs, { href: "javascript:void(0);" }), [
             vue.renderSlot(_ctx.$slots, "content")
           ], 16 /* FULL_PROPS */))
         : vue.createCommentVNode("v-if", true)
@@ -646,20 +641,20 @@
         required: true,
       },
     },
-    data: function data () {
+    data: function data() {
       return {};
     },
     computed: {
-      combinedMenuItems: function combinedMenuItems () {
+      combinedMenuItems: function combinedMenuItems() {
         var combinedArray = this.options.menuOptionsLeft.concat(this.options.menuOptionsRight);
         return combinedArray;
       },
     },
     methods: {
-      closeButtonClicked: function closeButtonClicked () {
+      closeButtonClicked: function closeButtonClicked() {
         this.$emit('close-button-clicked');
       },
-      itemSelected: function itemSelected (option) {
+      itemSelected: function itemSelected(option) {
         this.$emit('vnb-item-clicked', option.text);
         this.closeButtonClicked();
       },
@@ -667,9 +662,7 @@
     components: {
       DynamicLink: script$8,
     },
-    emits: [
-      'close-button-clicked',
-      'vnb-item-clicked' ]
+    emits: ['close-button-clicked', 'vnb-item-clicked'],
   };
 
   var _hoisted_1$1 = {
@@ -745,7 +738,7 @@
                     width: "100pt",
                     xmlns: "http://www.w3.org/2000/svg",
                     class: "vnb__popup__top__close-button__image",
-                    style: vue.normalizeStyle({fill: $props.options.collapseButtonCloseColor})
+                    style: vue.normalizeStyle({ fill: $props.options.collapseButtonCloseColor })
                   }, _hoisted_8, 4 /* STYLE */))
             ], 8 /* PROPS */, _hoisted_4)
           ]),
@@ -805,7 +798,7 @@
                               class: "vnb__popup__bottom__sub-menu-options__option__link",
                               onClick: function ($event) { return ($options.itemSelected(subOption)); },
                               "aria-label": subOption.text,
-                              isLinkAction: option.isLinkAction ? true : false
+                              isLinkAction: subOption.isLinkAction ? true : false
                             }, {
                               content: vue.withCtx(function () { return [
                                 vue.createTextVNode(vue.toDisplayString(subOption.text) + " ", 1 /* TEXT */),

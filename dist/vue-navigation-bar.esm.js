@@ -27,6 +27,13 @@ var script$8 = {
       required: true,
     },
   },
+  computed: {
+    localPath: function localPath() {
+      if (!this.path) { return; }
+
+      return typeof this.path === 'string' ? this.path : Object.assign({}, this.path);
+    },
+  },
 };
 
 var _hoisted_1$7 = ["href"];
@@ -35,20 +42,8 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = resolveComponent("router-link");
 
   return (openBlock(), createElementBlock(Fragment, null, [
-    ($props.isUsingVueRouter && $props.path && $props.path.name)
-      ? (openBlock(), createBlock(_component_router_link, mergeProps({ key: 0 }, _ctx.$attrs, {
-          to: { name: this.path.name }
-        }), {
-          default: withCtx(function () { return [
-            renderSlot(_ctx.$slots, "content")
-          ]; }),
-          _: 3 /* FORWARDED */
-        }, 16 /* FULL_PROPS */, ["to"]))
-      : createCommentVNode("v-if", true),
-    ($props.isUsingVueRouter && $props.path && !$props.path.name)
-      ? (openBlock(), createBlock(_component_router_link, mergeProps({ key: 1 }, _ctx.$attrs, {
-          to: { path: this.path }
-        }), {
+    ($props.isUsingVueRouter && $props.path)
+      ? (openBlock(), createBlock(_component_router_link, mergeProps({ key: 0 }, _ctx.$attrs, { to: $options.localPath }), {
           default: withCtx(function () { return [
             renderSlot(_ctx.$slots, "content")
           ]; }),
@@ -56,12 +51,12 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
         }, 16 /* FULL_PROPS */, ["to"]))
       : createCommentVNode("v-if", true),
     (!$props.isUsingVueRouter && !$props.isLinkAction && $props.path)
-      ? (openBlock(), createElementBlock("a", mergeProps({ key: 2 }, _ctx.$attrs, { href: $props.path }), [
+      ? (openBlock(), createElementBlock("a", mergeProps({ key: 1 }, _ctx.$attrs, { href: $props.path }), [
           renderSlot(_ctx.$slots, "content")
         ], 16 /* FULL_PROPS */, _hoisted_1$7))
       : createCommentVNode("v-if", true),
     ($props.isLinkAction)
-      ? (openBlock(), createElementBlock("a", mergeProps({ key: 3 }, _ctx.$attrs, { href: "javascript:void(0);" }), [
+      ? (openBlock(), createElementBlock("a", mergeProps({ key: 2 }, _ctx.$attrs, { href: "javascript:void(0);" }), [
           renderSlot(_ctx.$slots, "content")
         ], 16 /* FULL_PROPS */))
       : createCommentVNode("v-if", true)
@@ -640,20 +635,20 @@ var script$1 = {
       required: true,
     },
   },
-  data: function data () {
+  data: function data() {
     return {};
   },
   computed: {
-    combinedMenuItems: function combinedMenuItems () {
+    combinedMenuItems: function combinedMenuItems() {
       var combinedArray = this.options.menuOptionsLeft.concat(this.options.menuOptionsRight);
       return combinedArray;
     },
   },
   methods: {
-    closeButtonClicked: function closeButtonClicked () {
+    closeButtonClicked: function closeButtonClicked() {
       this.$emit('close-button-clicked');
     },
-    itemSelected: function itemSelected (option) {
+    itemSelected: function itemSelected(option) {
       this.$emit('vnb-item-clicked', option.text);
       this.closeButtonClicked();
     },
@@ -661,9 +656,7 @@ var script$1 = {
   components: {
     DynamicLink: script$8,
   },
-  emits: [
-    'close-button-clicked',
-    'vnb-item-clicked' ]
+  emits: ['close-button-clicked', 'vnb-item-clicked'],
 };
 
 var _hoisted_1$1 = {
@@ -739,7 +732,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                   width: "100pt",
                   xmlns: "http://www.w3.org/2000/svg",
                   class: "vnb__popup__top__close-button__image",
-                  style: normalizeStyle({fill: $props.options.collapseButtonCloseColor})
+                  style: normalizeStyle({ fill: $props.options.collapseButtonCloseColor })
                 }, _hoisted_8, 4 /* STYLE */))
           ], 8 /* PROPS */, _hoisted_4)
         ]),
@@ -799,7 +792,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                             class: "vnb__popup__bottom__sub-menu-options__option__link",
                             onClick: function ($event) { return ($options.itemSelected(subOption)); },
                             "aria-label": subOption.text,
-                            isLinkAction: option.isLinkAction ? true : false
+                            isLinkAction: subOption.isLinkAction ? true : false
                           }, {
                             content: withCtx(function () { return [
                               createTextVNode(toDisplayString(subOption.text) + " ", 1 /* TEXT */),

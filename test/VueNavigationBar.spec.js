@@ -32,7 +32,7 @@ describe('VueNavigationBar.vue', () => {
             {
               type: 'link',
               text: 'Locations',
-              path: '/locations',
+              path: { name: 'locations', params: { item: 2 } },
             },
             {
               type: 'link',

@@ -29,7 +29,7 @@
           width="100pt"
           xmlns="http://www.w3.org/2000/svg"
           class="vnb__popup__top__close-button__image"
-          :style="{fill: options.collapseButtonCloseColor}"
+          :style="{ fill: options.collapseButtonCloseColor }"
         >
           <title>Close button</title>
           <path
@@ -66,7 +66,7 @@
                 class="vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--left"
                 v-html="option.iconLeft"
               ></span>
-              {{option.text}}
+              {{ option.text }}
               <span
                 v-if="option.iconRight"
                 class="vnb__popup__bottom__menu-options__option__link__icon vnb__popup__bottom__menu-options__option__link__icon--right"
@@ -78,7 +78,8 @@
           <span
             v-else
             class="vnb__popup__bottom__menu-options__option__link vnb__popup__bottom__menu-options__option__link--no-highlight"
-          >{{option.text}}</span>
+            >{{ option.text }}</span
+          >
 
           <div class="vnb__popup__bottom__sub-menu-options">
             <div
@@ -93,16 +94,12 @@
                 class="vnb__popup__bottom__sub-menu-options__option__link"
                 @click="itemSelected(subOption)"
                 :aria-label="subOption.text"
-                :isLinkAction="option.isLinkAction ? true : false"
+                :isLinkAction="subOption.isLinkAction ? true : false"
               >
                 <template #content>
-                  {{subOption.text}}
-                  <span
-                    class="vnb__popup__bottom__sub-menu-options__option__link__sub-text"
-                  >
-                    {{
-                      subOption.subText
-                    }}
+                  {{ subOption.text }}
+                  <span class="vnb__popup__bottom__sub-menu-options__option__link__sub-text">
+                    {{ subOption.subText }}
                   </span>
                 </template>
               </dynamic-link>
@@ -129,20 +126,20 @@ export default {
       required: true,
     },
   },
-  data () {
+  data() {
     return {};
   },
   computed: {
-    combinedMenuItems () {
+    combinedMenuItems() {
       let combinedArray = this.options.menuOptionsLeft.concat(this.options.menuOptionsRight);
       return combinedArray;
     },
   },
   methods: {
-    closeButtonClicked () {
+    closeButtonClicked() {
       this.$emit('close-button-clicked');
     },
-    itemSelected (option) {
+    itemSelected(option) {
       this.$emit('vnb-item-clicked', option.text);
       this.closeButtonClicked();
     },
@@ -150,15 +147,12 @@ export default {
   components: {
     DynamicLink,
   },
-  emits: [
-    'close-button-clicked',
-    'vnb-item-clicked',
-  ]
+  emits: ['close-button-clicked', 'vnb-item-clicked'],
 };
 </script>
 
 <style lang="scss">
-@import "../assets/css/main.scss";
+@import '../assets/css/main.scss';
 
 .vnb {
   &__popup {
@@ -241,8 +235,7 @@ export default {
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
-            transition: color 0.2s ease-in, background 0.2s ease-in,
-              border 0.2s ease-in;
+            transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
             border-left: 2px solid $white;
             width: 100%;
 
@@ -300,8 +293,7 @@ export default {
             display: block;
             color: lighten($black, 15%);
             font-weight: 500;
-            transition: color 0.2s ease-in, background 0.2s ease-in,
-              border 0.2s ease-in;
+            transition: color 0.2s ease-in, background 0.2s ease-in, border 0.2s ease-in;
             border-left: 2px solid $white;
 
             &:hover {
