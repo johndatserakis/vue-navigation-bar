@@ -1,5 +1,5 @@
 import { VueScreenSizeMixin } from 'vue-screen-size';
-import { resolveComponent, openBlock, createElementBlock, Fragment, createElementVNode, renderSlot, normalizeProps, mergeProps, createCommentVNode, createBlock, withCtx, createVNode, normalizeStyle, normalizeClass, createTextVNode, toDisplayString, renderList, withKeys } from 'vue';
+import { resolveComponent, openBlock, createElementBlock, Fragment, createBlock, mergeProps, withCtx, renderSlot, createCommentVNode, createVNode, normalizeStyle, createElementVNode, normalizeClass, createTextVNode, toDisplayString, renderList, withKeys } from 'vue';
 import tippy, { hideAll } from 'tippy.js';
 
 // https://stackoverflow.com/a/2117523/8014660
@@ -20,7 +20,7 @@ var script$8 = {
     },
     path: {
       type: [String, Object],
-      required: true,
+      required: false,
     },
     isLinkAction: {
       type: Boolean,
@@ -35,34 +35,36 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = resolveComponent("router-link");
 
   return (openBlock(), createElementBlock(Fragment, null, [
-    createElementVNode("template", null, [
-      ($props.isLinkAction)
-        ? renderSlot(_ctx.$slots, "content", normalizeProps(mergeProps({ key: 0 }, _ctx.$attrs)))
-        : createCommentVNode("v-if", true)
-    ]),
-    ($props.isUsingVueRouter)
-      ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-          ($props.path.name)
-            ? (openBlock(), createBlock(_component_router_link, mergeProps({ key: 0 }, _ctx.$attrs, {
-                to: {name: this.path.name}
-              }), {
-                default: withCtx(function () { return [
-                  renderSlot(_ctx.$slots, "content")
-                ]; }),
-                _: 3 /* FORWARDED */
-              }, 16 /* FULL_PROPS */, ["to"]))
-            : (openBlock(), createBlock(_component_router_link, mergeProps({ key: 1 }, _ctx.$attrs, {
-                to: {path: this.path}
-              }), {
-                default: withCtx(function () { return [
-                  renderSlot(_ctx.$slots, "content")
-                ]; }),
-                _: 3 /* FORWARDED */
-              }, 16 /* FULL_PROPS */, ["to"]))
-        ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
-      : (openBlock(), createElementBlock("a", mergeProps({ key: 1 }, _ctx.$attrs, { href: $props.path }), [
+    ($props.isUsingVueRouter && $props.path && $props.path.name)
+      ? (openBlock(), createBlock(_component_router_link, mergeProps({ key: 0 }, _ctx.$attrs, {
+          to: { name: this.path.name }
+        }), {
+          default: withCtx(function () { return [
+            renderSlot(_ctx.$slots, "content")
+          ]; }),
+          _: 3 /* FORWARDED */
+        }, 16 /* FULL_PROPS */, ["to"]))
+      : createCommentVNode("v-if", true),
+    ($props.isUsingVueRouter && $props.path && !$props.path.name)
+      ? (openBlock(), createBlock(_component_router_link, mergeProps({ key: 1 }, _ctx.$attrs, {
+          to: { path: this.path }
+        }), {
+          default: withCtx(function () { return [
+            renderSlot(_ctx.$slots, "content")
+          ]; }),
+          _: 3 /* FORWARDED */
+        }, 16 /* FULL_PROPS */, ["to"]))
+      : createCommentVNode("v-if", true),
+    (!$props.isUsingVueRouter && !$props.isLinkAction && $props.path)
+      ? (openBlock(), createElementBlock("a", mergeProps({ key: 2 }, _ctx.$attrs, { href: $props.path }), [
           renderSlot(_ctx.$slots, "content")
         ], 16 /* FULL_PROPS */, _hoisted_1$7))
+      : createCommentVNode("v-if", true),
+    ($props.isLinkAction)
+      ? (openBlock(), createElementBlock("a", mergeProps({ key: 3 }, _ctx.$attrs, { href: "javascript:void(0);" }), [
+          renderSlot(_ctx.$slots, "content")
+        ], 16 /* FULL_PROPS */))
+      : createCommentVNode("v-if", true)
   ], 64 /* STABLE_FRAGMENT */))
 }
 

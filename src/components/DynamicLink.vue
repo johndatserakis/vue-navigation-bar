@@ -1,17 +1,22 @@
 <template>
-  <template>
-    <slot v-if="isLinkAction" v-bind="$attrs" name="content"></slot>
-  </template>
-
-  <template v-if="isUsingVueRouter">
-    <router-link v-if="path.name" v-bind="$attrs" :to="{name: this.path.name}">
-      <slot name="content"></slot>
-    </router-link>
-    <router-link v-else v-bind="$attrs" :to="{path: this.path}">
-      <slot name="content"></slot>
-    </router-link>
-  </template>
-  <a v-else v-bind="$attrs" :href="path">
+  <router-link
+    v-if="isUsingVueRouter && path && path.name"
+    v-bind="$attrs"
+    :to="{ name: this.path.name }"
+  >
+    <slot name="content"></slot>
+  </router-link>
+  <router-link
+    v-if="isUsingVueRouter && path && !path.name"
+    v-bind="$attrs"
+    :to="{ path: this.path }"
+  >
+    <slot name="content"></slot>
+  </router-link>
+  <a v-if="!isUsingVueRouter && !isLinkAction && path" v-bind="$attrs" :href="path">
+    <slot name="content"></slot>
+  </a>
+  <a v-if="isLinkAction" v-bind="$attrs" href="javascript:void(0);">
     <slot name="content"></slot>
   </a>
 </template>
@@ -26,7 +31,7 @@ export default {
     },
     path: {
       type: [String, Object],
-      required: true,
+      required: false,
     },
     isLinkAction: {
       type: Boolean,

@@ -56,12 +56,14 @@
                 href="https://github.com/johndatserakis/vue-navigation-bar"
                 class="list-group-item list-group-item-action"
                 target="_blank"
-              >View on GitHub</a>
+                >View on GitHub</a
+              >
               <a
                 href="https://www.npmjs.com/package/vue-navigation-bar"
                 class="list-group-item list-group-item-action"
                 target="_blank"
-              >View on NPM</a>
+                >View on NPM</a
+              >
             </div>
           </div>
         </div>
@@ -97,11 +99,11 @@
 </template>
 
 <script>
-import brandImage from '../src/assets/images/lockup-color.png'
+import brandImage from '../src/assets/images/lockup-color.png';
 
 export default {
   name: 'app',
-  data () {
+  data() {
     return {
       navbarOptions: {
         elementId: 'main-navbar',
@@ -127,7 +129,6 @@ export default {
                 type: 'link',
                 text: 'About',
                 subText: 'Stupid corporate wet blankets. Like booze ever killed anyone.',
-                path: {name: 'about'},
               },
               {
                 type: 'hr',
@@ -136,7 +137,7 @@ export default {
                 type: 'link',
                 text: 'Locations',
                 subText: "You're a presentation tool!",
-                path: {name: 'locations'},
+                path: { name: 'locations' },
               },
               {
                 type: 'hr',
@@ -146,7 +147,7 @@ export default {
                 text: 'Blog',
                 subText:
                   'I enjoy having breakfast in bed. I like waking up to the smell of bacon. Sue me.',
-                path: {name: 'blog'},
+                path: { name: 'blog' },
               },
             ],
           },
@@ -157,13 +158,13 @@ export default {
               {
                 type: 'link',
                 text: 'Customer Service',
-                path: {name: 'customer-service'},
+                path: { name: 'customer-service' },
                 iconLeft: '<i class="fa fa-user fa-fw"></i>',
               },
               {
                 type: 'link',
                 text: 'Accounting',
-                path: {name: 'accounting'},
+                path: { name: 'accounting' },
                 iconLeft: '<i class="fa fa-star fa-fw"></i>',
               },
               {
@@ -172,7 +173,7 @@ export default {
               {
                 type: 'link',
                 text: 'Reception',
-                path: {name: 'reception'},
+                path: { name: 'reception' },
                 iconLeft:
                   '<svg id="i-telephone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M3 12 C3 5 10 5 16 5 22 5 29 5 29 12 29 20 22 11 22 11 L10 11 C10 11 3 20 3 12 Z M11 14 C11 14 6 19 6 28 L26 28 C26 19 21 14 21 14 L11 14 Z" /> <circle cx="16" cy="21" r="4" /> </svg>',
               },
@@ -183,13 +184,13 @@ export default {
           {
             type: 'button',
             text: 'Signup',
-            path: {name: 'signup'},
+            path: { name: 'signup' },
             class: 'button-red',
           },
           {
             type: 'button',
             text: 'Login',
-            path: {name: 'login'},
+            path: { name: 'login' },
             iconRight:
               '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>',
           },
@@ -198,7 +199,7 @@ export default {
     };
   },
   methods: {
-    vnbItemClicked (text) {
+    vnbItemClicked(text) {
       if (text === 'About') {
         alert("'About' was selected.");
       }
@@ -208,8 +209,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700");
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700');
 
 html {
   width: 100%;
@@ -222,7 +223,7 @@ body {
   height: 100%;
   height: 100vh;
   width: 100%;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #app {
@@ -293,7 +294,7 @@ body {
 }
 
 .vnb {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
   @media (min-width: 992px) {
     .button-red {
