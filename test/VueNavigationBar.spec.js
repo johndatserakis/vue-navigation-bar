@@ -25,7 +25,6 @@ describe('VueNavigationBar.vue', () => {
               isLinkAction: true,
               type: 'link',
               text: 'About',
-              path: '/about',
             },
             {
               type: 'hr',

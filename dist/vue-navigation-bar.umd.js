@@ -26,7 +26,7 @@
       },
       path: {
         type: [String, Object],
-        required: true,
+        required: false,
       },
       isLinkAction: {
         type: Boolean,
@@ -41,34 +41,36 @@
     var _component_router_link = vue.resolveComponent("router-link");
 
     return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-      vue.createElementVNode("template", null, [
-        ($props.isLinkAction)
-          ? vue.renderSlot(_ctx.$slots, "content", vue.normalizeProps(vue.mergeProps({ key: 0 }, _ctx.$attrs)))
-          : vue.createCommentVNode("v-if", true)
-      ]),
-      ($props.isUsingVueRouter)
-        ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
-            ($props.path.name)
-              ? (vue.openBlock(), vue.createBlock(_component_router_link, vue.mergeProps({ key: 0 }, _ctx.$attrs, {
-                  to: {name: this.path.name}
-                }), {
-                  default: vue.withCtx(function () { return [
-                    vue.renderSlot(_ctx.$slots, "content")
-                  ]; }),
-                  _: 3 /* FORWARDED */
-                }, 16 /* FULL_PROPS */, ["to"]))
-              : (vue.openBlock(), vue.createBlock(_component_router_link, vue.mergeProps({ key: 1 }, _ctx.$attrs, {
-                  to: {path: this.path}
-                }), {
-                  default: vue.withCtx(function () { return [
-                    vue.renderSlot(_ctx.$slots, "content")
-                  ]; }),
-                  _: 3 /* FORWARDED */
-                }, 16 /* FULL_PROPS */, ["to"]))
-          ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
-        : (vue.openBlock(), vue.createElementBlock("a", vue.mergeProps({ key: 1 }, _ctx.$attrs, { href: $props.path }), [
+      ($props.isUsingVueRouter && $props.path && $props.path.name)
+        ? (vue.openBlock(), vue.createBlock(_component_router_link, vue.mergeProps({ key: 0 }, _ctx.$attrs, {
+            to: { name: this.path.name }
+          }), {
+            default: vue.withCtx(function () { return [
+              vue.renderSlot(_ctx.$slots, "content")
+            ]; }),
+            _: 3 /* FORWARDED */
+          }, 16 /* FULL_PROPS */, ["to"]))
+        : vue.createCommentVNode("v-if", true),
+      ($props.isUsingVueRouter && $props.path && !$props.path.name)
+        ? (vue.openBlock(), vue.createBlock(_component_router_link, vue.mergeProps({ key: 1 }, _ctx.$attrs, {
+            to: { path: this.path }
+          }), {
+            default: vue.withCtx(function () { return [
+              vue.renderSlot(_ctx.$slots, "content")
+            ]; }),
+            _: 3 /* FORWARDED */
+          }, 16 /* FULL_PROPS */, ["to"]))
+        : vue.createCommentVNode("v-if", true),
+      (!$props.isUsingVueRouter && !$props.isLinkAction && $props.path)
+        ? (vue.openBlock(), vue.createElementBlock("a", vue.mergeProps({ key: 2 }, _ctx.$attrs, { href: $props.path }), [
             vue.renderSlot(_ctx.$slots, "content")
           ], 16 /* FULL_PROPS */, _hoisted_1$7))
+        : vue.createCommentVNode("v-if", true),
+      ($props.isLinkAction)
+        ? (vue.openBlock(), vue.createElementBlock("a", vue.mergeProps({ key: 3 }, _ctx.$attrs, { href: "javascript:void(0);" }), [
+            vue.renderSlot(_ctx.$slots, "content")
+          ], 16 /* FULL_PROPS */))
+        : vue.createCommentVNode("v-if", true)
     ], 64 /* STABLE_FRAGMENT */))
   }
 
