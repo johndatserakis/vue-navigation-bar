@@ -184,7 +184,7 @@ export default {
           {
             type: 'button',
             text: 'Signup',
-            path: { name: 'signup' },
+            path: 'signup',
             class: 'button-red',
           },
           {
