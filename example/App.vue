@@ -137,7 +137,7 @@ export default {
                 type: 'link',
                 text: 'Locations',
                 subText: "You're a presentation tool!",
-                path: { name: 'locations', params: { item: 2 } },
+                path: { name: 'locations', query: { item: 2 } },
               },
               {
                 type: 'hr',
