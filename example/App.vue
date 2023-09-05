@@ -137,7 +137,7 @@ export default {
                 type: 'link',
                 text: 'Locations',
                 subText: "You're a presentation tool!",
-                path: { name: 'locations' },
+                path: { name: 'locations', query: { item: 2 } },
               },
               {
                 type: 'hr',
@@ -184,7 +184,7 @@ export default {
           {
             type: 'button',
             text: 'Signup',
-            path: { name: 'signup' },
+            path: 'signup',
             class: 'button-red',
           },
           {
