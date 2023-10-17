@@ -16,6 +16,7 @@
     >
       <desktop-menu-item-link
         v-if="option.type === 'link'"
+        :class="option.class"
         :option="option"
         :options="options"
         @vnb-item-clicked="vnbItemClicked"

@@ -3,7 +3,7 @@
     :path="option.path"
     :isUsingVueRouter="options.isUsingVueRouter"
     v-if="!option.subMenuOptions || !option.subMenuOptions.length"
-    class="vnb__menu-options__option__link"
+    :class="['vnb__menu-options__option__link', option.class]"
     :aria-label="option.text"
     tabindex="0"
     :isLinkAction="option.isLinkAction ? true : false"
@@ -26,7 +26,7 @@
 
   <span
     v-else
-    class="vnb__menu-options__option__link"
+    :class="['vnb__menu-options__option__link', option.class]"
     :id="'dropdown-menu-parent-' + option.id"
     aria-haspopup="true"
     :aria-expanded="isExpanded ? 'true' : 'false'"

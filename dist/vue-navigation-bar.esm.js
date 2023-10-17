@@ -403,7 +403,7 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0,
         path: $props.option.path,
         isUsingVueRouter: $props.options.isUsingVueRouter,
-        class: "vnb__menu-options__option__link",
+        class: normalizeClass(['vnb__menu-options__option__link', $props.option.class]),
         "aria-label": $props.option.text,
         tabindex: "0",
         isLinkAction: $props.option.isLinkAction ? true : false,
@@ -427,10 +427,10 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
             : createCommentVNode("v-if", true)
         ]; }),
         _: 1 /* STABLE */
-      }, 8 /* PROPS */, ["path", "isUsingVueRouter", "aria-label", "isLinkAction"]))
+      }, 8 /* PROPS */, ["path", "isUsingVueRouter", "class", "aria-label", "isLinkAction"]))
     : (openBlock(), createElementBlock("span", {
         key: 1,
-        class: "vnb__menu-options__option__link",
+        class: normalizeClass(['vnb__menu-options__option__link', $props.option.class]),
         id: 'dropdown-menu-parent-' + $props.option.id,
         "aria-haspopup": "true",
         "aria-expanded": $options.isExpanded ? 'true' : 'false',
@@ -517,7 +517,7 @@ _ctx.$emit('vnb-item-clicked', subOption.text);
               ])
             ], 8 /* PROPS */, _hoisted_9$1))
           : createCommentVNode("v-if", true)
-      ], 8 /* PROPS */, _hoisted_3$1))
+      ], 10 /* CLASS, PROPS */, _hoisted_3$1))
 }
 
 script$4.render = render$4;
@@ -599,10 +599,11 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
             (option.type === 'link')
               ? (openBlock(), createBlock(_component_desktop_menu_item_link, {
                   key: 0,
+                  class: normalizeClass(option.class),
                   option: option,
                   options: $props.options,
                   onVnbItemClicked: $options.vnbItemClicked
-                }, null, 8 /* PROPS */, ["option", "options", "onVnbItemClicked"]))
+                }, null, 8 /* PROPS */, ["class", "option", "options", "onVnbItemClicked"]))
               : (option.type === 'button')
                 ? (openBlock(), createBlock(_component_desktop_menu_item_button, {
                     key: 1,

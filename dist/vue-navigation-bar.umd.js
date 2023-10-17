@@ -409,7 +409,7 @@
           key: 0,
           path: $props.option.path,
           isUsingVueRouter: $props.options.isUsingVueRouter,
-          class: "vnb__menu-options__option__link",
+          class: vue.normalizeClass(['vnb__menu-options__option__link', $props.option.class]),
           "aria-label": $props.option.text,
           tabindex: "0",
           isLinkAction: $props.option.isLinkAction ? true : false,
@@ -433,10 +433,10 @@
               : vue.createCommentVNode("v-if", true)
           ]; }),
           _: 1 /* STABLE */
-        }, 8 /* PROPS */, ["path", "isUsingVueRouter", "aria-label", "isLinkAction"]))
+        }, 8 /* PROPS */, ["path", "isUsingVueRouter", "class", "aria-label", "isLinkAction"]))
       : (vue.openBlock(), vue.createElementBlock("span", {
           key: 1,
-          class: "vnb__menu-options__option__link",
+          class: vue.normalizeClass(['vnb__menu-options__option__link', $props.option.class]),
           id: 'dropdown-menu-parent-' + $props.option.id,
           "aria-haspopup": "true",
           "aria-expanded": $options.isExpanded ? 'true' : 'false',
@@ -523,7 +523,7 @@
                 ])
               ], 8 /* PROPS */, _hoisted_9$1))
             : vue.createCommentVNode("v-if", true)
-        ], 8 /* PROPS */, _hoisted_3$1))
+        ], 10 /* CLASS, PROPS */, _hoisted_3$1))
   }
 
   script$4.render = render$4;
@@ -605,10 +605,11 @@
               (option.type === 'link')
                 ? (vue.openBlock(), vue.createBlock(_component_desktop_menu_item_link, {
                     key: 0,
+                    class: vue.normalizeClass(option.class),
                     option: option,
                     options: $props.options,
                     onVnbItemClicked: $options.vnbItemClicked
-                  }, null, 8 /* PROPS */, ["option", "options", "onVnbItemClicked"]))
+                  }, null, 8 /* PROPS */, ["class", "option", "options", "onVnbItemClicked"]))
                 : (option.type === 'button')
                   ? (vue.openBlock(), vue.createBlock(_component_desktop_menu_item_button, {
                       key: 1,
